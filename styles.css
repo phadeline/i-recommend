@@ -1,5 +1,5 @@
 .card{
-background-image: linear-gradient(to right, rgb(227, 80, 112), rgb(207, 120, 222));
+background-image: linear-gradient(to right, rgb(228, 120, 143), rgb(201, 132, 214));
 
 margin: 0;
 padding: 10px;
@@ -10,3 +10,7 @@ padding: 10px;
 }
 
 
+.box{
+  background-image: linear-gradient(to right, rgb(219, 219, 219), rgb(255, 255, 255));
+  
+}
