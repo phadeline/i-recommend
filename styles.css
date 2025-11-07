@@ -1,0 +1,16 @@
+.card{
+background-image: linear-gradient(to right, rgb(227, 80, 112), rgb(207, 120, 222));
+margin: auto;
+width: 50%;
+border: 3px solid green;
+padding: 10px;
+margin-top: 40%;
+
+  
+}
+
+.box{
+margin: auto;
+width: 50%;
+ 
+}
