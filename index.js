@@ -1,6 +1,6 @@
-const button = document.getElementById("connect");
+const button = document.getElementById("myRange");
 
-button.addEventListener("click", doSomething)
+button.addEventListener("change", doSomething);
 
 function doSomething(){
     alert("hello")
