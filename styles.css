@@ -1,7 +1,8 @@
 .card{
 background-image: linear-gradient(to right, rgb(228, 120, 143), rgb(201, 132, 214));
-margin: 0;
-padding: 100px;
+
+padding-top: 10px;
+padding-left: 120px;
   position: absolute;
   top: 40%;
   left: 50%;
@@ -11,17 +12,19 @@ padding: 100px;
 }
 
 .titlebox{
-  background-color: red;
+  padding: 5vw;
+ 
 }
 
 #title{
-color: rgb(255, 255, 255);
+color: rgb(249, 238, 233);
   position: absolute;
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 60px;
+  font-size: 4.5vw;
 font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+padding: 3vw;
 }
 
 
@@ -34,7 +37,8 @@ margin-top: 100px;
 
 #connect{
 max-width: 90px;
-margin-right: 5px;
+margin-left: 15%;
+font-size: 2vw;
 }
 
 .box{
@@ -45,13 +49,15 @@ margin-right: 5px;
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
-  width: 100%; /* Full-width */
-  height: 20px; /* Specified height */
+  width: 200px; /* Full-width */
+  height: 10px; /* Specified height */
   background: #d3d3d3; /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
+  margin-left: -50%;
+
 }
 
 /* Mouse-over effects */
@@ -63,9 +69,9 @@ margin-right: 5px;
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
-  background: url(icons8-music-96.png); /* Green background */
+  width: 50px; /* Set a specific slider handle width */
+  height: 50px; /* Slider handle height */
+  background: url(icons8-music-100.png); /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 
