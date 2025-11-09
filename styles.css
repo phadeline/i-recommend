@@ -15,25 +15,63 @@ padding: 100px;
 }
 
 #title{
-  background-color: white;
+color: rgb(255, 255, 255);
   position: absolute;
   top: 20%;
   left: 50%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
+  font-size: 60px;
+font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 
 .connectbox{
 display: flex;
+margin-top: 100px;
+
 
 }
 
 #connect{
-background-color: aliceblue;
 max-width: 90px;
+margin-right: 5px;
 }
 
 .box{
   background-image: linear-gradient(to right, rgb(219, 219, 219), rgb(255, 255, 255));
   
+}
+
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 20px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: url(icons8-music-96.png); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: url(icons8-music-96.png); /* Green background */
+  cursor: pointer; /* Cursor on hover */
 }
