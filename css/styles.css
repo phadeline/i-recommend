@@ -74,13 +74,12 @@ padding-left: 100px;}
   appearance: none;
   width: 50px; /* Set a specific slider handle width */
   height: 50px; /* Slider handle height */
-  background: url(icons8-music-100.png); /* Green background */
-  cursor: pointer; /* Cursor on hover */
+  background: url(../image/icons8-music-100.png); 
 }
 
 .slider::-moz-range-thumb {
   width: 50px; /* Set a specific slider handle width */
   height: 50px; /* Slider handle height */
-  background: url(icons8-music-100.png); /* Green background */
+  background: url(../image/icons8-music-100.png); 
   cursor: pointer; /* Cursor on hover */
 }
