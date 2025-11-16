@@ -6,7 +6,7 @@ var button;
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
 
-import {sign} from '../js/node_modules/jsonwebtken';
+import { sign } from '../js/node_modules/jsonwebtken/index.js';
 
 
 const privatekey = process.env.API_KEY;
