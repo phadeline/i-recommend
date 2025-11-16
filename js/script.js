@@ -1,13 +1,13 @@
 var button;
 
-$(document).ready(function(){button = document.getElementById("myRange")});
+$(function(){button = document.getElementById("myRange")});
 
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
 
-const jwt = require("jsonwebtoken");
-const fs = require("fs");
-const privatekey = fs.readFileSync('private_key.pem');
+const jwt = import("jsonwebtoken");
+import fs from 'fs';
+const privatekey = fs.readFile('/private_key.pem')
 const payload = {
     iss: import.meta.env.ISS,
     iat: utcNowSeconds,

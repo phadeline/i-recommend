@@ -1,6 +1,11 @@
 {
+  "name": "iRecommend",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "author": "Phadeline Evra",
+  "license": "MIT",
   "dependencies": {
-    "jquery": "^3.7.1",
     "jsonwebtoken": "^9.0.2",
     "requirejs": "^2.3.7"
   }
