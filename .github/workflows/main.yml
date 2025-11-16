@@ -15,6 +15,6 @@ jobs:
           node-version: '16.18.1'
 
       - name: Run JavaScript script with secret
-        run: node ../js/scripts.js
+        run: node /js/scripts.js
         env:
           API_KEY: ${{ secrets.PRIVATE_KEY }}
