@@ -1,8 +1,29 @@
-const button = document.getElementById("myRange");
+var button = document.getElementById("myRange");
 
-button.addEventListener("change", doSomething);
+button.addEventListener("change", async function () {
+    // Call configure() to configure an instance of MusicKit on the Web.
+    console.log("2");
+      try {
+        await MusicKit.configure({
+          developerToken: "",
+          app: {
+            name: "applemusic",
+            build: "25.11.1",
+          },
+        });
+        console.log("success");
+      } catch (err) {
+        console.log("err");
+        // Handle configuration error
+      }
+   
 
-function doSomething(){
-    if(this.value === this.max){
-    alert("hello")}
-}
+    // MusicKit instance is available
+    const music = MusicKit.getInstance();
+
+   
+  });
+
+
+
+
