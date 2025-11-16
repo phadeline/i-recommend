@@ -1,5 +1,4 @@
 name: My Workflow
-   on: [push]
    jobs:
      build:
        runs-on: ubuntu-latest
@@ -9,8 +8,8 @@ name: My Workflow
          - name: Setup Node.js
            uses: actions/setup-node@v4
            with:
-             node-version: '18'
+             node-version: '16.18.1'
          - name: Run JavaScript script with secret
-           run: node my-script.js
+           run: node script.js
            env:
              API_KEY: ${{ secrets.PRIVATE_KEY }}
