@@ -1,11 +1,14 @@
 var button;
 
-$(function(){button = document.getElementById("myRange")});
+
+
 
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
 
-import { sign } from './node_modules/jsonwebtoken/index.js';
+import {sign} from '../js/node_modules/jsonwebtken';
+
+
 const privatekey = process.env.API_KEY;
  if (privatekey) {
      console.log("API Key found:", apiKey);
@@ -47,5 +50,5 @@ button.addEventListener("change", async function () {
   });
 
 
-
+$(function(){button = document.getElementById("myRange")});
 
