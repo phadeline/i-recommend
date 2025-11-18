@@ -1,0 +1,12 @@
+{
+  "name": "i-recommend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "author": "Phadeline Evra",
+  "license": "MIT",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "requirejs": "^2.3.7"
+  }
+}
