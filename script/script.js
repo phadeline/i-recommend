@@ -1,4 +1,5 @@
 import fs from 'fs';
+import 'dotenv'
 
 
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
@@ -10,10 +11,10 @@ const secretOrPrivateKey = fs.readFileSync("../.env", 'utf8');
 const payload = {
     iss: "P97D3C79H5",
     iat: utcNowSeconds,
-    exp: 10
+    exp: 7200
 }
 import jwt from 'jsonwebtoken';
-const token = jwt.sign(payload, secretOrPrivateKey, {algorithm: 'ES256',keyid: "6837BD67PF",} ,(err, token) =>
+const token = jwt.sign(payload, secretOrPrivateKey, {algorithm: 'ES256', keyid: "6837BD67PF"} ,(err, token) =>
 {
   if (err) {
     // Handle error during token signing
