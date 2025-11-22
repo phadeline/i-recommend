@@ -1,25 +1,19 @@
+import fs from 'fs';
 
-import jwt from 'jsonwebtoken';
-import 'dotenv/config';
-
-var button;
 
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
 
+const secretOrPrivateKey = fs.readFileSync("../.env", 'utf8');
 
-
-
-const secretOrPrivateKey = process.env.PRIVATE_KEY;
 
 const payload = {
-    iss: process.env.I_S_S,
+    iss: "P97D3C79H5",
     iat: utcNowSeconds,
-    exp: 60
+    exp: 10
 }
-
-
-const token = jwt.sign(payload, secretOrPrivateKey, {algorithm: 'ES256', keyid: process.env.KID },(err, token) =>
+import jwt from 'jsonwebtoken';
+const token = jwt.sign(payload, secretOrPrivateKey, {algorithm: 'ES256',keyid: "6837BD67PF",} ,(err, token) =>
 {
   if (err) {
     // Handle error during token signing
@@ -33,31 +27,5 @@ const token = jwt.sign(payload, secretOrPrivateKey, {algorithm: 'ES256', keyid: 
 
 });
 
-$(function(){button = document.getElementById("myRange")});
-button.addEventListener("change", async function () {
-    // Call configure() to configure an instance of MusicKit on the Web.
-    console.log("2");
-      try {
-        await MusicKit.configure({
-          developerToken: token,
-          app: {
-            name: "applemusic",
-            build: "25.11.1",
-          },
-        });
-        console.log("success");
-      } catch (err) {
-        console.log("err");
-        // Handle configuration error
-      }
-   
-
-    // MusicKit instance is available
-    const music = MusicKit.getInstance();
-
-   
-  });
-
-
-
+export default token;
 
