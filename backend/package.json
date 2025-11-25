@@ -5,7 +5,11 @@
   "type": "module",
   "author": "Phadeline Evra",
   "license": "MIT",
+  "scripts": {
+    "start": "node script.js"
+  },
   "dependencies": {
+    "dotenv": "^17.2.3",
     "jsonwebtoken": "^9.0.2",
     "requirejs": "^2.3.7"
   }

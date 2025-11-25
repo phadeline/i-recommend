@@ -4,6 +4,7 @@ button = document.getElementById("myRange");
 
 button.addEventListener("change", async function () {
     // Call configure() to configure an instance of MusicKit on the Web.
+  if(this.value == this.max){
     console.log("2");
       try {
         await MusicKit.configure({
@@ -24,7 +25,7 @@ button.addEventListener("change", async function () {
    MusicKit.getInstance();
 
    
-  });
+  }});
 
 
 

@@ -1,20 +1,22 @@
 import fs from 'fs';
-import 'dotenv'
+import 'dotenv/config'
+import express from 'express';
+const app = express();
+const port = process.env.PORT || 8000;
 
 
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
 
-const secretOrPrivateKey = fs.readFileSync("../.env", 'utf8');
-
+const secretOrPrivateKey = fs.readFileSync("../.env.keys", 'utf8');
 
 const payload = {
-    iss: "P97D3C79H5",
+    iss: fs.readFileSync.toString("../.env.ISS"),
     iat: utcNowSeconds,
     exp: 7200
 }
 import jwt from 'jsonwebtoken';
-const token = jwt.sign(payload, secretOrPrivateKey, {algorithm: 'ES256', keyid: "6837BD67PF"} ,(err, token) =>
+const token = jwt.sign(payload, secretOrPrivateKey, {algorithm: 'ES256', keyid: fs.readFileSync.toString(("../.env.KID"))} ,(err, token) =>
 {
   if (err) {
     // Handle error during token signing
@@ -29,4 +31,13 @@ const token = jwt.sign(payload, secretOrPrivateKey, {algorithm: 'ES256', keyid: 
 });
 
 export default token;
+
+app.get("/", (req, res)=>{
+  res.send("server is ready!")
+})
+
+app.listen(port, ()=>{
+console.log(`listening app http://localhost:${port}`)
+})
+
 
