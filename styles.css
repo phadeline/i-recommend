@@ -1,0 +1,85 @@
+.card{
+background-image: linear-gradient(to right, rgb(228, 120, 143), rgb(201, 132, 214));
+
+padding-top: 10px;
+padding-left: 120px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  box-shadow: 10px 10px lightblue;
+ border-radius: 70px;
+ max-width: max-content;
+}
+
+.titlebox{
+  padding: 5vw;
+ 
+}
+
+#title{
+color: rgb(249, 238, 233);
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 90px;
+font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+padding-top: 1vw;
+padding-bottom: 3vw;
+}
+
+
+.connectbox{
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 20px;
+}
+
+
+#image{padding-top: 120px;
+padding-left: 100px;}
+
+
+.box{
+  background-image: linear-gradient(to right, rgb(126, 123, 123), rgba(251, 251, 251, 0.608));
+  
+}
+
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 200px; /* Full-width */
+  height: 10px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  margin-left: -80%;
+
+ 
+
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 50px; /* Set a specific slider handle width */
+  height: 50px; /* Slider handle height */
+  background: url(./icons8-music-100.png); 
+}
+
+.slider::-moz-range-thumb {
+  width: 50px; /* Set a specific slider handle width */
+  height: 50px; /* Slider handle height */
+  background: url(./icons8-music-100.png); 
+  cursor: pointer; /* Cursor on hover */
+}

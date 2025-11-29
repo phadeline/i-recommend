@@ -16,6 +16,7 @@ const payload = {
     exp: 7200
 }
 import jwt from 'jsonwebtoken';
+
 const token = jwt.sign(payload, secretOrPrivateKey, {algorithm: 'ES256', keyid: fs.readFileSync.toString(("../.env.KID"))} ,(err, token) =>
 {
   if (err) {
@@ -25,16 +26,18 @@ const token = jwt.sign(payload, secretOrPrivateKey, {algorithm: 'ES256', keyid: 
   }
   // Token successfully signed, 'token' contains the generated JWT
   console.log('Generated JWT:', token);
+  app.get('/', (req, res)=>{
+  res.status(200).header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500')
+  .send({token: `${token}`});
+})
+
 
   // You can now send this token to the client or use it as needed
 
 });
 
-export default token;
 
-app.get("/", (req, res)=>{
-  res.send("server is ready!")
-})
+
 
 app.listen(port, ()=>{
 console.log(`listening app http://localhost:${port}`)
