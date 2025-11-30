@@ -3,7 +3,7 @@ var button;
 var data;
 button = document.getElementById("myRange");
 
-fetch('http://localhost:8000') // Replace with your backend endpoint
+fetch('http://localhost:3000') // Replace with your backend endpoint
   .then(response => {
     if (!response.ok) { // Check for successful response (status code 2xx)
       throw new Error('Network response was not ok');
@@ -11,8 +11,8 @@ fetch('http://localhost:8000') // Replace with your backend endpoint
     return response.json(); // Parse the response body as JSON
   })
   .then(data => {
-   var stringToken = JSON.stringify(data.token);
-   return stringToken;
+   var stringToken = JSON.stringify(data);
+   console.log(stringToken);
     // Process the received data here
   }).then(stringToken => {
     sessionStorage.setItem("devtoken", stringToken)
@@ -24,10 +24,11 @@ fetch('http://localhost:8000') // Replace with your backend endpoint
 button.addEventListener("change", async function () {
     // Call configure() to configure an instance of MusicKit on the Web.
   if(this.value == this.max){
-    console.log(JSON.parse(sessionStorage.getItem("devtoken")));
+    
       try {
+        console.log(sessionStorage.getItem("devtoken"));
         await MusicKit.configure({
-          developerToken: JSON.parse(sessionStorage.getItem("devtoken")),
+          developerToken: sessionStorage.getItem("devtoken"),
           app: {
             name: "applemusic",
             build: "25.11.1",
@@ -35,7 +36,7 @@ button.addEventListener("change", async function () {
         });
         console.log("success");
       } catch (err) {
-        console.log("err");
+        console.log(err);
         // Handle configuration error
       }
    
