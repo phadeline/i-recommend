@@ -1,6 +1,7 @@
 var button;
-var data;
 button = document.getElementById("myRange");
+
+
 
 fetch("http://localhost:8000") // Replace with your backend endpoint
   .then((response) => {
@@ -19,6 +20,19 @@ fetch("http://localhost:8000") // Replace with your backend endpoint
   });
 
 const myDevToken = sessionStorage.getItem("devtoken");
+
+$(document).ready(function() {
+  // Check if the page has already been refreshed in this session
+  if (!sessionStorage.getItem('pageRefreshed')) {
+    // Set a flag in session storage to indicate the page has been refreshed
+    sessionStorage.setItem('pageRefreshed', 'true');
+
+    // Set a timeout to refresh the page after 1 second (1000 milliseconds)
+    setTimeout(function() {
+      location.reload();
+    }, 1000);
+  }
+});
 
 document.addEventListener("musickitloaded", async function () {
   // Call configure() to configure an instance of MusicKit on the Web.
@@ -39,5 +53,19 @@ document.addEventListener("musickitloaded", async function () {
   }
 
   // MusicKit instance is available
-  MusicKit.getInstance();
-});
+  let instance = MusicKit.getInstance();
+
+  
+
+  button.addEventListener("change", function () {
+    if (this.value == this.max) {
+         instance.authorize().then(function (token) {
+        window.location.href += "?music-user-token=" + encodeURIComponent(token)
+      });
+    }else {
+      console.log("Not authorized");
+    }
+  }
+
+  );
+});  

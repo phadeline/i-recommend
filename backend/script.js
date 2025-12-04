@@ -11,7 +11,7 @@ const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seco
 const secretOrPrivateKey = fs.readFileSync("../.env.keys", "utf8");
 
 const payload = 
-  {iss: "P97D3C79H5",
+  {iss: process.env.ISS,
   iat: utcNowSeconds,
   exp: utcNowSeconds +(60*60*24)
   };
@@ -19,7 +19,7 @@ const payload =
 const myheader = {
   "alg": "ES256",
   "typ": "JWT", 
-  "kid": "3VB3JF6C2K"
+  "kid": process.env.KID
   }
   
 
@@ -29,7 +29,7 @@ const myheader = {
 
 const token =  jwt.sign(
   JSON.stringify(payload),
-  secretOrPrivateKey,  {algorithm: "ES256", header: myheader}, 
+  secretOrPrivateKey,  {header: myheader}, 
  //JSON.stringify({header: header})
 )
 console.log(token)
