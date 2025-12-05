@@ -13,7 +13,7 @@ const secretOrPrivateKey = fs.readFileSync("../.env.keys", "utf8");
 const payload = 
   {iss: process.env.ISS,
   iat: utcNowSeconds,
-  exp: utcNowSeconds +(60*60*24)
+  exp: utcNowSeconds +(60*60) // Token valid for 60 minutes
   };
 
 const myheader = {
