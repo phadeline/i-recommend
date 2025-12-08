@@ -11,6 +11,7 @@
   "dependencies": {
     "dotenv": "^17.2.3",
     "jsonwebtoken": "^9.0.2",
+    "path": "^0.12.7",
     "requirejs": "^2.3.7"
   }
 }
