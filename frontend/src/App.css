@@ -1,82 +1,78 @@
-.App{
-    display: flex;
-    flex-direction: column;
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+height: 70vh
 }
 
-.card{
-background-image: linear-gradient(to right, rgb(228, 120, 143), rgb(201, 132, 214));
-
-padding-top: 10px;
-padding-left: 120px;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  box-shadow: 10px 10px lightblue;
- border-radius: 70px;
- max-width: max-content;
-}
-
-.titlebox{
-  padding: 5vw;
- 
-}
-
-#title{
-color: rgb(249, 238, 233);
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 90px;
-font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-padding-top: 1vw;
-padding-bottom: 3vw;
-
-}
-
-
-.connectbox{
-display: flex;
-align-items: center;
-justify-content: center;
-margin: 20px;
-}
-
-
-#image{
-margin-top: 50px;
-margin-right: 100px;
-margin-bottom: 50px;
+.card {
+  background-image: linear-gradient(
+    to right,
+    rgb(228, 120, 143),
+    rgb(201, 132, 214)
+  );
 padding: 50px;
-background: url(./connecttext.png) no-repeat;
-background-size: contain;
-background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  box-shadow: 10px 10px lightblue;
+  border-radius: 70px;
+  max-width: max-content;
 }
 
+.titlebox {
+  margin-bottom: 5vw;
+}
 
-.box{
-  background-image: linear-gradient(to right, rgb(126, 123, 123), rgba(251, 251, 251, 0.608));
-  
+#title {
+  color: rgb(249, 238, 233);
+  font-size: 90px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.connectbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  text-align: center;
+}
+
+#image {
+
+  padding: 50px;
+  background: url(./connecttext.png) no-repeat;
+  background-size: contain;
+  background-color: lightblue;
+}
+
+.box {
+  background-image: linear-gradient(
+    to right,
+    rgb(126, 123, 123),
+    rgba(251, 251, 251, 0.608)
+  );
 }
 
 .slider {
-   /* Override default CSS styles */
+  /* Override default CSS styles */
   appearance: none;
-  padding-right: 0px;
+
   width: 200px; /* Full-width */
   height: 12px; /* Specified height */
   background: #f9f9f9; /* Grey background */
 
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-  transition: opacity .5s;
+  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  transition: opacity 0.5s;
   margin-left: -10%;
- border-radius: 25px;
- border-top-right-radius: 0px;
- border-bottom-right-radius: 0px;
-
-
+  border-radius: 25px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 /* Mouse-over effects */
@@ -91,7 +87,7 @@ background-color: lightblue;
   width: 50px; /* Set a specific slider handle width */
   height: 30px; /* Slider handle height */
   background: url(./icons8-music-100.png) no-repeat;
-  background-size: auto
+  background-size: auto;
 }
 
 .slider::-moz-range-thumb {
@@ -101,5 +97,3 @@ background-color: lightblue;
   background-size: cover;
   cursor: pointer; /* Cursor on hover */
 }
-
-
