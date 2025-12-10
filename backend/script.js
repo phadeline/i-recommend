@@ -48,7 +48,7 @@ app.get("/" , (req, res) => {
 });
 
 app.options("/", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.sendStatus(200);
@@ -58,7 +58,7 @@ app.get("/token", (req, res) => {
   console.log(token)
       res
         .status(200)
-        //.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500") 
+        .header("Access-Control-Allow-Origin", "http://localhost:3000") 
         .send({ token: token });
      
     });
