@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-height: 70vh
+  height: 70vh;
 }
 
 .card {
@@ -12,7 +12,7 @@ height: 70vh
     rgb(228, 120, 143),
     rgb(201, 132, 214)
   );
-padding: 50px;
+  padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,11 +43,19 @@ padding: 50px;
 }
 
 #image {
-
   padding: 50px;
   background: url(./connecttext.png) no-repeat;
   background-size: contain;
   background-color: lightblue;
+  border-radius: 25px;
+  border-style: solid;
+  border-width: 5px;
+  opacity: 0.5;
+}
+
+#image:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .box {
@@ -61,12 +69,11 @@ padding: 50px;
 .slider {
   /* Override default CSS styles */
   appearance: none;
-
+  border-style: solid;
+  border-width: 4px;
   width: 200px; /* Full-width */
   height: 12px; /* Specified height */
   background: #f9f9f9; /* Grey background */
-
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
   transition: opacity 0.5s;
   margin-left: -10%;
