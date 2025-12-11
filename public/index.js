@@ -107,17 +107,15 @@ document.addEventListener("musickitloaded", async function (event) {
     
   
      }else{
-      console.log("authorized");
-      instance.unauthorize().then(function() {
-        console.log("User has been unauthorised");
-         instance.authorize().then(function (token) {
-          window.location.href += "?music-user-token=" + encodeURIComponent(token);
-          //const playlists = instance.api.music("v1/me/library/playlists");
-         // console.log(playlists);
-        }).catch(function(err) {console.error(err)});
-     })
+        console.log("not authorized");
+     
+         await instance.authorize().then(function (token) {
+        window.location.href += "?music-user-token=" + encodeURIComponent(token);
+        //const playlists = instance.api.music("v1/me/library/playlists");
+      }).catch(function(err) {console.error(err)});
     
-     ;}}
+  
+     }}
 
   
 } 

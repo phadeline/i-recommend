@@ -1,13 +1,22 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import "./App.css";
 import axios from "axios";
 /* global MusicKit */
 function App() {
 const documentRef = useRef(document);
-var instance = null;
 
-  axios.get("http://localhost:8000/token",{
+const rangeSlider = documentRef.current.getElementById("myRange");
+var count = 0;
+const [sliderValue, setSliderValue] = useState(10);
+
+useEffect (() => {
+
+ alert("click to the end of slider and press connect to get to Apple Music");
+
+  axios.get("http://localhost:8000/token",(e)=>{
+    e.preventDefault();
   }).then((response) => {
+
      if (response.status == 200) {
       console.log("Token fetched successfully");
       return response.data;
@@ -19,10 +28,7 @@ var instance = null;
   }).
   catch((error) => {
     console.error(error);
-  });
-
-
-var count = 0;
+  });},[]);
 
 useEffect(() => {  
 async function handleMouseMove(event) {
@@ -43,15 +49,38 @@ async function handleMouseMove(event) {
     // Handle configuration error
   };
    count++;
-  // MusicKit instance is available
-instance = MusicKit.getInstance();}
 }
-
-
+}
 document.addEventListener("mousemove", handleMouseMove);
 return() => {document.removeEventListener("mousemove", handleMouseMove)};
 
-},[])
+},[]);
+
+async function Click(event) {
+  event.preventDefault();
+    //this refers to the button element
+  if(rangeSlider.value == rangeSlider.max){
+    console.log("slider maxed");
+    rangeSlider.style.opacity = "0.2";
+    const instance = MusicKit.getInstance();
+    if( !instance.isAuthorized){
+        console.log("not authorized");
+         await instance.authorize().then(function (token) {
+        window.location.href += "?music-user-token=" + encodeURIComponent(token);
+        //const playlists = instance.api.music("v1/me/library/playlists");
+      }).catch(function(err) {console.error(err)})
+     }else{
+        console.log("not authorized");
+         await instance.authorize().
+         then(function (token) {
+        window.location.href += "?music-user-token=" + encodeURIComponent(token);
+        //const playlists = instance.api.music("v1/me/library/playlists");
+      }).catch(function(err) {console.error(err)});
+    
+  
+     }};}
+
+
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
@@ -66,14 +95,14 @@ return() => {document.removeEventListener("mousemove", handleMouseMove)};
               type="range"
               min="0"
               max="200"
-              defaultValue="10"
+              value={sliderValue}
               className="slider"
               id="myRange"
-         
-            />
+              onChange={(event) => setSliderValue(event.target.value)}/>
+              
           </div>
           <div className="textdiv">
-            <button type=" button" id="image"></button>
+            <button type=" button" id="image" onClick={(event) => Click(event)}></button>
           </div>
         </div>
       </div>
