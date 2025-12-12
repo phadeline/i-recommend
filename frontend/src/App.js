@@ -1,6 +1,9 @@
-import React, { useEffect, useState, useRef, use } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
+
+const musicPlaylists = `https://api.music.apple.com/v1/me/library/playlists`; // Example MusicKit API endpoint
 /* global MusicKit */
 function App() {
   const documentRef = useRef(document);
@@ -9,6 +12,8 @@ function App() {
   var count = 0;
   const [sliderValue, setSliderValue] = useState(20);
   const [clicked, setClicked] = useState(false);
+  let myPlaylists;
+  let [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     axios
@@ -64,18 +69,20 @@ function App() {
     async function Click(event) {
       event.preventDefault();
       //this refers to the button element
+      if(count<2){
       const instance = MusicKit.getInstance();
       if (sliderValue == "200" && instance.authorize) {
-        console.log("button clicked");
          instance.unauthorize();
         console.log("slider maxed");
-        rangeSlider.style.opacity = "0.2";
-        button.style.opacity = "0.6";
         if (!instance.isAuthorized) {
           console.log("not authorized");
+           setSliderValue(event.target.value);
+          rangeSlider.style.opacity = "0.2";
+        button.style.opacity = "0.6";
           await instance
             .authorize()
             .then(function (token) {
+              searchParams.delete("music-user-token");
               window.location.href +=
                 "?music-user-token=" + encodeURIComponent(token);
               //const playlists = instance.api.music("v1/me/library/playlists");
@@ -84,13 +91,16 @@ function App() {
               console.error(err);
             });
           }
+         
       } else if (sliderValue !== "200") {
           alert("Please click to the end of slider before connecting.");
+         
         } else {
           console.log("not authorized2");
           await instance
             .authorize()
             .then(function (token) {
+              searchParams.delete("music-user-token");
               window.location.href +=
                 "?music-user-token=" + encodeURIComponent(token);
               //const playlists = instance.api.music("v1/me/library/playlists");
@@ -98,11 +108,39 @@ function App() {
             .catch(function (err) {
               console.error(err);
             });
+           return setSliderValue("200");
         }
-    }
+      }}
    
  
+function getPlaylists() {
 
+ const userToken = searchParams.get("music-user-token");
+  const decodedToken = decodeURIComponent(userToken);
+  console.log(decodedToken);
+  const getToken = sessionStorage.getItem("devtoken");
+  
+  axios.get(musicPlaylists, {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+      "Music-User-Token": `${decodedToken}`,
+      "Content-Type": "application/json"
+    },
+  })
+    .then((response) =>{
+    return response; // Parse the response body as JSON
+  })  
+    .then((data) => {
+      
+  
+   myPlaylists = data.data;
+      // Process the playlist data here
+      console.log("myPlaylists:", myPlaylists);
+    })
+    .catch((error) => {
+      console.error("Error fetching playlists:", error);
+    });
+}
   return (
     <div className="App" style={{ textAlign: "center" }}>
       <h1 style={{ textAlign: "center" }}>Welcome to i-Recommend</h1>
@@ -123,16 +161,18 @@ function App() {
               onChange={(event) => {
                 setSliderValue(event.target.value);
               }}
+              onClick={Click}
             />
           </div>
           <div className="textdiv">
             <button
               type=" button"
+            onClick={getPlaylists}
               id="image"
-              onClick={Click}
             ></button>
           </div>
         </div>
+        <p>Click the end of the slider to connect your Apple Music account then press Connect!</p>
       </div>
     </div>
   );
