@@ -11,7 +11,7 @@ function App() {
   const rangeSlider = documentRef.current.getElementById("myRange");
   var count = 0;
   const [sliderValue, setSliderValue] = useState(20);
-  const [clicked, setClicked] = useState(false);
+
   let myPlaylists;
   let [searchParams, setSearchParams] = useSearchParams();
 
@@ -82,7 +82,7 @@ function App() {
           await instance
             .authorize()
             .then(function (token) {
-              searchParams.delete("music-user-token");
+             setSearchParams("")
               window.location.href +=
                 "?music-user-token=" + encodeURIComponent(token);
               //const playlists = instance.api.music("v1/me/library/playlists");
@@ -100,7 +100,7 @@ function App() {
           await instance
             .authorize()
             .then(function (token) {
-              searchParams.delete("music-user-token");
+              setSearchParams("");
               window.location.href +=
                 "?music-user-token=" + encodeURIComponent(token);
               //const playlists = instance.api.music("v1/me/library/playlists");
