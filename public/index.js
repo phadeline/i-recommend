@@ -8,6 +8,7 @@ function getPlaylists() {
   const decodedToken = decodeURIComponent(userToken);
   console.log(decodedToken);
   const getToken = sessionStorage.getItem("devtoken");
+  
   fetch(musicPlaylists, {
     method: "GET",
     headers: {
