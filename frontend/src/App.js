@@ -1,18 +1,20 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 
-const musicPlaylists = `https://api.music.apple.com/v1/me/library/playlists`; // Example MusicKit API endpoint
+
 /* global MusicKit */
 function App() {
+  const musicPlaylists = `https://api.music.apple.com/v1/me/library/playlists`; // Example MusicKit API endpoint
   const documentRef = useRef(document);
   const button = documentRef.current.getElementById("image");
   const rangeSlider = documentRef.current.getElementById("myRange");
   var count = 0;
-  const [sliderValue, setSliderValue] = useState(20);
+  const [sliderValue, setSliderValue] = useState("");
+const [myPlaylists, setMyPlaylists] = useState([]);
 
-  let myPlaylists;
+
   let [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -34,9 +36,7 @@ function App() {
       .catch((error) => {
         console.error(error);
       });
-
-
-}, []);
+  }, []);
 
   useEffect(() => {
     async function handleMouseMove(event) {
@@ -65,38 +65,19 @@ function App() {
     };
   }, []);
 
-
-    async function Click(event) {
-      event.preventDefault();
-      //this refers to the button element
-      if(count<2){
+  async function Click(event) {
+    event.preventDefault();
+    //this refers to the button element
+    if (count < 2) {
       const instance = MusicKit.getInstance();
       if (sliderValue == "200" && instance.authorize) {
-         instance.unauthorize();
+        instance.unauthorize();
         console.log("slider maxed");
         if (!instance.isAuthorized) {
           console.log("not authorized");
-           setSliderValue(event.target.value);
+          setSliderValue("200");
           rangeSlider.style.opacity = "0.2";
-        button.style.opacity = "0.6";
-          await instance
-            .authorize()
-            .then(function (token) {
-             setSearchParams("")
-              window.location.href +=
-                "?music-user-token=" + encodeURIComponent(token);
-              //const playlists = instance.api.music("v1/me/library/playlists");
-            })
-            .catch(function (err) {
-              console.error(err);
-            });
-          }
-         
-      } else if (sliderValue !== "200") {
-          alert("Please click to the end of slider before connecting.");
-         
-        } else {
-          console.log("not authorized2");
+          button.style.opacity = "0.6";
           await instance
             .authorize()
             .then(function (token) {
@@ -108,39 +89,53 @@ function App() {
             .catch(function (err) {
               console.error(err);
             });
-           return setSliderValue("200");
         }
-      }}
-   
- 
-function getPlaylists() {
+      } else if (sliderValue !== "200") {
+        alert("Please click to the end of slider before connecting.");
+      } else {
+        console.log("not authorized2");
+        await instance
+          .authorize()
+          .then(function (token) {
+            setSearchParams("");
+            window.location.href +=
+              "?music-user-token=" + encodeURIComponent(token);
+            //const playlists = instance.api.music("v1/me/library/playlists");
+          })
+          .catch(function (err) {
+            console.error(err);
+          });
+        return setSliderValue("200");
+      }
+    }
+  }
 
- const userToken = searchParams.get("music-user-token");
-  const decodedToken = decodeURIComponent(userToken);
-  console.log(decodedToken);
-  const getToken = sessionStorage.getItem("devtoken");
-  
-  axios.get(musicPlaylists, {
-    headers: {
-      Authorization: `Bearer ${getToken}`,
-      "Music-User-Token": `${decodedToken}`,
-      "Content-Type": "application/json"
-    },
-  })
-    .then((response) =>{
-    return response; // Parse the response body as JSON
-  })  
-    .then((data) => {
-      
-  
-   myPlaylists = data.data;
-      // Process the playlist data here
-      console.log("myPlaylists:", myPlaylists);
-    })
-    .catch((error) => {
-      console.error("Error fetching playlists:", error);
-    });
-}
+  function getPlaylists() {
+    const userToken = searchParams.get("music-user-token");
+    const decodedToken = decodeURIComponent(userToken);
+    console.log(decodedToken);
+    const getToken = sessionStorage.getItem("devtoken");
+
+    axios
+      .get(musicPlaylists, {
+        headers: {
+          Authorization: `Bearer ${getToken}`,
+          "Music-User-Token": `${decodedToken}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        return response; // Parse the response body as JSON
+      })
+      .then((data) => {
+        setMyPlaylists(data.data)
+        // Process the playlist data here
+        console.log("myPlaylists:", myPlaylists);
+      })
+      .catch((error) => {
+        console.error("Error fetching playlists:", error);
+      });
+  }
   return (
     <div className="App" style={{ textAlign: "center" }}>
       <h1 style={{ textAlign: "center" }}>Welcome to i-Recommend</h1>
@@ -165,14 +160,21 @@ function getPlaylists() {
             />
           </div>
           <div className="textdiv">
-            <button
-              type=" button"
-            onClick={getPlaylists}
-              id="image"
-            ></button>
+            <nav>
+              <Link to="/playlists" state={myPlaylists}>
+                <button
+                  type=" button"
+                  onMouseOver={getPlaylists}
+                  id="image"
+                ></button>
+              </Link>
+            </nav>
           </div>
         </div>
-        <p>Click the end of the slider to connect your Apple Music account then press Connect!</p>
+        <p>
+          Click the end of the slider to connect your Apple Music account then
+          press Connect!
+        </p>
       </div>
     </div>
   );
