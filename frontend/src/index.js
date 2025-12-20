@@ -2,6 +2,7 @@ import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import PlaylistsLists from "./Components/playlistpage";
+import AllMusic from "./Components/AllMusic"
 
 import reportWebVitals from "./reportWebVitals";
 import {
@@ -12,7 +13,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
-  { path: "/playlists", element: <PlaylistsLists /> },
+  { path: "/playlists/", element: <PlaylistsLists /> },
+  {path: `/playlists/:id`, element: <AllMusic/>},
 ]);
 root.render(
   <StrictMode>

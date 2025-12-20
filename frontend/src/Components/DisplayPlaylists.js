@@ -21,11 +21,11 @@ const DisplayPlaylists = () => {
     navigate("/playlists");
   };
 
-
+ const userToken = searchParams.get("music-user-token");
+const decodedToken = decodeURIComponent(userToken);
 
   function getPlaylists() {
-    const userToken = searchParams.get("music-user-token");
-    const decodedToken = decodeURIComponent(userToken);
+   
     console.log(decodedToken);
     const getToken = sessionStorage.getItem("devtoken");
 
@@ -43,7 +43,7 @@ const DisplayPlaylists = () => {
       .then((data) => {
         setMyPlaylists(data);
         // Process the playlist data here
-        console.log("myPlaylists:", myPlaylists);
+        console.log("myPlaylists:", myPlaylists.data);
       })
       .catch((error) => {
         console.error("Error fetching playlists:", error);
@@ -52,7 +52,7 @@ const DisplayPlaylists = () => {
 
   return (
  
-  <button type=" button" onMouseOver={getPlaylists} playlistdata={myPlaylists} id="image"></button>
+  <button type=" button" onMouseOver={getPlaylists} playlistdata={myPlaylists} musictoken={decodedToken} id="image"></button>
   
 
 

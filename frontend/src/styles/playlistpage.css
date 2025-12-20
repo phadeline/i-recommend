@@ -1,0 +1,34 @@
+.Header{
+    text-align: center;
+  text-decoration: underline;
+  font-size:50px;
+   
+}
+
+
+.AllPlaylists{
+   
+ font-size: 40px;
+ 
+ margin: 30px;
+ list-style-type:none;
+ display: flex;
+ flex-direction: column;
+ text-decoration: none;
+
+}
+
+li {
+    margin: 30px;
+     background-image: linear-gradient(
+    to right,
+    rgb(228, 120, 143),
+    rgb(201, 132, 214));
+    border-radius:20px;
+ padding: 30px;
+text-decoration: none;
+    
+}
+
+
+

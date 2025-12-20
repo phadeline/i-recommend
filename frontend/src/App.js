@@ -4,6 +4,7 @@ import "./App.css";
 import axios from "axios";
 
 
+
 /* global MusicKit */
 function App() {
   const musicPlaylists = `https://api.music.apple.com/v1/me/library/playlists`; // Example MusicKit API endpoint
@@ -11,11 +12,13 @@ function App() {
   const button = documentRef.current.getElementById("image");
   const rangeSlider = documentRef.current.getElementById("myRange");
   var count = 0;
-  const [sliderValue, setSliderValue] = useState("");
+  const [sliderValue, setSliderValue] = useState("15");
 const [myPlaylists, setMyPlaylists] = useState([]);
 
-
   let [searchParams, setSearchParams] = useSearchParams();
+     const userToken = searchParams.get("music-user-token");
+const decodedToken = decodeURIComponent(userToken);
+  
 
   useEffect(() => {
     axios
@@ -66,6 +69,7 @@ const [myPlaylists, setMyPlaylists] = useState([]);
   }, []);
 
   async function Click(event) {
+    
     event.preventDefault();
     //this refers to the button element
     if (count < 2) {
@@ -111,10 +115,10 @@ const [myPlaylists, setMyPlaylists] = useState([]);
   }
 
   function getPlaylists() {
-    const userToken = searchParams.get("music-user-token");
-    const decodedToken = decodeURIComponent(userToken);
+ 
     console.log(decodedToken);
     const getToken = sessionStorage.getItem("devtoken");
+   
 
     axios
       .get(musicPlaylists, {
@@ -161,10 +165,10 @@ const [myPlaylists, setMyPlaylists] = useState([]);
           </div>
           <div className="textdiv">
             <nav>
-              <Link to="/playlists" state={myPlaylists}>
+              <Link to={`/playlists/`} onMouseEnter={getPlaylists} state={{myPlaylists: myPlaylists, decodedToken: decodedToken}}>
                 <button
                   type=" button"
-                  onMouseOver={getPlaylists}
+                  
                   id="image"
                 ></button>
               </Link>
