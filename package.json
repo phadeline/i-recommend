@@ -1,7 +1,7 @@
 {
   "name": "i-recommend",
   "version": "0.1.0",
-  "homepage": "https://phadeline.github.io/i-recommend/",
+  "homepage": ".",
   "private": true,
   "description": "",
   "main": "/frontend",
