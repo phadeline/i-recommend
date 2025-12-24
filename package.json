@@ -4,7 +4,7 @@
   "homepage": "https://phadeline.github.io/i-recommend/",
   "private": true,
   "description": "",
-  "main": "/",
+  "main": "/frontend",
   "engines": {
     "node": "24.12.0"
   },
@@ -12,7 +12,7 @@
     "start": "concurrently \"npm run start --prefix frontend\" \"npm run start --prefix backend\"",
     "server": "node backend",
     "client": "npm start --prefix frontend",
-    "build": "cd frontend && react-scripts build",
+    "build": "cd frontend && npm install && npm run build",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
     "deploy": "cd frontend && gh-pages -d build",
