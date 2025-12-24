@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
 
-const secretOrPrivateKey = fs.readFileSync("../.env.keys", "utf8") || process.env.PRIVATE_KEY
+const secretOrPrivateKey = || process.env.PRIVATE_KEY || fs.readFileSync("../.env.keys", "utf8");
 
 const payload = 
   {iss: "P97D3C79H5",
