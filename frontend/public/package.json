@@ -4,7 +4,7 @@
   "private": true,
   "proxy": "http://localhost:8000",
   "homepage": "https://phadeline.github.io/i-recommend/",
-  "main": "/",
+  "main": "../frontend/public/index.html",
   "engines": {
     "node": "24.12.0"
   },
@@ -15,7 +15,6 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.13.2",
     "bootstrap": "^5.3.8",
-    "eslint-config-react-app": "^7.0.1",
     "node": "^24.12.0",
     "react": "^19.2.0",
     "react-bootstrap": "^2.10.10",
@@ -26,17 +25,22 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start --prefix frontend\" \"npm start --prefix ../backend\"",
-    "build": "react-scripts build frontend",
+    "start": "concurrently \"react-scripts start\" \"npm start --prefix ../backend\"",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "node ../backend",
-    "client": "npm start --prefix frontend",
+    "client": "npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
