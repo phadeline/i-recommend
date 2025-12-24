@@ -9,8 +9,8 @@
     "node": "22.11.0"
   },
   "scripts": {
-    "start": "node backend/script.js",
-    "server": "node backend/script.js",
+    "start": "node ../backend/script.js",
+    "server": "node ../backend/script.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
