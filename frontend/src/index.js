@@ -2,7 +2,8 @@ import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import PlaylistsLists from "./Components/playlistpage";
-import AllMusic from "./Components/AllMusic"
+import AllMusic from "./Components/AllMusic";
+import "../public/index.html"
 
 import reportWebVitals from "./reportWebVitals";
 import {
