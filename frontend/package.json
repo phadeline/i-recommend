@@ -14,8 +14,8 @@
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
-    "deploy": "cd frontend npm install && gh-pages -d build"
-  
+    "deploy": "cd frontend npm install && gh-pages -d build",
+  "build": "npm run dev"
   
   },
   "repository": {
