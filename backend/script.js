@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
 
-const secretOrPrivateKey = process.env.PRIVATE_KEY || fs.readFileSync("../.env.keys", "utf8");
+const secretOrPrivateKey = fs.readFileSync("../.env.keys", "utf8");
 
 const payload = 
   {iss: "P97D3C79H5",
@@ -42,8 +42,7 @@ const token =  jwt.sign(
 console.log(token)
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);
-  console.log(token);
-  exit(0);
+  
 });
 
 app.get("/" , (req, res) => {
