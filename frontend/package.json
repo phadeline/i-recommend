@@ -4,7 +4,7 @@
   "private": true,
   "proxy": "http://localhost:8000",
   "homepage": "https://phadeline.github.io/i-recommend/",
-  "main": "frontend/src/index.js",
+  "main": "..frontend/index.html",
   "engines": {
     "node": "24.12.0"
   },
