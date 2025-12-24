@@ -1,16 +1,38 @@
 {
+  "name": "i-recommend",
+  "version": "0.1.0",
+  "homepage": "https://phadeline.github.io/i-recommend/",
+  "private": true,
+  "description": "",
+  "main": "backend/script.js",
+  "scripts": {
+    "start": "concurrently \"npm run start --prefix frontend\" \"npm run start --prefix backend\"",
+    "server": "node backend",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phadeline/i-recommend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phadeline/i-recommend/issues"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1",
+    "concurrently": "^9.2.1"
+  },
   "dependencies": {
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "path": "^0.12.7",
-    "react": "^19.2.3",
-    "react-scripts": "^5.0.1"
-  },
-  "devDependencies": {
-    "gh-pages": "^6.3.0",
-    "webpack": "^5.102.1",
-    "webpack-cli": "^6.0.1"
+    "react": "^19.2.3"
   }
 }

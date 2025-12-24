@@ -7,11 +7,12 @@ import AllMusic from "./Components/AllMusic"
 import reportWebVitals from "./reportWebVitals";
 import {
   RouterProvider,
-  createBrowserRouter,
+  //createBrowserRouter,
+  createHashRouter
 } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   { path: "/", element: <App /> },
   { path: "/playlists/", element: <PlaylistsLists /> },
   {path: `/playlists/:id`, element: <AllMusic/>},
