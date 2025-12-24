@@ -15,7 +15,7 @@
     
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
-    "deploy": "cd frontend && gh-pages -d build"
+    "deploy": "cd frontend/public && gh-pages -d build"
    
   },
   "repository": {
