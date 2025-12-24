@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "concurrently \"react-scripts start --prefix frontend\" \"npm start --prefix ../backend\"",
-    "build": "react-scripts build frontend",
+   "build": "cd frontend && npm install && npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "node ../backend",
