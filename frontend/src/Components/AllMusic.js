@@ -10,8 +10,7 @@ import axios from "axios";
 const AllMusic = () => {
   const location = useLocation();
   const myMusicData = location.state.myMusicData;
-  const Name = location.state.Name;
-  const decodedToken = location.state.decodedToken;
+;
   console.log(myMusicData);
 
   return (
