@@ -15,7 +15,7 @@ jobs:
           node-version: '16.18.1'
           cache: 'npm'
       - name: Install dependencies
-          run: npm install
+        run: npm ci
 
       - name: Run JavaScript script with secret
         run: node backend/script.js
