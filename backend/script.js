@@ -1,5 +1,5 @@
 import fs from "fs";
-//import "dotenv/config";
+import "dotenv/config";
 import express from "express";
 const app = express();
 import path from "path";
