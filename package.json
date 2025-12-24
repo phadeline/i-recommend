@@ -4,6 +4,7 @@
   "homepage": ".",
   "private": true,
   "description": "",
+  "type": "module",
   "engines": {
     "node": "24.12.0"
   },
