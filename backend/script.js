@@ -10,7 +10,7 @@ const port = process.env.PORT || 8000;
 import jwt from "jsonwebtoken";
 import { exit } from "process";
 
-app.use(express.static(path.join(__dirname, 'frontend/build')))
+app.use(express.static(path.join(__dirname, 'build')))
 
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
@@ -46,7 +46,7 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname+'/frontend/build/index.html'));
+  res.sendFile(path.join(__dirname,'build', 'index.html'));
 });
 
 
