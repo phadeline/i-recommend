@@ -6,16 +6,17 @@
   "description": "",
   "type": "module",
   "engines": {
-    "node": "24.12.0"
+    "node": "22.11.0"
   },
   "scripts": {
-    "start": "concurrently \"npm run start --prefix frontend\" \"npm run start --prefix backend\"",
-    "server": "node backend",
+    "start": "node backend/script.js",
+    "server": "node backend/script.js",
     "client": "npm start --prefix frontend",
-    "build": "cd frontend npm install && npm run build",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
-    "deploy": "cd frontend npm install && gh-pages -d build"
+    "deploy": "cd frontend npm install && gh-pages -d build",
+  "build": "cd frontend && npm install && npm run build",
+  "heroku-postbuild": "cd frontend && npm install && npm run build"
 
   },
   "repository": {
