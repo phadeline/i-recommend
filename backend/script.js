@@ -14,10 +14,10 @@ app.use(express.static(path.join(__dirname, '../public')));
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
 
-const secretOrPrivateKey = fs.readFileSync("../.env.keys", "utf8");
+const secretOrPrivateKey = fs.readFileSync(process.env.PRIVATE_KEY, "utf8");
 
 const payload = 
-  {iss: process.env.ISS,
+  {iss: "P97D3C79H5",
   iat: utcNowSeconds,
   exp: utcNowSeconds +(60*60) // Token valid for 60 minutes
   };
@@ -25,7 +25,7 @@ const payload =
 const myheader = {
   "alg": "ES256",
   "typ": "JWT", 
-  "kid": process.env.KID
+  "kid": "3VB3JF6C2K"
   }
   
 
