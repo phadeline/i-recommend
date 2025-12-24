@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
+import "../../frontend/"
 
 
 
