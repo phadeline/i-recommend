@@ -8,13 +8,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const port = process.env.PORT || 8000;
 import jwt from "jsonwebtoken";
+import { exit } from "process";
 
 app.use(express.static(path.join(__dirname, '../public')));
 
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
 
-const secretOrPrivateKey = process.env.PRIVATE_KEY
+const secretOrPrivateKey = fs.readFileSync("../.env.keys", "utf8") || process.env.PRIVATE_KEY
 
 const payload = 
   {iss: "P97D3C79H5",
@@ -40,7 +41,9 @@ const token =  jwt.sign(
 )
 console.log(token)
 app.listen(port, () => {
-  console.log(`listening app http://localhost:${port}`);
+  console.log(`listening at http://localhost:${port}`);
+  console.log(token);
+  exit(0);
 });
 
 app.get("/" , (req, res) => {
