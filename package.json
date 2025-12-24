@@ -1,7 +1,7 @@
 {
   "name": "i-recommend",
   "version": "0.1.0",
-  "homepage": ".",
+  "homepage": "https://phadeline.github.io/i-recommend/",
   "private": true,
   "description": "",
   "type": "module",
@@ -10,13 +10,12 @@
   },
   "scripts": {
     "start": "concurrently \"npm run start --prefix frontend\" \"npm run start --prefix backend\"",
-    "server": "node backend", 
+    "server": "node backend",
     "client": "npm start --prefix frontend",
     "build": "cd frontend npm install && npm run build",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
     "deploy": "cd frontend npm install && gh-pages -d build"
-   
   },
   "repository": {
     "type": "git",

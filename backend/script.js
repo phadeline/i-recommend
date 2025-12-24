@@ -10,7 +10,7 @@ const port = process.env.PORT || 8000;
 import jwt from "jsonwebtoken";
 import { exit } from "process";
 
-const frontendBuildPath = path.join(__dirname, "/frontend/build");
+const frontendBuildPath = path.join(__dirname, "../frontend/build");
 
 app.use(express.static(frontendBuildPath));
 
