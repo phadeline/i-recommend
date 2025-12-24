@@ -12,10 +12,10 @@
     "start": "concurrently \"npm run start --prefix frontend\" \"npm run start --prefix backend\"",
     "server": "node backend",
     "client": "npm start --prefix frontend",
-    "build": "cd frontend/public && react-scripts build",
+    "build": "cd frontend && react-scripts build",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
-    "deploy": "cd frontend && gh-pages -d build",
+    "deploy": "cd frontend/public && gh-pages -d build",
     "heroku": "npm run build && copy frontend/public/index.html dist/index.html"
   },
   "repository": {
