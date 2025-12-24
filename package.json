@@ -16,7 +16,7 @@
     "predeploy": "npm run build",
     "deploy": "cd frontend npm install && gh-pages -d build",
   "build": "cd frontend && npm install && npm run build",
-  "heroku-postbuild": "cd client && npm install && npm run build"
+  "heroku-postbuild": "npm install && npm run build"
 
   },
   "repository": {
