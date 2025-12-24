@@ -1,48 +1,48 @@
 {
-  "name": "irecommend",
+  "name": "i-recommend",
   "version": "0.1.0",
-  "private": true,
-  "proxy": "http://localhost:8000",
   "homepage": "https://phadeline.github.io/i-recommend/",
+  "private": true,
+  "description": "",
+  "type": "module",
   "engines": {
-    "node": "18.x || 20.x"
-  },
-  "dependencies": {
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.13.2",
-    "bootstrap": "^5.3.8",
-    "react": "^19.2.0",
-    "react-bootstrap": "^2.10.10",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.10.1",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "node": "22.11.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "node backend/script.js",
+    "server": "node backend/script.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "heroku-postbuild": "cd frontend && npm install --only=dev && npm install && npm run build"
+    "deploy": "cd frontend npm install && gh-pages -d build",
+  "build": "cd frontend && npm install && npm run build",
+  "heroku-postbuild": "cd frontend && npm install && npm run build"
+
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phadeline/i-recommend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phadeline/i-recommend/issues"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "concurrently": "^9.2.1",
+    "gh-pages": "^6.3.0",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "eslint-config-react-app": "^7.0.1",
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "path": "^0.12.7",
+    "react": "^19.2.3",
+    "react-scripts": "^5.0.1"
   }
 }
