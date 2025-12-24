@@ -9,7 +9,7 @@
     "node": "22.11.0"
   },
   "scripts": {
-    "start": "index.js",
+    "start": "/src/index.js",
     "server": "node ../backend/script.js",
     "client": "npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
