@@ -1,11 +1,11 @@
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import PlaylistsLists from "./Components/playlistpage";
-import AllMusic from "./Components/AllMusic";
+import App from "./App.js";
+import PlaylistsLists from "./Components/playlistpage.js";
+import AllMusic from "./Components/AllMusic.js";
 
 
-import reportWebVitals from "./reportWebVitals";
+import reportWebVitals from "./reportWebVitals.js";
 import {
   RouterProvider,
   //createBrowserRouter,

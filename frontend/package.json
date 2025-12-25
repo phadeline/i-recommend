@@ -4,19 +4,17 @@
   "homepage": "https://phadeline.github.io/i-recommend/",
   "private": true,
   "description": "",
-  "type": "module",
   "engines": {
     "node": "22.11.0"
   },
   "scripts": {
-    "start": "/src/index.js",
+    "start": "react-scripts start",
     "server": "node ../backend/script.js",
     "client": "npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
     "deploy": "cd frontend npm install && gh-pages -d build",
-  "build": "npm run dev"
-  
+    "build": "npm run dev"
   },
   "repository": {
     "type": "git",
@@ -35,6 +33,8 @@
     "webpack-cli": "^6.0.1"
   },
   "dependencies": {
+    "axios": "^1.13.2",
+    "bootstrap": "^5.3.8",
     "dotenv": "^17.2.3",
     "eslint-config-react-app": "^7.0.1",
     "express": "^5.1.0",
@@ -42,6 +42,21 @@
     "jsonwebtoken": "^9.0.2",
     "path": "^0.12.7",
     "react": "^19.2.3",
-    "react-scripts": "^5.0.1"
+    "react-bootstrap": "^2.10.10",
+    "react-router-dom": "^7.11.0",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^5.1.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

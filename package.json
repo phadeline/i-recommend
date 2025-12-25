@@ -1,7 +1,7 @@
 {
   "name": "i-recommend",
   "version": "0.1.0",
-  "homepage": "https://phadeline.github.io/i-recommend/",
+  "homepage": "/",
   "private": true,
   "description": "",
   "type": "module",
@@ -15,9 +15,8 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
     "deploy": "cd frontend npm install && gh-pages -d build",
-  "build": "cd frontend && npm install && npm run build",
-  "heroku-postbuild": "cd frontend && npm install && npm run build"
-
+    "build": "cd frontend && npm install && npm run build",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -36,6 +35,7 @@
     "webpack-cli": "^6.0.1"
   },
   "dependencies": {
+    "bootstrap": "^5.3.8",
     "dotenv": "^17.2.3",
     "eslint-config-react-app": "^7.0.1",
     "express": "^5.1.0",
@@ -43,6 +43,7 @@
     "jsonwebtoken": "^9.0.2",
     "path": "^0.12.7",
     "react": "^19.2.3",
+    "react-bootstrap": "^2.10.10",
     "react-scripts": "^5.0.1"
   }
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
-import "../../frontend/"
+//import "../../frontend/"
 
 
 
@@ -28,13 +28,14 @@ const decodedToken = decodeURIComponent(userToken);
       })
       .then((response) => {
         if (response.status == 200) {
-          console.log("Token fetched successfully");
+          console.log(response);
           return response.data;
         } else if (response.status != 200) {
           console.error("Failed to fetch token");
         }
       })
       .then((data) => {
+        sessionStorage.removeItem("devtoken");
         sessionStorage.setItem("devtoken", data.token);
       })
       .catch((error) => {
