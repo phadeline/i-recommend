@@ -41,7 +41,7 @@ const PlaylistsLists = () => {
             <Link
             
               style={{ textDecoration: "none", color: "white" }}
-              to={`/playlists/${playlist.attributes.name}`}
+              to={`/${playlist.attributes.name}`}
               state={{myMusicData: myMusicData}} 
               
               
