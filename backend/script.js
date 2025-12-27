@@ -64,7 +64,7 @@ app.get("/", (req, res) => {
 app.get("/token", (req, res) => {
   console.log(token);
   res.status(200);
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin");
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.send({ token: token });
