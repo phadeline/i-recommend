@@ -22,10 +22,10 @@ const decodedToken = decodeURIComponent(userToken);
   
 
 
-//http://localhost:8000/token
+//https://i-recommend-289e22b5c5f5.herokuapp.com/token
   useEffect(() => {
     axios
-      .get("https://i-recommend-289e22b5c5f5.herokuapp.com/token", (e) => {
+      .get("http://localhost:8000/token", (e) => {
         e.preventDefault();
       })
       .then((response) => {

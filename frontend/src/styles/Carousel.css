@@ -35,6 +35,29 @@ width: 50vh;
 
 }
 
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-image: none !important;
+  color: transparent;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<'; /* Use an actual icon or character */
+  font-size: 50px; /* Adjust size as needed */
+   color: rgb(231, 252, 0);
+  font-weight: bolder;
+  padding-right: 50px;
+}
+
+.carousel-control-next-icon:after {
+  content: '>'; /* Use an actual icon or character */
+  color: rgb(231, 252, 0);
+  font-size: 50px;
+  font-weight: bolder;
+  padding-left: 20px;
+
+}
+
 @media screen and (max-width: 1400px) { 
   .Carousel{
     width: 50vh;

@@ -11,26 +11,7 @@ const PlaylistsLists = () => {
   const [myMusicData, setMyMusicData] = useState([]);
   //console.log(`Hello ${myPlaylists.data[0].attributes.name}`);
 
-  async function OnePlaylist(id) {
-    console.log(id);
-    try{
-    await axios
-      .get(`https://api.music.apple.com/v1/catalog/us/playlists/${id}/tracks`, {
-        headers: {
-          Authorization: `Bearer ${getToken}`,
-          "Music-User-Token": `${decodedToken}`,
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-       console.log(response.data)
-       return response.data
-      
-      }).then((data)=>{setMyMusicData(data)})
-    } catch(error) {
-        console.log(error);
-      };
-  }
+  
   console.log(myMusicData);
   return (
     <div className="playlistbackground">
@@ -41,17 +22,12 @@ const PlaylistsLists = () => {
             <Link
             
               style={{ textDecoration: "none", color: "white" }}
-              to={`/${playlist.attributes.name}`}
-              state={{myMusicData: myMusicData}} 
+              to={`/OnePlaylist`}
+              state={{ decodedToken:decodedToken, Name: playlist.attributes.name, globalId: playlist.attributes.playParams.globalId}}
               
               
             >
-             <li
-                
-                onMouseEnter={() =>
-                  OnePlaylist(playlist.attributes.playParams.globalId)
-                }
-              >
+             <li key={playlist.id}>
                 {playlist.attributes.name}
               </li>
             </Link>

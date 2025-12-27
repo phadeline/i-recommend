@@ -10,22 +10,22 @@ const port = process.env.PORT || 8000;
 import jwt from "jsonwebtoken";
 import { exit } from "process";
 
-//const frontendBuildPath = path.join(__dirname, "../frontend/public");
+const frontendBuildPath = path.join(__dirname, "../frontend/public");
 
-//app.use(express.static(frontendBuildPath));
+app.use(express.static(frontendBuildPath));
 
-const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:8000';
+const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:3000';
 
 
-const frontendBuildPath = path.join(__dirname, "..", "/frontend/build");
-app.use("/i-recommend", express.static(frontendBuildPath));
+//const frontendBuildPath = path.join(__dirname, "..", "/frontend/build");
+//app.use("/i-recommend", express.static(frontendBuildPath));
 
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
 
-const secretOrPrivateKey = process.env.MY_NEW_KEY;
+//const secretOrPrivateKey = process.env.MY_NEW_KEY;
 
-//const secretOrPrivateKey = fs.readFileSync("./.env.keys", "utf8") ;
+const secretOrPrivateKey = fs.readFileSync("./.env.keys", "utf8") ;
 
 const payload = {
   iss: "P97D3C79H5",
