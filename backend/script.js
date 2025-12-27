@@ -14,7 +14,7 @@ import { exit } from "process";
 
 //app.use(express.static(frontendBuildPath));
 
-const frontendBuildPath = path.join(__dirname, "..", "/frontend/src");
+const frontendBuildPath = path.join(__dirname, "..", "/frontend/build");
 app.use(express.static(frontendBuildPath));
 
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
