@@ -1,7 +1,7 @@
 {
   "name": "i-recommend",
   "version": "0.1.0",
-  "homepage": "/",
+  "homepage": "/i-recommend",
   "private": true,
   "description": "",
   "proxy": "http://localhost:8000",
