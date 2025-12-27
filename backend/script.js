@@ -14,6 +14,9 @@ import { exit } from "process";
 
 //app.use(express.static(frontendBuildPath));
 
+const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:8000';
+
+
 const frontendBuildPath = path.join(__dirname, "..", "/frontend/build");
 app.use("/i-recommend", express.static(frontendBuildPath));
 
@@ -23,7 +26,6 @@ const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seco
 const secretOrPrivateKey = process.env.MY_NEW_KEY;
 
 //const secretOrPrivateKey = fs.readFileSync("./.env.keys", "utf8") ;
-
 
 const payload = {
   iss: "P97D3C79H5",
@@ -55,16 +57,16 @@ app.get("/", (req, res) => {
 });
 
 //app.options("/", (req, res) => {
- // res.header("Access-Control-Allow-Origin", "http://localhost:3000");
- // res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
- // res.header("Access-Control-Allow-Headers", "Content-Type");
- // res.sendStatus(200);
+// res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+// res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+// res.header("Access-Control-Allow-Headers", "Content-Type");
+// res.sendStatus(200);
 //});
 
-app.get("i-recommend/token", (req, res) => {
+app.get("/token", (req, res) => {
   console.log(token);
   res.status(200);
-  res.header("Access-Control-Allow-Origin");
+  res.header("Access-Control-Allow-Origin", API_URL);
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.send({ token: token });
