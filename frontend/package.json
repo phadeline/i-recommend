@@ -11,12 +11,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "npm ",
+    "server": "npm run index.js",
     "client": "npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
     "deploy": "cd frontend npm install && gh-pages -d build",
-    "build": "npm run build --prefix frontend"
+    "build": "npm run build "
   },
   "repository": {
     "type": "git",
