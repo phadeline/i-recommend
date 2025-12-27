@@ -28,25 +28,29 @@ useEffect(() => {
     try { 
       const response = await axios.get(playlistTracksUrl,
         {
-          headers: {
-            Authorization: `Bearer ${getToken}`,
-            "Music-User-Token": `${decodedToken}`,
+          headers:{
             "Content-Type": "application/json",
+             Authorization: `Bearer ${getToken}`
           },
         }
       );
-      if (response.status == 400) {
+      if (response.status == 200) {
         console.log(response);
-        return setOnePlaylistData(response);
+        setOnePlaylistData(response.data);
+       
       }
     } catch(error) {console.log("here is the error: " + error)}
   };
+  
+  
   if(finalglobalID){
     console.log(finalglobalID);
   FetchAll(finalglobalID)};
+
+
 }, [finalglobalID]);
 
-  console.log(OnePlaylistData);
+   console.log(OnePlaylistData.length);
 
   return (
     <div>
@@ -54,9 +58,9 @@ useEffect(() => {
         <h1 className="PlaylistTitle">Playlist: {Name}</h1>
         <div className="Carousel">
           <Carousel style={{ backgroundColor: "black" }} interval={null}>
-  {OnePlaylistData && OnePlaylistData.length > 0 ? (
+  {OnePlaylistData   ? (
   
-  OnePlaylistData.data.map((song) => (
+  OnePlaylistData.data?.map((song) => (
     <Carousel.Item key={song.id} className="CarouselItem">
       <div>
         <img
