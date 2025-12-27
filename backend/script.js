@@ -61,7 +61,7 @@ app.get("/", (req, res) => {
  // res.sendStatus(200);
 //});
 
-app.get("/token", (req, res) => {
+app.get("i-recommend/token", (req, res) => {
   console.log(token);
   res.status(200);
   res.header("Access-Control-Allow-Origin");
