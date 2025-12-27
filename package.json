@@ -4,18 +4,19 @@
   "homepage": "/",
   "private": true,
   "description": "",
+  "proxy": "http://localhost:8000",
   "type": "module",
   "engines": {
     "node": "22.11.0"
   },
   "scripts": {
-    "start": "node backend/script.js",
-    "server": "node backend/script.js",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node --prefix backend",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
     "deploy": "cd frontend npm install && gh-pages -d build",
-    "build": "cd frontend && npm install && npm run build",
+    "build": "cd frontend && npm install && npm run build && cd backend && npm install",
     "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "repository": {
@@ -41,6 +42,7 @@
     "express": "^5.1.0",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
+    "node": "^22.11.0",
     "path": "^0.12.7",
     "react": "^19.2.3",
     "react-bootstrap": "^2.10.10",
