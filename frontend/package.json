@@ -17,7 +17,7 @@
     "predeploy": "npm run build",
     "deploy": "cd frontend npm install && gh-pages -d build",
     "build": "npm run build ",
-    "install": "npm install"
+    "install": "npm install --prefix frontend"
   },
   "repository": {
     "type": "git",
