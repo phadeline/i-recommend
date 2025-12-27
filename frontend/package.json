@@ -13,7 +13,7 @@
     "start": "react-scripts start",
     "server": "npm run index.js",
     "client": "npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
