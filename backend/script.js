@@ -17,7 +17,7 @@ app.use(express.static(frontendBuildPath));
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
 
-const secretOrPrivateKey = process.env.NEW_KEY;
+const secretOrPrivateKey = process.env.MY_NEW_KEY;
 
 
 const payload = {
