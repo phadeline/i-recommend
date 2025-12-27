@@ -8,9 +8,9 @@
     "node": "22.11.0"
   },
   "scripts": {
-    "start": "npm run server && npm run client",
+    "start": "react-scripts start && npm run server",
     "server": "node ../backend/script.js",
-    "client": "npm start",
+    "client": "npm start index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
     "deploy": "cd frontend npm install && gh-pages -d build",
