@@ -54,7 +54,7 @@ app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);
 });
 
-app.get("/", (req, res) => {
+app.get("/irecommend", (req, res) => {
   res.sendFile(path.join(frontendBuildPath, "index.html"));
 });
 
