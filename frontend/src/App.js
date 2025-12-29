@@ -93,7 +93,7 @@ const decodedToken = decodeURIComponent(userToken);
               window.location.href +=
                 "?music-user-token=" + encodeURIComponent(token);
               //const playlists = instance.api.music("v1/me/library/playlists");
-              button.style.opacity = "1";
+              
               button.style.display = "flex";
             })
             .catch(function (err) {
