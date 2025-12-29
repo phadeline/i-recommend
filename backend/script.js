@@ -8,11 +8,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const port = process.env.PORT || 8000;
 import jwt from "jsonwebtoken";
-import { exit } from "process";
+
 
 //const frontendBuildPath = path.join(__dirname, "../frontend/public");
 
-a//pp.use(express.static(frontendBuildPath));
+//app.use(express.static(frontendBuildPath));
 
 const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:3000';
 
