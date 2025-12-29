@@ -14,7 +14,7 @@ import jwt from "jsonwebtoken";
 
 //app.use(express.static(frontendBuildPath));
 
-const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:3000';
+//const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:3000';
 
 //const API_URL = process.env.NODE_ENV === process.env.REACT_URL
 
@@ -63,7 +63,7 @@ app.get("/", (req, res) => {
 app.get("/token", (req, res) => {
   console.log(token);
   res.status(200);
-  res.header("Access-Control-Allow-Origin", API_URL);
+  res.header("Access-Control-Allow-Origin", "https://i-recommend-289e22b5c5f5.herokuapp.com");
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.send({ token: token });
