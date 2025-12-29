@@ -86,7 +86,7 @@ const decodedToken = decodeURIComponent(userToken);
           console.log("not authorized");
           setSliderValue("200");
           rangeSlider.style.opacity = "0.2";
-          button.style.opacity = "0.6";
+          rangeSlider.value = "200";
           await instance
             .authorize()
             .then(function (token) {
@@ -96,6 +96,7 @@ const decodedToken = decodeURIComponent(userToken);
               //const playlists = instance.api.music("v1/me/library/playlists");
               
               button.style.display = "flex";
+
             })
             .catch(function (err) {
               console.error(err);
