@@ -12,80 +12,74 @@ function AllMusic() {
   const Name = location.state.Name;
   const [OnePlaylistData, setOnePlaylistData] = useState([]);
   //const url = window.location.hash;
- // console.log(url);
+  // console.log(url);
   //const UrlName = decodeURIComponent(url);
   //console.log(UrlName);
   //const finalglobalID = UrlName.replace("#/", "")
   const finalglobalID = location.state.globalId;
-//console.log(finalglobalID)
+  //console.log(finalglobalID)
   const getToken = sessionStorage.getItem("devtoken");
-const playlistTracksUrl = `https://api.music.apple.com/v1/catalog/us/playlists/${finalglobalID}/tracks`;
+  const playlistTracksUrl = `https://api.music.apple.com/v1/catalog/us/playlists/${finalglobalID}/tracks`;
 
-
-useEffect(() => {
-  console.log(finalglobalID)
-  const FetchAll = async () => {
-    try { 
-      const response = await axios.get(playlistTracksUrl,
-        {
-          headers:{
-            "Content-Type": "application/json",
-             Authorization: `Bearer ${getToken}`
-          },
-        }
-      );
-      if (response.status == 200) {
-        console.log(response);
-        setOnePlaylistData(response.data);
-       
-      }
-    } catch(error) {console.log("here is the error: " + error)}
-  };
-  
-  
-  if(finalglobalID){
+  useEffect(() => {
     console.log(finalglobalID);
-  FetchAll(finalglobalID)};
+    const FetchAll = async () => {
+      try {
+        const response = await axios.get(playlistTracksUrl, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getToken}`,
+          },
+        });
+        if (response.status == 200) {
+          console.log(response);
+          setOnePlaylistData(response.data);
+        }
+      } catch (error) {
+        console.log("here is the error: " + error);
+      }
+    };
 
+    if (finalglobalID) {
+      console.log(finalglobalID);
+      FetchAll(finalglobalID);
+    }
+  }, [finalglobalID]);
 
-}, [finalglobalID]);
-
-   console.log(OnePlaylistData.length);
+  console.log(OnePlaylistData.length);
 
   return (
     <div>
       <div className="CarouselContainer">
         <h1 className="PlaylistTitle">Playlist: {Name}</h1>
         <div className="Carousel">
-          <Carousel style={{ backgroundColor: "black" }} interval={null}>
-  {OnePlaylistData   ? (
-  
-  OnePlaylistData.data?.map((song) => (
-    <Carousel.Item key={song.id} className="CarouselItem">
-      <div>
-        <img
-          style={{ objectFit: "scale-down" }}
-          className="d-block w-100"
-          src={MusicKit.formatArtworkURL(
-            song.attributes.artwork,
-            200,
-          200
-          )}
-          alt="Image One"
-        />
-      </div>
-
-      <Carousel.Caption>
-        <div className="songsNames">
-          <h3>{song.attributes.artistName}</h3>
-          <p>{song.attributes.name}</p>
-        </div>
-      </Carousel.Caption>
-    </Carousel.Item>
-  ))
-  ) : (
-  <p>Loading data...</p>
-)}
+          <Carousel interval={null} style={{position:"relative"}}>
+            {OnePlaylistData ? (
+              OnePlaylistData.data?.map((song) => (
+                <Carousel.Item key={song.id} style={{backgroundColor: "black"}} className="CarouselItem">
+                  
+                  <div>
+                    <img
+                      style={{ objectFit: "scale-down" }}
+                      className="d-block w-100"
+                      src={MusicKit.formatArtworkURL(
+                        song.attributes.artwork,
+                        200,
+                        200
+                      )}
+                      alt="Image One"
+                    />
+                  </div>
+                  <Carousel.Caption><div className="songsNames">
+                    <h3 style={{fontSize:15}}>{song.attributes.artistName}</h3>
+                    <p style={{fontSize:15 }}>{song.attributes.name}</p>
+                  </div></Carousel.Caption>
+                  
+                </Carousel.Item>
+              ))
+            ) : (
+              <p>Loading data...</p>
+            )}
           </Carousel>
         </div>
       </div>

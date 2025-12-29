@@ -19,18 +19,20 @@ width: 50vh;
     display: flex;
     flex-direction: column;
     text-align: center;
+    position: relative;
 }
 
 .songsNames{
-    background-image: linear-gradient(to right,
-    rgb(246, 12, 4),
-    rgb(46, 242, 2));;
+   
     font-weight: bolder;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  
+ background-image: linear-gradient(to right,
+    rgb(246, 12, 4),
+    rgb(46, 242, 2));
   font-size: 30px;
+  color: white;
+ 
+  
   
 
 }
@@ -39,6 +41,9 @@ width: 50vh;
 .carousel-control-next-icon {
   background-image: none !important;
   color: transparent;
+
+  
+
 }
 
 .carousel-control-prev-icon:after {
@@ -46,7 +51,8 @@ width: 50vh;
   font-size: 50px; /* Adjust size as needed */
    color: rgb(231, 252, 0);
   font-weight: bolder;
-  padding-right: 50px;
+ 
+
 }
 
 .carousel-control-next-icon:after {
@@ -54,7 +60,8 @@ width: 50vh;
   color: rgb(231, 252, 0);
   font-size: 50px;
   font-weight: bolder;
-  padding-left: 20px;
+
+  
 
 }
 
