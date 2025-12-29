@@ -14,7 +14,9 @@ import jwt from "jsonwebtoken";
 
 //app.use(express.static(frontendBuildPath));
 
-const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:3000';
+//const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:3000';
+
+const API_URL = process.env.NODE_ENV === process.env.REACT_URL;
 
 
 const frontendBuildPath = path.join(__dirname, "..", "/frontend/build");
