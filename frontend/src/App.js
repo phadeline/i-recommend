@@ -146,7 +146,7 @@ const decodedToken = decodeURIComponent(userToken);
   }
   return (
     <div className="App" style={{ textAlign: "center" }}>
-      <h1 style={{ textAlign: "center" }}>Welcome to i-Recommend</h1>
+      <h1 className="welcome" style={{ textAlign: "center" }}>Welcome to i-Recommend</h1>
       <div className="card">
         <div className="titlebox">
           <h1 id="title">iRecommend</h1>
@@ -179,10 +179,12 @@ const decodedToken = decodeURIComponent(userToken);
             </nav>
           </div>
         </div>
-        <p>
-          Click the end of the slider to connect your Apple Music account then
-          press Connect!
+        <div ><p>
+          Click the end of the slider to connect your Apple Music account. 
         </p>
+        <p>Then press Connect.</p>
+        </div>
+        
       </div>
     </div>
   );

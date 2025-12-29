@@ -1,8 +1,8 @@
 body{
   background-image: linear-gradient(
     to right,
-    rgb(177, 177, 177),
-    rgb(255, 255, 255)
+    rgb(252, 251, 251),
+    rgb(204, 208, 205)
   );
 }
 
@@ -21,7 +21,7 @@ body{
     rgb(228, 120, 143),
     rgb(201, 132, 214)
   );
-  padding: 50px;
+ 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,12 +29,14 @@ body{
   margin: auto;
   box-shadow: 10px 10px lightblue;
   border-radius: 70px;
-  max-width: max-content;
+
 }
 
-.titlebox {
-  margin-bottom: 5vw;
+
+.titlebox{
+  padding: 20px;
 }
+
 
 #title {
   color: rgb(249, 238, 233);
@@ -113,3 +115,27 @@ body{
   background-size: cover;
   cursor: pointer; /* Cursor on hover */
 }
+
+
+
+@media screen and (max-width: 850px) { 
+  .App{
+   
+    margin: auto;
+    padding: none;
+   display: flex;
+
+
+  }
+.titlebox{padding: 20px;}
+
+}
+
+
+@media screen and (max-width: 950px) and (max-height:600px) { 
+  
+.welcome{margin: 20px;}
+
+.card{margin-top:20px}
+  }
+  
