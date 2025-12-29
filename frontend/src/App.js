@@ -93,6 +93,8 @@ const decodedToken = decodeURIComponent(userToken);
               window.location.href +=
                 "?music-user-token=" + encodeURIComponent(token);
               //const playlists = instance.api.music("v1/me/library/playlists");
+              button.style.opacity = "1";
+              button.style.display = "flex";
             })
             .catch(function (err) {
               console.error(err);
@@ -170,7 +172,7 @@ const decodedToken = decodeURIComponent(userToken);
           <div className="textdiv">
             <nav>
               <Link to={`/playlists/`} onMouseEnter={getPlaylists} state={{myPlaylists: myPlaylists, decodedToken: decodedToken}}>
-                <button
+                <button style={{display: "none"}}
                   type=" button"
                   
                   id="image"

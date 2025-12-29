@@ -28,7 +28,7 @@ body{
   justify-content: center;
   margin: auto;
   box-shadow: 10px 10px lightblue;
-  border-radius: 70px;
+  border-radius: 90px;
 
 }
 
@@ -64,10 +64,10 @@ body{
   opacity: .2
 }
 
-#image:hover {
+/*#image:hover {
   opacity: 1;
   cursor: pointer;
-}
+}*/
 
 .box {
   background-image: linear-gradient(
