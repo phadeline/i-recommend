@@ -120,7 +120,7 @@ const decodedToken = decodeURIComponent(userToken);
         return setSliderValue("200");
       }
     }
-    sessionStorage.setItem("instance", true)
+  
   }
 
 
