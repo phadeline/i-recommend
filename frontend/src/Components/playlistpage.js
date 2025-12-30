@@ -6,8 +6,6 @@ import axios from "axios";
 const PlaylistsLists = () => {
   const location = useLocation();
   const myPlaylists = location.state.myPlaylists || {};
-  const decodedToken = location.state.decodedToken || {};
-  const getToken = sessionStorage.getItem("devtoken");
   const [myMusicData, setMyMusicData] = useState([]);
   //console.log(`Hello ${myPlaylists.data[0].attributes.name}`);
 
@@ -25,7 +23,7 @@ const PlaylistsLists = () => {
             
               style={{ textDecoration: "none", color: "white" }}
               to={`/OnePlaylist`}
-              state={{ decodedToken:decodedToken, Name: playlist.attributes.name, globalId: playlist.attributes.playParams.globalId}}
+              state={{ Name: playlist.attributes.name, globalId: playlist.attributes.playParams.globalId}}
               
               
             >
