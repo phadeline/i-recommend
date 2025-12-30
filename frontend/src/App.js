@@ -23,6 +23,8 @@ const decodedToken = decodeURIComponent(userToken);
 
 //http://localhost:8000/token
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
     axios
       .get("/token", (e) => {
         e.preventDefault();
@@ -40,15 +42,16 @@ const decodedToken = decodeURIComponent(userToken);
         sessionStorage.setItem("devtoken", data.token);
       })
       .catch((error) => {
-        console.error(error);
+        console.error("your Error: " + error);
       });
-  }, [sessionStorage.getItem("devtoken")]);
+  return () => {
+      controller.abort();
+    };}, [sessionStorage.getItem("devtoken")]);
 
   useEffect(() => {
     async function handleMouseMove(event) {
       event.preventDefault();
-      const controller = new AbortController();
-    const signal = controller.signal;
+      
       if (count < 1) {
         console.log("musickitloaded event fired");
         try {
@@ -70,9 +73,7 @@ const decodedToken = decodeURIComponent(userToken);
     document.addEventListener("mousemove", handleMouseMove);
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
-      return () => {
-      controller.abort();
-    };
+      
     };
 
    
