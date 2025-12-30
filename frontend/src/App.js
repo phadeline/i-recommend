@@ -152,7 +152,7 @@ const decodedToken = decodeURIComponent(userToken);
   }
   if(sessionStorage.getItem("instance")){
   getPlaylists()
-sessionStorage.clear();
+sessionStorage.setItem("instance", false);
 
 }
 
