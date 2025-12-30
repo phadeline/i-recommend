@@ -93,7 +93,7 @@ const decodedToken = decodeURIComponent(userToken);
               window.location.href +=
                 "?music-user-token=" + encodeURIComponent(token);
               //const playlists = instance.api.music("v1/me/library/playlists");
-              sessionStorage.setItem("instance", true)
+              
               button.style.display = "flex";
              
 
@@ -120,6 +120,7 @@ const decodedToken = decodeURIComponent(userToken);
         return setSliderValue("200");
       }
     }
+    sessionStorage.setItem("instance", true)
   }
 
 
