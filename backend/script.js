@@ -48,7 +48,7 @@ const token = jwt.sign(
   { header: myheader }
   //JSON.stringify({header: header})
 );
-console.log(token);
+
 
 
 app.listen(port, () => {
