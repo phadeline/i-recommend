@@ -10,24 +10,23 @@ const port = process.env.PORT || 8000;
 import jwt from "jsonwebtoken";
 
 
-//const frontendBuildPath = path.join(__dirname, "../frontend/public");
+const frontendBuildPath = path.join(__dirname, "../frontend/public");
 
-//app.use(express.static(frontendBuildPath));
+app.use(express.static(frontendBuildPath));
 
-//const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:3000';
-
-//const API_URL = process.env.NODE_ENV === process.env.REACT_URL
+const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:3000';
 
 
-const frontendBuildPath = path.join(__dirname, "..", "/frontend/build");
-app.use("/i-recommend", express.static(frontendBuildPath));
+
+//const frontendBuildPath = path.join(__dirname, "..", "/frontend/build");
+//app.use("/i-recommend", express.static(frontendBuildPath));
 
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
 
-const secretOrPrivateKey = process.env.MY_NEW_KEY;
+//const secretOrPrivateKey = process.env.MY_NEW_KEY;
 
-//const secretOrPrivateKey = fs.readFileSync("./.env.keys", "utf8") ;
+const secretOrPrivateKey = fs.readFileSync("./.env.keys", "utf8") ;
 
 const payload = {
   iss: "P97D3C79H5",
@@ -63,7 +62,7 @@ app.get("/", (req, res) => {
 app.get("/token", (req, res) => {
   console.log(token);
   res.status(200);
-  res.header("Access-Control-Allow-Origin", "https://i-recommend-289e22b5c5f5.herokuapp.com");
+  res.header("Access-Control-Allow-Origin", API_URL);
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.send({ token: token });

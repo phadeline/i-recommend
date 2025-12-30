@@ -41,19 +41,29 @@ width: 50vh;
 .carousel-control-next-icon {
   background-image: none !important;
   color: transparent;
+  position: absolute;
+  top:25%;
 
   
 
 }
+.imageWrapper {
+  position: relative; /* Set position relative for absolute positioning of arrows */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .carousel-control-prev-icon:after {
   content: '<'; /* Use an actual icon or character */
   font-size: 50px; /* Adjust size as needed */
    color: rgb(231, 252, 0);
   font-weight: bolder;
- 
 
 }
+
+
 
 .carousel-control-next-icon:after {
   content: '>'; /* Use an actual icon or character */

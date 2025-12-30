@@ -20,17 +20,16 @@ const [myPlaylists, setMyPlaylists] = useState([]);
      const userToken = searchParams.get("music-user-token");
 const decodedToken = decodeURIComponent(userToken);
   
-
-//http://localhost:8000/token"
+//https://i-recommend-289e22b5c5f5.herokuapp.com/token
 
   useEffect(() => {
     axios
-      .get("https://i-recommend-289e22b5c5f5.herokuapp.com/token", (e) => {
+      .get("http://localhost:8000/token", (e) => {
         e.preventDefault();
       })
       .then((response) => {
         if (response.status == 200) {
-          console.log(response);
+         
           return response.data;
         } else if (response.status != 200) {
           console.error("Failed to fetch token");

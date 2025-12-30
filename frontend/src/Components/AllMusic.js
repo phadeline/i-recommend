@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import "../../src/styles/Carousel.css";
+import Recommendations from "./recommendations.js";
 
 function AllMusic() {
   const location = useLocation();
@@ -53,14 +54,17 @@ function AllMusic() {
       <div className="CarouselContainer">
         <h1 className="PlaylistTitle">Playlist: {Name}</h1>
         <div className="Carousel">
-          <Carousel interval={null} style={{position:"relative"}}>
+          <Carousel
+            interval={null}
+            indicators={false}
+           
+          >
             {OnePlaylistData ? (
               OnePlaylistData.data?.map((song) => (
-                <Carousel.Item key={song.id} style={{backgroundColor: "black"}} className="CarouselItem">
-                  
-                  <div>
+                <Carousel.Item key={song.id} className="CarouselItem">
+                  <div className="imageWrapper">
                     <img
-                      style={{ objectFit: "scale-down" }}
+                      style={{ objectFit: "contain" }}
                       className="d-block w-100"
                       src={MusicKit.formatArtworkURL(
                         song.attributes.artwork,
@@ -70,11 +74,17 @@ function AllMusic() {
                       alt="Image One"
                     />
                   </div>
-                  <Carousel.Caption><div className="songsNames">
-                    <h3 style={{fontSize:15}}>{song.attributes.artistName}</h3>
-                    <p style={{fontSize:15 }}>{song.attributes.name}</p>
-                  </div></Carousel.Caption>
-                  
+                  <div className="songsNames">
+                    <h3 style={{ fontSize: 15 }}>
+                      {song.attributes.artistName}
+                    </h3>
+                    <p style={{ fontSize: 15 }}>{song.attributes.name}</p>
+                  </div>
+                  <div>
+                    <Recommendations
+                      state={song.attributes.genreNames[0]}
+                    ></Recommendations>
+                  </div>
                 </Carousel.Item>
               ))
             ) : (
