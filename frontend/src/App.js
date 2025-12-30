@@ -170,9 +170,10 @@ const decodedToken = decodeURIComponent(userToken);
           </div>
           <div className="textdiv">
             <nav>
-              <Link to={`/playlists/`} onPointerEnter={getPlaylists} state={myPlaylists}>
+              <Link to={`/playlists/`}  state={myPlaylists}>
                 <button style={{display: "none"}}
                   type=" button"
+                  onPointerEnter={getPlaylists}
                   id="image"
                 ></button>
               </Link>
