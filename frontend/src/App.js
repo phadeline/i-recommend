@@ -23,30 +23,25 @@ const decodedToken = decodeURIComponent(userToken);
 
 //http://localhost:8000/token
   useEffect(() => {
-    const controller = new AbortController();
+
+    async function getToken(){
+      const controller = new AbortController();
     const signal = controller.signal;
-    axios
-      .get("/token", (e) => {
+    const response = await axios.get("/token", (e) => {
         e.preventDefault();
       })
-      .then((response) => {
-        if (response.status == 200) {
-         
-          return response.data;
-        } else if (response.status != 200) {
-          console.error("Failed to fetch token");
-        }
-      })
-      .then((data) => {
+      try{
         sessionStorage.removeItem("devtoken");
-        sessionStorage.setItem("devtoken", data.token);
-      })
-      .catch((error) => {
+        sessionStorage.setItem("devtoken", response.token);
+      }
+      catch(error) {
         console.error("your Error: " + error);
-      });
+      };
   return () => {
       controller.abort();
-    };}, [sessionStorage.getItem("devtoken")]);
+
+    }}
+    ;}, [sessionStorage.getItem("devtoken")]);
 
   useEffect(() => {
     async function handleMouseMove(event) {
