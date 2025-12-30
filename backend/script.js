@@ -19,7 +19,7 @@ const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: '
 
 
 const frontendBuildPath = path.join(__dirname, "..", "/frontend/build");
-app.use("/i-recommend", express.static(frontendBuildPath));
+app.use("/", express.static(frontendBuildPath));
 
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
