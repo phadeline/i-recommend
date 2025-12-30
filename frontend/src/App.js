@@ -88,12 +88,12 @@ const decodedToken = decodeURIComponent(userToken);
           await instance
             .authorize()
             .then(function (token) {
-               sessionStorage.setItem("instance", true)
+               
               setSearchParams("");
               window.location.href +=
                 "?music-user-token=" + encodeURIComponent(token);
               //const playlists = instance.api.music("v1/me/library/playlists");
-              
+              sessionStorage.setItem("instance", true)
               button.style.display = "flex";
              
 
