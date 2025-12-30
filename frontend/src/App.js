@@ -41,6 +41,7 @@ const decodedToken = decodeURIComponent(userToken);
       controller.abort();
 
     }}
+    getToken();
     ;}, [sessionStorage.getItem("devtoken")]);
 
   useEffect(() => {
