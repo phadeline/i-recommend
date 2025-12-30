@@ -94,6 +94,7 @@ const decodedToken = decodeURIComponent(userToken);
               //const playlists = instance.api.music("v1/me/library/playlists");
               
               button.style.display = "flex";
+              sessionStorage.setItem("instance", true)
 
             })
             .catch(function (err) {
@@ -148,7 +149,7 @@ const decodedToken = decodeURIComponent(userToken);
 
       
   }
-  if(MusicKit.getInstance().isAuthorized){
+  if(sessionStorage.getItem("instance")){
   getPlaylists()}
 
 
