@@ -120,6 +120,8 @@ const decodedToken = decodeURIComponent(userToken);
     }
   }
 
+
+  useEffect(()=>{
   async function getPlaylists() {
  
     console.log(decodedToken);
@@ -145,6 +147,8 @@ const decodedToken = decodeURIComponent(userToken);
 
       
   }
+  getPlaylists()
+},[sessionStorage.getItem("devtoken")])
   return (
     <div className="App" style={{ textAlign: "center" }}>
       <h1 className="welcome" style={{ textAlign: "center" }}>Welcome to i-Recommend</h1>
@@ -173,7 +177,7 @@ const decodedToken = decodeURIComponent(userToken);
               <Link to={`/playlists/`}  state={myPlaylists}>
                 <button style={{display: "none"}}
                   type=" button"
-                  onPointerEnter={getPlaylists}
+                  onClick={getPlaylists}
                   id="image"
                 ></button>
               </Link>
