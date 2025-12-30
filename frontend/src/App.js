@@ -42,7 +42,7 @@ const decodedToken = decodeURIComponent(userToken);
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [sessionStorage.getItem("devtoken")]);
 
   useEffect(() => {
     async function handleMouseMove(event) {
