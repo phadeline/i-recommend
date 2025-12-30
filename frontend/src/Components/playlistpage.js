@@ -17,7 +17,7 @@ const PlaylistsLists = () => {
       <ul className="AllPlaylists">
         {myPlaylists ? (
         
-        myPlaylists.data?.map((playlist) => (
+        myPlaylists.data.map((playlist) => (
           
             <Link
             
