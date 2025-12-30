@@ -140,7 +140,7 @@ const decodedToken = decodeURIComponent(userToken);
         },
       })
       try{
-        setMyPlaylists(response.data)
+        setMyPlaylists(response.data.data)
         // Process the playlist data here
         console.log("myPlaylists:", myPlaylists);
       }
@@ -151,13 +151,12 @@ const decodedToken = decodeURIComponent(userToken);
       
   }
   if(sessionStorage.getItem("instance")){
-  getPlaylists()
-sessionStorage.setItem("instance", false);
+  getPlaylists();
 
 }
 
 
-},[sessionStorage.getItem("instance")]
+},[sessionStorage.getItem("instance")])
 
 
 
