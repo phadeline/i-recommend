@@ -121,7 +121,7 @@ const decodedToken = decodeURIComponent(userToken);
   }
 
 
-  if(sessionStorage.getItem("devtoken")){
+  if(MusicKit.getInstance().isAuthorized){
   useEffect(()=>{
   async function getPlaylists() {
  
