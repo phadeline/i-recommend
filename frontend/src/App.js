@@ -120,13 +120,13 @@ const decodedToken = decodeURIComponent(userToken);
     }
   }
 
-  function getPlaylists() {
+  async function getPlaylists() {
  
     console.log(decodedToken);
     const getToken = sessionStorage.getItem("devtoken");
    
 
-    axios
+    const response = await axios
       .get(musicPlaylists, {
         headers: {
           Authorization: `Bearer ${getToken}`,
@@ -134,17 +134,13 @@ const decodedToken = decodeURIComponent(userToken);
           "Content-Type": "application/json",
         },
       })
-      .then((response) => {
-        return response; // Parse the response body as JSON
-      })
-      .then((data) => {
+      try{
         setMyPlaylists(data.data)
         // Process the playlist data here
-        console.log("myPlaylists:", myPlaylists);
-      })
-      .catch((error) => {
+        console.log("myPlaylists:", myPlaylists);}
+      catch(error) {
         console.error("Error fetching playlists:", error);
-      });
+      };
   }
   return (
     <div className="App" style={{ textAlign: "center" }}>
