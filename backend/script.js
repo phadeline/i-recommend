@@ -59,7 +59,7 @@ app.get("/", (req, res) => {
 
 
 
-app.get("https://i-recommend-289e22b5c5f5.herokuapp.com/token", (req, res) => {
+app.get("/token", (req, res) => {
   console.log(token);
   res.status(200);
   res.header("Access-Control-Allow-Origin", "https://i-recommend-289e22b5c5f5.herokuapp.com");
