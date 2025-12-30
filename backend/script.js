@@ -31,7 +31,7 @@ const secretOrPrivateKey = process.env.MY_NEW_KEY;
 const payload = {
   iss: "P97D3C79H5",
   iat: utcNowSeconds,
-  exp: 13140014 // Token valid for 5 months
+  exp: (86400 * 150)
 };
 
 const myheader = {
