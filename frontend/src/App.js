@@ -147,8 +147,12 @@ const decodedToken = decodeURIComponent(userToken);
 
       
   }
-  getPlaylists()
+  if(sessionStorage.getItem("devtoken")){
+  getPlaylists()}
 },[sessionStorage.getItem("devtoken")])
+
+
+
   return (
     <div className="App" style={{ textAlign: "center" }}>
       <h1 className="welcome" style={{ textAlign: "center" }}>Welcome to i-Recommend</h1>
@@ -177,7 +181,6 @@ const decodedToken = decodeURIComponent(userToken);
               <Link to={`/playlists/`}  state={myPlaylists}>
                 <button style={{display: "none"}}
                   type=" button"
-                  onClick={getPlaylists}
                   id="image"
                 ></button>
               </Link>
