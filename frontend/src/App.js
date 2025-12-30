@@ -88,13 +88,14 @@ const decodedToken = decodeURIComponent(userToken);
           await instance
             .authorize()
             .then(function (token) {
+               sessionStorage.setItem("instance", true)
               setSearchParams("");
               window.location.href +=
                 "?music-user-token=" + encodeURIComponent(token);
               //const playlists = instance.api.music("v1/me/library/playlists");
               
               button.style.display = "flex";
-              sessionStorage.setItem("instance", true)
+             
 
             })
             .catch(function (err) {
@@ -139,7 +140,7 @@ const decodedToken = decodeURIComponent(userToken);
         },
       })
       try{
-        setMyPlaylists(response.data)
+        setMyPlaylists(response.data.data)
         // Process the playlist data here
         console.log("myPlaylists:", myPlaylists);
       }
