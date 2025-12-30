@@ -31,7 +31,7 @@ const secretOrPrivateKey = process.env.MY_NEW_KEY;
 const payload = {
   iss: "P97D3C79H5",
   iat: utcNowSeconds,
-  exp: utcNowSeconds + (60*60), // Token valid for 60 minutes
+  exp: utcNowSeconds + (60*60*24), // Token valid for 24 hours 
 };
 
 const myheader = {

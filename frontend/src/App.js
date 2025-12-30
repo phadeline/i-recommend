@@ -120,7 +120,7 @@ const decodedToken = decodeURIComponent(userToken);
         return setSliderValue("200");
       }
     }
-  
+  count++;
   }
 
 
@@ -155,7 +155,7 @@ const decodedToken = decodeURIComponent(userToken);
   getPlaylists();
 
 
-},[count = 1])
+},[count = 2])
 
 
 
