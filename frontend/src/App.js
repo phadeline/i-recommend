@@ -135,7 +135,7 @@ const decodedToken = decodeURIComponent(userToken);
     const response = await axios
       .get(musicPlaylists, {
         headers: {
-          Authorization: `Bearer ${getToken}`,
+          "Authorization": `Bearer ${getToken}`,
           "Music-User-Token": `${decodedToken}`,
           "Content-Type": "application/json",
         },
@@ -151,13 +151,11 @@ const decodedToken = decodeURIComponent(userToken);
 
       
   }
-  if(sessionStorage.getItem("instance")){
+  
   getPlaylists();
 
-}
 
-
-},[decodedToken])
+},[count = 1])
 
 
 
