@@ -32,8 +32,8 @@ const decodedToken = decodeURIComponent(userToken);
       })
       try{
         sessionStorage.removeItem("devtoken");
-        sessionStorage.setItem("devtoken", response);
-        console.log(response.token)
+        sessionStorage.setItem("devtoken", response.data);
+        console.log(response)
       }
       catch(error) {
         console.error("your Error: " + error);
