@@ -157,7 +157,7 @@ const decodedToken = decodeURIComponent(userToken);
 }
 
 
-},[sessionStorage.getItem("instance")=== true])
+},[decodedToken])
 
 
 
