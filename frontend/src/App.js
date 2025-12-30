@@ -69,7 +69,7 @@ const decodedToken = decodeURIComponent(userToken);
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
+  }, [sessionStorage.getItem("devtoken")]);
 
   async function Click(event) {
     
