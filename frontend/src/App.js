@@ -170,7 +170,7 @@ const decodedToken = decodeURIComponent(userToken);
           </div>
           <div className="textdiv">
             <nav>
-              <Link to={`/playlists/`} onMouseMove={getPlaylists} state={myPlaylists}>
+              <Link to={`/playlists/`} onPointerEnter={getPlaylists} state={myPlaylists}>
                 <button style={{display: "none"}}
                   type=" button"
                   id="image"
