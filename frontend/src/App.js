@@ -151,10 +151,13 @@ const decodedToken = decodeURIComponent(userToken);
       
   }
   if(sessionStorage.getItem("instance")){
-  getPlaylists()}
+  getPlaylists()
+sessionStorage.clear();
+
+}
 
 
-},[sessionStorage.getItem("devtoken")])
+},[sessionStorage.getItem("instance")])
 
 
 
