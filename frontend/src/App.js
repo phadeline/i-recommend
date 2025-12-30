@@ -27,7 +27,7 @@ const decodedToken = decodeURIComponent(userToken);
     async function getToken(){
       const controller = new AbortController();
     const signal = controller.signal;
-    const response = await axios.get("/token", (e) => {
+    const response = await axios.get("https://i-recommend-289e22b5c5f5.herokuapp.com/token", (e) => {
         e.preventDefault();
       })
       try{
