@@ -33,7 +33,7 @@ const decodedToken = decodeURIComponent(userToken);
       try{
         sessionStorage.removeItem("devtoken");
         sessionStorage.setItem("devtoken", response.data);
-        console.log(response)
+        console.log(response.status)
       }
       catch(error) {
         console.error("your Error: " + error);
@@ -44,6 +44,8 @@ const decodedToken = decodeURIComponent(userToken);
     }}
     getToken();
     ;}, [sessionStorage.getItem("devtoken")]);
+
+
 
   useEffect(() => {
     async function handleMouseMove(event) {
@@ -61,7 +63,7 @@ const decodedToken = decodeURIComponent(userToken);
           });
           //console.log(`success ${sessionStorage.getItem("devtoken")}`);
         } catch (err) {
-          console.log(err);
+          console.log("not a success: "+ err);
           // Handle configuration error
         }
         count++;
@@ -75,6 +77,8 @@ const decodedToken = decodeURIComponent(userToken);
 
    
   }, [sessionStorage.getItem("devtoken")]);
+
+
 
   async function Click(event) {
     
