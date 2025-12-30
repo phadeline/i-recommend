@@ -20,7 +20,7 @@ const [myPlaylists, setMyPlaylists] = useState([]);
      const userToken = searchParams.get("music-user-token");
 const decodedToken = decodeURIComponent(userToken);
   
-//https://i-recommend-289e22b5c5f5.herokuapp.com/token
+
 //http://localhost:8000/token
   useEffect(() => {
     axios
@@ -57,7 +57,7 @@ const decodedToken = decodeURIComponent(userToken);
               name: "irecommend",
             },
           });
-          console.log(`success ${sessionStorage.getItem("devtoken")}`);
+          //console.log(`success ${sessionStorage.getItem("devtoken")}`);
         } catch (err) {
           console.log(err);
           // Handle configuration error
