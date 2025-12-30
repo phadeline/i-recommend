@@ -17,7 +17,9 @@ const PlaylistsLists = () => {
     <div className="playlistbackground">
       <h1 className="Header">Select A Playlist To View Recommended Songs</h1>
       <ul className="AllPlaylists">
-        {myPlaylists.data?.map((playlist) => (
+        {myPlaylists ? (
+        
+        myPlaylists.data?.map((playlist) => (
           
             <Link
             
@@ -33,7 +35,11 @@ const PlaylistsLists = () => {
             </Link>
             
          
-        ))}
+        ))
+
+      ) : (<p>LOADING...</p>)
+        
+      }
       </ul>
     </div>
   );
