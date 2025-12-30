@@ -137,10 +137,13 @@ const decodedToken = decodeURIComponent(userToken);
       try{
         setMyPlaylists(response.data)
         // Process the playlist data here
-        console.log("myPlaylists:", myPlaylists);}
+        console.log("myPlaylists:", myPlaylists);
+      }
       catch(error) {
         console.error("Error fetching playlists:", error);
       };
+
+      
   }
   return (
     <div className="App" style={{ textAlign: "center" }}>
@@ -167,7 +170,7 @@ const decodedToken = decodeURIComponent(userToken);
           </div>
           <div className="textdiv">
             <nav>
-              <Link to={`/playlists/`} onClick={getPlaylists} state={myPlaylists}>
+              <Link to={`/playlists/`} onMouseMove={getPlaylists} state={myPlaylists}>
                 <button style={{display: "none"}}
                   type=" button"
                   id="image"
