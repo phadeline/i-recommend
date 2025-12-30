@@ -1,7 +1,7 @@
 {
   "name": "i-recommend",
   "version": "0.1.0",
-  "homepage": "/",
+  "homepage": "https://i-recommend-289e22b5c5f5.herokuapp.com",
   "private": true,
   "description": "",
   "proxy": "http://localhost:8000",

@@ -62,7 +62,7 @@ app.get("/", (req, res) => {
 app.get("/token", (req, res) => {
   console.log(token);
   res.status(200);
-  res.header("Access-Control-Allow-Origin", API_URL);
+  res.header("Access-Control-Allow-Origin", "https://i-recommend-289e22b5c5f5.herokuapp.com");
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.send({ token: token });
