@@ -121,6 +121,7 @@ const decodedToken = decodeURIComponent(userToken);
   }
 
 
+  if(sessionStorage.getItem("devtoken")){
   useEffect(()=>{
   async function getPlaylists() {
  
@@ -147,9 +148,9 @@ const decodedToken = decodeURIComponent(userToken);
 
       
   }
-  if(sessionStorage.getItem("devtoken")){
-  getPlaylists()}
-},[sessionStorage.getItem("devtoken")])
+  
+  getPlaylists()
+},[sessionStorage.getItem("devtoken")])}
 
 
 
