@@ -114,7 +114,7 @@ function App() {
   }
 
 rangeSlider.addEventListener("onChange", Click);
-}, [count])
+}, [rangeSlider])
 
   const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
