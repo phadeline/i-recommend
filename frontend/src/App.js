@@ -60,15 +60,15 @@ function App() {
     }
 
     document.addEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [sessionStorage.getItem("devtoken")]);
 
   async function Click(event) {
     event.preventDefault();
     //this refers to the button element
 
     const instance = MusicKit.getInstance();
-    if (rangeSlider.value == "200") {
-      instance.unauthorize();
+    if (rangeSlider.value = "200") {
+      
       console.log("slider maxed");
       if (!instance.isAuthorized) {
         console.log("not authorized");
