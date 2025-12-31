@@ -134,7 +134,7 @@ function App() {
           // Process the playlist data here
         })
         .then((data) => {
-          setMyPlay(data.data);
+          console.log(setMyPlay(data.data));
           documentRef.current
             .getElementById("image")
             .removeEventListener("click", getPlaylists);
@@ -146,7 +146,7 @@ function App() {
     documentRef.current
       .getElementById("image")
       .addEventListener("click", getPlaylists);
-  }, []);
+  }, [MyPlayyPlay]);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
