@@ -136,13 +136,13 @@ const decodedToken = decodeURIComponent(userToken);
 
   
  
-
+const [MyPlay, setMyPlay] = useState([])
   async function getPlaylists() {
     
     
     console.log(decodedToken);
     const getToken = sessionStorage.getItem("devtoken");
-   const [MyPlay, setMyPlay] = useState([])
+   
 
     const  response = await axios
       .get(musicPlaylists, {
