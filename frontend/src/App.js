@@ -197,7 +197,7 @@ const [MyPlay, setMyPlay] = useState([])
           </div>
           <div className="textdiv">
           
-              <NavLink to={"/playlists"} onClick={getPlaylists} state={{myPlaylists: MyPlay}}>
+              <NavLink to={"/playlists"} onMouseEnter={getPlaylists} state={{myPlaylists: MyPlay}}>
                 <button style={{display: "none"}}
                   type=" button"
                   id="image"
