@@ -69,7 +69,7 @@ function App() {
 
 
   useEffect(()=>{
-
+if(sessionStorage.getItem("getToken") != null){
     rangeSliderRef.current.addEventListener("onClick", Click);
     console.log("do somthing");
   async function Click() {
@@ -121,7 +121,7 @@ console.log("click");
    
   }
 
-
+}
 
 }, [rangeSliderRef])
 
