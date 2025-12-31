@@ -76,15 +76,14 @@ if (sessionStorage.getItem("devtoken") !== "") {
        const instance = await MusicKit.getInstance();
         console.log("click");
         if (sliderValue === "200") {
-          
+          instance.unauthorize();
           console.log("slider maxed");
             try {
               console.log("not authorized");
               setSliderValue(200);
               documentRef.current.getElementById("myRange").style.opacity =
                 "0.2";
-              await instance
-                .authorize()
+             instance.authorize()
                 .then(function (token) {
                   setSearchParams("");
                   window.location.href +=
@@ -111,7 +110,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
     }
        
     }
-  }, [sliderValue == 200]);
+  }, [sliderValue]);
 
   const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
