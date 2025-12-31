@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, use } from "react";
 import { useSearchParams, Link, NavLink } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
@@ -62,6 +62,7 @@ function App() {
     document.addEventListener("mousemove", handleMouseMove);
   }, [sessionStorage.getItem("devtoken")]);
 
+  useEffect(()=>{
   async function Click(event) {
     event.preventDefault();
     //this refers to the button element
@@ -109,7 +110,11 @@ function App() {
 
     count++;
     console.log("in instance event: " + count);
+    rangeSlider.removeEventListener("onChange", Click);
   }
+
+rangeSlider.addEventListener("onChange", Click);
+}, [])
 
   const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
@@ -171,10 +176,7 @@ function App() {
               value={sliderValue}
               className="slider"
               id="myRange"
-              onChange={(event) => {
-                setSliderValue(event.target.value);
-              }}
-              onClick={Click}
+           
             />
           </div>
           <div className="textdiv">
