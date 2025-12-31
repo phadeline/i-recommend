@@ -68,13 +68,12 @@ function App() {
 
 
 
-  useEffect(()=>{
+useEffect(()=>{
 
 if(sessionStorage.getItem("devtoken")!== ""){
-    rangeSliderRef.current.addEventListener("click", Click(()=>{}));
     console.log("do something");
-  async function Click() {
-   
+  const Click = async(event) =>{
+   event.preventDefault()
 const instance = await MusicKit.getInstance();
 console.log("click");
     if (sliderValue === "200") {
@@ -121,8 +120,12 @@ console.log("click");
     console.log("in instance event: " + count);
    
   }
+rangeSlider.current.addEventListener("click", Click);
 
+return ()=>{rangeSlider.current.removeEventListener("click", Click)}
 }
+
+
 
 }, [sliderValue])
 
@@ -189,7 +192,7 @@ console.log("click");
               ref={rangeSliderRef}
              defaultValue={sliderValue}
              onChange={((event)=>{ setSliderValue(event.target.value);})}
-       
+           
             />
           </div>
           <div className="textdiv">
