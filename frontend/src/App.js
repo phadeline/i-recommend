@@ -63,8 +63,8 @@ function App() {
   }, [sessionStorage.getItem("devtoken")]);
 
   useEffect(()=>{
-  async function Click(event) {
-    event.preventDefault();
+  async function Click() {
+   
     //this refers to the button element
 
     const instance = MusicKit.getInstance();
@@ -173,9 +173,9 @@ documentRef.current.getElementById("myRange").addEventListener("onChange", Click
               title="Click at end of slider and press Connect"
               min="0"
               max="200"
-              
               className="slider"
               id="myRange"
+             
        
             />
           </div>
