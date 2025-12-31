@@ -173,11 +173,10 @@ documentRef.current.getElementById("myRange").addEventListener("onClick", Click)
               title="Click at end of slider and press Connect"
               min="0"
               max="200"
-              value={sliderValue}
+              
               className="slider"
               id="myRange"
-              
-           
+       
             />
           </div>
           <div className="textdiv">
