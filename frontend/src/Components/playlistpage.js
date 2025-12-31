@@ -1,11 +1,13 @@
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import "../../src/styles/playlistpage.css";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import axios from "axios";
 
 const PlaylistsLists = () => {
+  location = useLocation();
+  const MyPlay = location.state.MyPlay || {};
 
-  const myPlaylists = sessionStorage.getItem("setMyPlay") || {};
+
   
   //console.log(`Hello ${myPlaylists.data[0].attributes.name}`);
 
@@ -14,9 +16,9 @@ const PlaylistsLists = () => {
     <div className="playlistbackground">
       <h1 className="Header">Select A Playlist To View Recommended Songs</h1>
       <ul className="AllPlaylists">
-        {myPlaylists.length ? (
+        {MyPlay.length ? (
         
-        myPlaylists.data?.map((playlist) => (
+        MyPlay.data?.map((playlist) => (
           
             <Link
             

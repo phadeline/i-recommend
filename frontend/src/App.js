@@ -137,7 +137,7 @@ const decodedToken = decodeURIComponent(userToken);
   
  
 
-
+const [MyPlay, setMyPlay] = useState([]);
   async function getPlaylists() {
     
     
@@ -159,7 +159,7 @@ const decodedToken = decodeURIComponent(userToken);
         // Process the playlist data here
          
        }).then((data)=>{
-        sessionStorage.setItem("setMyPlay", [data.data.data])
+       setMyPlay(data.data.data)
        }).catch((error) =>{console.error("Error fetching playlists:", error)});
       };
 
@@ -191,7 +191,7 @@ const decodedToken = decodeURIComponent(userToken);
           </div>
           <div className="textdiv">
           
-              <NavLink to={"/playlists"} onClick={getPlaylists}>
+              <NavLink to={"/playlists"} onClick={getPlaylists} state={{MyPlay: MyPlay}}>
                 <button style={{display: "none"}}
                   type=" button"
                   id="image"
