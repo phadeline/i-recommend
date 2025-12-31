@@ -133,7 +133,7 @@ const decodedToken = decodeURIComponent(userToken);
 
 
   
-  useEffect(()=>{
+ 
 
   async function getPlaylists(event) {
     event.preventDefault();
@@ -158,13 +158,13 @@ const decodedToken = decodeURIComponent(userToken);
         console.error("Error fetching playlists:", error);
       };
 
-      button.removeEventListener("click", getPlaylists)
+      
   }
   
-  button.addEventListener("click", getPlaylists)
+ 
 
 
-},[])
+
 
 
 
@@ -196,6 +196,7 @@ const decodedToken = decodeURIComponent(userToken);
               <Link to={`/playlists/`}  state={myPlaylists}>
                 <button style={{display: "flex"}}
                   type=" button"
+                  onClick={getPlaylists}
                   id="image"
                 ></button>
               </Link>
