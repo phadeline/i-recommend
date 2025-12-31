@@ -5,7 +5,7 @@ import axios from "axios";
 
 const PlaylistsLists = () => {
   const location = useLocation();
-  const myPlaylists = location.state.myPlaylists || {};
+  const myPlaylists = sessionStorage.getItem("setMyPlay") || {};
   
   //console.log(`Hello ${myPlaylists.data[0].attributes.name}`);
 
