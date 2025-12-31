@@ -14,8 +14,7 @@ function App() {
   const [sliderValue, setSliderValue] = useState("15");
 
   let [searchParams, setSearchParams] = useSearchParams();
-  const userToken = searchParams.get("music-user-token");
-  const decodedToken = decodeURIComponent(userToken);
+  
 
   //http://localhost:8000/token
   useEffect(() => {
@@ -115,7 +114,7 @@ function App() {
 
    const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
-    const userToken = searchParams.get("music-user-token");
+    const userToken = searchParams.get("?music-user-token");
   const decodedToken = decodeURIComponent(userToken);
  
     async function getPlaylists() {
