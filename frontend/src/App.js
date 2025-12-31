@@ -110,10 +110,10 @@ function App() {
 
     count++;
     console.log("in instance event: " + count);
-    documentRef.current.getElementById("myRange").removeEventListener("onChange", Click);
+    documentRef.current.getElementById("myRange").removeEventListener("onClick", Click);
   }
 
-documentRef.current.getElementById("myRange").addEventListener("onChange", Click);
+documentRef.current.getElementById("myRange").addEventListener("onClick", Click);
 }, [count])
 
   const [MyPlay, setMyPlay] = useState([]);
@@ -176,6 +176,7 @@ documentRef.current.getElementById("myRange").addEventListener("onChange", Click
               value={sliderValue}
               className="slider"
               id="myRange"
+              onChange={rangeSlider.value}
            
             />
           </div>
