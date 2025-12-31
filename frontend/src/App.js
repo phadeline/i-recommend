@@ -14,7 +14,6 @@ function App() {
   const [sliderValue, setSliderValue] = useState("15");
 
   let [searchParams, setSearchParams] = useSearchParams();
-  
 
   //http://localhost:8000/token
   useEffect(() => {
@@ -112,15 +111,14 @@ function App() {
     console.log("in instance event: " + count);
   }
 
-   const [MyPlay, setMyPlay] = useState([]);
+  const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
     const hash = location.hash;
-  const queryStringIndex = hash.indexOf('?')
-    const queryString = hash.substring(queryStringIndex); 
-    const decodedToken = new URLSearchParams(queryString)
- 
+    const queryStringIndex = hash.indexOf("?");
+    const queryString = hash.substring(queryStringIndex);
+    const decodedToken = new URLSearchParams(queryString);
+
     async function getPlaylists() {
-      
       console.log(decodedToken);
       const getToken = sessionStorage.getItem("devtoken");
 
@@ -180,13 +178,13 @@ function App() {
           </div>
           <div className="textdiv">
             <nav>
-            <Link to={"/playlists"} state={{ MyPlay: MyPlay }}>
-              <button
-                style={{ display: "none" }}
-                type=" button"
-                id="image"
-              ></button>
-            </Link>
+              <Link to={"/playlists"} state={{ MyPlay: MyPlay }}>
+                <button
+                  style={{ display: "none" }}
+                  type=" button"
+                  id="image"
+                ></button>
+              </Link>
             </nav>
           </div>
         </div>
