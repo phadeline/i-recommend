@@ -113,9 +113,13 @@ function App() {
     console.log("in instance event: " + count);
   }
 
-  const [MyPlay, setMyPlay] = useState([]);
+   const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
+    const userToken = searchParams.get("music-user-token");
+  const decodedToken = decodeURIComponent(userToken);
+ 
     async function getPlaylists() {
+      
       console.log(decodedToken);
       const getToken = sessionStorage.getItem("devtoken");
 
