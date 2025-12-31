@@ -118,7 +118,7 @@ console.log("click");
     rangeSliderRef.current.removeEventListener("onClick", Click);
   }
 
-rangeSlider.current.addEventListener("onClick", Click);
+rangeSliderRef.current.addEventListener("onClick", Click);
 }, [count])
 
   const [MyPlay, setMyPlay] = useState([]);
