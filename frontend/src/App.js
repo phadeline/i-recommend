@@ -176,7 +176,7 @@ documentRef.current.getElementById("myRange").addEventListener("onClick", Click)
               value={sliderValue}
               className="slider"
               id="myRange"
-              onChange={rangeSlider.value}
+              
            
             />
           </div>
