@@ -113,12 +113,13 @@ if (sessionStorage.getItem("devtoken") !== "") {
   }, [sliderValue = 200]);
 
   const [MyPlay, setMyPlay] = useState([]);
-  useEffect(() => {
-    const hash = location.hash;
+  const hash = location.hash;
     const queryStringIndex = hash.indexOf("?");
     const queryString = hash.substring(queryStringIndex);
-    const searchParams = new URLSearchParams(queryString);
-    const decodedToken = searchParams.get("music-user-token");
+    const search = new URLSearchParams(queryString);
+    const decodedToken = search.get("music-user-token");
+  useEffect(() => {
+    
 
     const getPlaylists = async(event) => {
       console.log(decodedToken);
@@ -143,7 +144,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
    const newButtonRef =  useRef();
    newButtonRef.current.addEventListener("click", getPlaylists)
 
-  }, [MyPlay]);
+  }, [decodedToken]);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
