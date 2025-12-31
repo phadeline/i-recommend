@@ -73,7 +73,7 @@ function App() {
    
 const instance = await MusicKit.getInstance();
 console.log("click");
-    if (documentRef.current.getElementById("myRange").value == "200") {
+    if (rangeSliderRef.value == "200") {
       
       console.log("slider maxed");
       if (!instance.isAuthorized) {
@@ -115,10 +115,11 @@ console.log("click");
 
     count++;
     console.log("in instance event: " + count);
-    rangeSliderRef.current.removeEventListener("onClick", Click);
+   
   }
 
 rangeSliderRef.current.addEventListener("onClick", Click);
+
 }, [count])
 
   const [MyPlay, setMyPlay] = useState([]);
