@@ -154,7 +154,7 @@ const decodedToken = decodeURIComponent(userToken);
       })
       try{
       console.log(response);
-        setMyPlaylists(response.data)
+        setMyPlaylists(response)
         // Process the playlist data here
         
       }
