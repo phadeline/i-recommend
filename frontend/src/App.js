@@ -136,7 +136,7 @@ const decodedToken = decodeURIComponent(userToken);
 
   
  
-const [MyPlay, setMyPlay] = useState([])
+let MyPlay = [];
   async function getPlaylists() {
     
     
@@ -154,7 +154,7 @@ const [MyPlay, setMyPlay] = useState([])
       })
       try{
      
-       console.log(setMyPlay([response.data]))
+       console.log(MyPlay = response.data)
         // Process the playlist data here
          console.log(response);
       }
