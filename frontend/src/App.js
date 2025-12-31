@@ -82,7 +82,7 @@ const decodedToken = decodeURIComponent(userToken);
     
     event.preventDefault();
     //this refers to the button element
-    setSearchParams("");
+   
       const instance = MusicKit.getInstance();
       if (sliderValue == "200" && instance.authorize) {
         instance.unauthorize();
@@ -96,7 +96,7 @@ const decodedToken = decodeURIComponent(userToken);
             .authorize()
             .then(function (token) {
                
-             
+              setSearchParams("");
               window.location.href +=
                 "?music-user-token=" + encodeURIComponent(token);
               //const playlists = instance.api.music("v1/me/library/playlists");
@@ -116,7 +116,7 @@ const decodedToken = decodeURIComponent(userToken);
         await instance
           .authorize()
           .then(function (token) {
-           
+            setSearchParams("");
             window.location.href +=
               "?music-user-token=" + encodeURIComponent(token);
             //const playlists = instance.api.music("v1/me/library/playlists");
