@@ -193,7 +193,7 @@ const decodedToken = decodeURIComponent(userToken);
           </div>
           <div className="textdiv">
           
-              <Link to={"/playlists"}  state={myPlaylists}>
+              <Link to="/playlists"  state={myPlaylists}>
                 <button style={{display: "none"}}
                   type=" button"
                   onClick={getPlaylists}
