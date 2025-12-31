@@ -66,16 +66,12 @@ const decodedToken = decodeURIComponent(userToken);
         }
         count++;
         console.log("in handlesmousemove: " + count);
-      
+       document.removeEventListener("mousemove", handleMouseMove);
+   
     }
     
     document.addEventListener("mousemove", handleMouseMove);
-    
-if(count > 2){
-  document.removeEventListener("mousemove", handleMouseMove)};
-   
 
-    
 
    
   }, []);
