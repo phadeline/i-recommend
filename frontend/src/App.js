@@ -146,7 +146,7 @@ function App() {
     documentRef.current
       .getElementById("image")
       .addEventListener("click", getPlaylists);
-  }, [MyPlayyPlay]);
+  }, [MyPlay]);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
