@@ -67,5 +67,5 @@ app.get("/token", (req, res) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.send(token);
-  process.exit(0)
+  
 });
