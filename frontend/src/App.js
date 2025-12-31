@@ -57,7 +57,7 @@ const decodedToken = decodeURIComponent(userToken);
         try {
           // Call configure() to configure an instance of MusicKit on the Web.
           await MusicKit.configure({
-            developerToken: `${myToken}`,
+            developerToken: myToken,
             app: {
               name: "irecommend",
             },
@@ -68,6 +68,7 @@ const decodedToken = decodeURIComponent(userToken);
           // Handle configuration error
         }
         count++;
+        console.log("in handlesmousemove: " + count);
       }
     }
     document.addEventListener("mousemove", handleMouseMove);
