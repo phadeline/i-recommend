@@ -124,7 +124,7 @@ console.log("click");
 
 }
 
-}, [sessionStorage.getItem("devtoken")])
+}, [rangeSliderRef.value])
 
   const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
