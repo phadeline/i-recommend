@@ -138,9 +138,10 @@ const decodedToken = decodeURIComponent(userToken);
  
 
 const [MyPlay, setMyPlay] = useState([]);
+
   async function getPlaylists() {
     
-    
+    useEffect(() => {
     console.log(decodedToken);
     const getToken = sessionStorage.getItem("devtoken");
    
@@ -159,10 +160,10 @@ const [MyPlay, setMyPlay] = useState([]);
         // Process the playlist data here
          
        }).then((data)=>{
-       const newData = data.data;
-       setMyPlay(newData);
+  
+       setMyPlay(data.data);
        }).catch((error) =>{console.error("Error fetching playlists:", error)});
-      };
+      },[])} ;
 
      
  
