@@ -159,7 +159,7 @@ const decodedToken = decodeURIComponent(userToken);
         // Process the playlist data here
          
        }).then((data)=>{
-        sessionStorage.setItem("setMyPlay", data.data)
+        sessionStorage.setItem("setMyPlay", [data.data.data])
        }).catch((error) =>{console.error("Error fetching playlists:", error)});
       };
 
