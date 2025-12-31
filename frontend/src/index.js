@@ -14,8 +14,8 @@ import {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const router = createHashRouter([
-  { path: "/", element: <App /> },
-  { path: "/playlists", element: <PlaylistsLists /> },
+  { path: "/", element: <App/> },
+  { path: "/playlists", element: <PlaylistsLists/> },
   {path: `/OnePlaylist`, element: <AllMusic/>},
 ]);
 root.render(

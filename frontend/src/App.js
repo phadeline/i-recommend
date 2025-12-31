@@ -130,7 +130,7 @@ const decodedToken = decodeURIComponent(userToken);
   
   count++;
   console.log("in instance event: " + count);
-   setSearchParams("");
+   
   }
 
 
@@ -138,6 +138,7 @@ const decodedToken = decodeURIComponent(userToken);
  
 
   async function getPlaylists(event) {
+     setSearchParams("");
     event.preventDefault();
     console.log(decodedToken);
     const getToken = sessionStorage.getItem("devtoken");
