@@ -74,7 +74,7 @@ function App() {
         event.preventDefault();
        const instance = await MusicKit.getInstance();
         console.log("click");
-        if (sliderValue === 200) {
+        if (sliderValue === "200") {
           console.log("slider maxed");
             try {
               console.log("not authorized");
