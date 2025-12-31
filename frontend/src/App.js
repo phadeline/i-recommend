@@ -120,9 +120,9 @@ console.log("click");
     console.log("in instance event: " + count);
    
   }
-rangeSlider.current.addEventListener("click", Click);
+rangeSliderRef.current.addEventListener("click", Click);
 
-return ()=>{rangeSlider.current.removeEventListener("click", Click)}
+return ()=>{rangeSliderRef.current.removeEventListener("click", Click)}
 }
 
 
