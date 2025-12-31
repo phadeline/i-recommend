@@ -9,7 +9,7 @@ function App() {
   const musicPlaylists = "https://api.music.apple.com/v1/me/library/playlists"; // Example MusicKit API endpoint
   const documentRef = useRef(document);
   const button = documentRef.current.getElementById("image");
-  const rangeSlider = documentRef.current.getElementById("myRange");
+  
   var count = 0;
   const [sliderValue, setSliderValue] = useState("15");
 
@@ -63,19 +63,21 @@ function App() {
   }, [sessionStorage.getItem("devtoken")]);
 
   useEffect(()=>{
+;
   async function Click() {
    
     //this refers to the button element
 
     const instance = MusicKit.getInstance();
-    if (rangeSlider.value == "200") {
+
+    if (documentRef.current.getElementById("myRange").value == "200") {
       
       console.log("slider maxed");
       if (!instance.isAuthorized) {
         console.log("not authorized");
         setSliderValue("200");
-        rangeSlider.style.opacity = "0.2";
-        rangeSlider.value = "200";
+        documentRef.current.getElementById("myRange").style.opacity = "0.2";
+       documentRef.current.getElementById("myRange").value = "200";
         await instance
           .authorize()
           .then(function (token) {
@@ -175,7 +177,7 @@ documentRef.current.getElementById("myRange").addEventListener("onChange", Click
               max="200"
               className="slider"
               id="myRange"
-             
+             value={sliderValue}
        
             />
           </div>
