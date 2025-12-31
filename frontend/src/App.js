@@ -114,8 +114,10 @@ function App() {
 
    const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
-    const userToken = searchParams.get("?music-user-token");
-  const decodedToken = decodeURIComponent(userToken);
+    const hash = location.hash;
+  const queryStringIndex = hash.indexOf('?')
+    const queryString = hash.substring(queryStringIndex); 
+    const decodedToken = new URLSearchParams(queryString)
  
     async function getPlaylists() {
       
