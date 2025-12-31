@@ -70,11 +70,11 @@ function App() {
 
   useEffect(()=>{
 
-if(sessionStorage.getItem("devtoken")!= ""){
-    rangeSliderRef.current.addEventListener("onClick", Click((event)=>{event.preventDefault()}));
+if(sessionStorage.getItem("devtoken")!== ""){
+    rangeSliderRef.current.addEventListener("click", Click(()=>{}));
     console.log("do something");
-  async function Click() {
-   
+  async function Click(event) {
+   event.preventDefault();
 const instance = await MusicKit.getInstance();
 console.log("click");
     if (sliderValue === "200") {
@@ -124,7 +124,7 @@ console.log("click");
 
 }
 
-}, [rangeSliderRef.value])
+}, [sliderValue])
 
   const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
