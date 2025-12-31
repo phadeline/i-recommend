@@ -164,7 +164,7 @@ const decodedToken = decodeURIComponent(userToken);
   button.addEventListener("click", getPlaylists)
 
 
-},[count])
+},[])
 
 
 
