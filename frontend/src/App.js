@@ -134,6 +134,7 @@ const decodedToken = decodeURIComponent(userToken);
 
   
   useEffect(()=>{
+
   async function getPlaylists() {
  
     console.log(decodedToken);
@@ -149,7 +150,7 @@ const decodedToken = decodeURIComponent(userToken);
         },
       })
       try{
-        setMyPlaylists(response)
+        setMyPlaylists(response.data)
         // Process the playlist data here
         console.log("myPlaylists:", myPlaylists);
       }
