@@ -69,7 +69,7 @@ function App() {
     //this refers to the button element
 
     const instance = MusicKit.getInstance();
-    if (sliderValue == "200") {
+    if (rangeSlider.value == "200") {
       instance.unauthorize();
       console.log("slider maxed");
       if (!instance.isAuthorized) {
