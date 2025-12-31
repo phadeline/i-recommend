@@ -36,6 +36,8 @@ function App() {
     getToken();
   }, [sessionStorage.getItem("devtoken")]);
 
+
+
   useEffect(() => {
     async function handleMouseMove(event) {
       event.preventDefault();
@@ -66,12 +68,9 @@ function App() {
 
 
   useEffect(()=>{
-
   async function Click() {
    
-    //this refers to the button element
-
-    const instance = await MusicKit.getInstance();
+const instance = await MusicKit.getInstance();
 console.log("click");
     if (documentRef.current.getElementById("myRange").value == "200") {
       
@@ -115,10 +114,10 @@ console.log("click");
 
     count++;
     console.log("in instance event: " + count);
-    documentRef.current.getElementById("myRange").removeEventListener("onClick", Click);
+    documentRef.getElementById("myRange").removeEventListener("onClick", Click);
   }
 
-documentRef.current.getElementById("myRange").addEventListener("onClick", Click);
+documentRef.getElementById("myRange").addEventListener("onClick", Click);
 }, [count])
 
   const [MyPlay, setMyPlay] = useState([]);
