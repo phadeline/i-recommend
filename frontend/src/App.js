@@ -144,22 +144,20 @@ const [MyPlay, setMyPlay] = useState([])
     const getToken = sessionStorage.getItem("devtoken");
    
 
-    const  response = await axios
+    axios
       .get(musicPlaylists, {
         headers: {
           "Authorization": `Bearer ${getToken}`,
           "Music-User-Token": `${decodedToken}`,
           "Content-Type": "application/json",
         },
-      })
-      try{
-     
-       console.log(setMyPlay([await response.data]))
+      }).then((response)=>{
+       console.log(response);
+
+       console.log(setMyPlay([response.data]))
         // Process the playlist data here
-         console.log(response);
-      }
-      catch(error) {
-        console.error("Error fetching playlists:", error);
+         
+       }).catch((error) =>{console.error("Error fetching playlists:", error)});
       };
 
       console.log("myPlaylists: " + MyPlay);
