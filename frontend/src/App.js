@@ -100,7 +100,7 @@ const decodedToken = decodeURIComponent(userToken);
               window.location.href +=
                 "?music-user-token=" + encodeURIComponent(token);
               //const playlists = instance.api.music("v1/me/library/playlists");
-              
+              setSearchParams("");
               button.style.display = "flex";
              
 
@@ -120,6 +120,7 @@ const decodedToken = decodeURIComponent(userToken);
             window.location.href +=
               "?music-user-token=" + encodeURIComponent(token);
             //const playlists = instance.api.music("v1/me/library/playlists");
+            setSearchParams("");
           })
           .catch(function (err) {
             console.error(err);
