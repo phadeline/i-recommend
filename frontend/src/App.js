@@ -73,8 +73,8 @@ function App() {
 if(sessionStorage.getItem("devtoken")!== ""){
     rangeSliderRef.current.addEventListener("click", Click(()=>{}));
     console.log("do something");
-  async function Click(event) {
-   event.preventDefault();
+  async function Click() {
+   
 const instance = await MusicKit.getInstance();
 console.log("click");
     if (sliderValue === "200") {
