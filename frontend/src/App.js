@@ -201,7 +201,7 @@ const [MyPlay, setMyPlay] = useState([]);
           <div className="textdiv">
           
               <NavLink to={"/playlists"} state={{MyPlay: MyPlay}}>
-                <button style={{visibility: "hidden"}}
+                <button style={{display: "none"}}
                   type=" button"
                   id="image"
                 ></button>
