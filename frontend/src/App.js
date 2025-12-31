@@ -75,7 +75,7 @@ const decodedToken = decodeURIComponent(userToken);
    
 
    
-  }, [sessionStorage.getItem("devtoken")]);
+  }, [document.removeEventListener("mousemove", handleMouseMove)]);
 
 
 
