@@ -15,7 +15,7 @@ const PlaylistsLists = () => {
     <div className="playlistbackground">
       <h1 className="Header">Select A Playlist To View Recommended Songs</h1>
       <ul className="AllPlaylists">
-        {myPlaylists ? (
+        {myPlaylists.length ? (
         
         myPlaylists.data?.map((playlist) => (
           
