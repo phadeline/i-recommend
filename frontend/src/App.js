@@ -52,7 +52,7 @@ const decodedToken = decodeURIComponent(userToken);
       event.preventDefault();
       const myToken = sessionStorage.getItem("devtoken");
       
-      if (count < 1) {
+      
         console.log("musickitloaded event fired");
         try {
           // Call configure() to configure an instance of MusicKit on the Web.
@@ -69,7 +69,7 @@ const decodedToken = decodeURIComponent(userToken);
         }
         count++;
         console.log("in handlesmousemove: " + count);
-      }
+      
     }
     document.addEventListener("mousemove", handleMouseMove);
     return () => {
