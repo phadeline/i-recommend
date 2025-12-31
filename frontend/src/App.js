@@ -71,7 +71,7 @@ function App() {
   useEffect(()=>{
 
 if(sessionStorage.getItem("devtoken")!= ""){
-    rangeSliderRef.current.addEventListener("onClick", Click((event)=>{event.preventDefault()}));
+    rangeSliderRef.addEventListener("onClick", Click((event)=>{event.preventDefault()}));
     console.log("do something");
   async function Click() {
    
