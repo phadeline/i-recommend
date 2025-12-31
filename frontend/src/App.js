@@ -6,6 +6,7 @@ import axios from "axios";
 
 /* global MusicKit */
 function App() {
+
   const musicPlaylists = "https://api.music.apple.com/v1/me/library/playlists"; // Example MusicKit API endpoint
   const documentRef = useRef(document);
   const button = documentRef.current.getElementById("image");
@@ -180,7 +181,7 @@ documentRef.current.getElementById("myRange").addEventListener("onClick", Click)
               className="slider"
               id="myRange"
              defaultValue={sliderValue}
-             onChange={setSliderValue(rangeSlider.max)}
+             onChange={setSliderValue(rangeSlider?.max)}
        
             />
           </div>
