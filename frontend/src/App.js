@@ -25,8 +25,7 @@ const decodedToken = decodeURIComponent(userToken);
   useEffect(() => {
 
     async function getToken(){
-      const controller = new AbortController();
-    const signal = controller.signal;
+     
     const response = await axios.get("https://i-recommend-289e22b5c5f5.herokuapp.com/token", (e) => {
         e.preventDefault();
       })
@@ -38,17 +37,14 @@ const decodedToken = decodeURIComponent(userToken);
       catch(error) {
         console.error("your Error: " + error);
       };
-  return () => {
-      controller.abort();
-
-    }}
+  }
     getToken();
     ;}, [sessionStorage.getItem("devtoken")]);
 
 
 
   useEffect(() => {
-    const abortController = new AbortController()
+  
     async function handleMouseMove(event) {
       event.preventDefault();
       const myToken = sessionStorage.getItem("devtoken");
@@ -75,6 +71,7 @@ const decodedToken = decodeURIComponent(userToken);
     if(count < 2){
 
     document.addEventListener("mousemove", handleMouseMove)}
+
     else{document.removeEventListener("mousemove", handleMouseMove)};
    
 
@@ -89,7 +86,7 @@ const decodedToken = decodeURIComponent(userToken);
     
     event.preventDefault();
     //this refers to the button element
-    if (count = 2) {
+   
       const instance = MusicKit.getInstance();
       if (sliderValue == "200" && instance.authorize) {
         instance.unauthorize();
@@ -133,7 +130,7 @@ const decodedToken = decodeURIComponent(userToken);
           });
         return setSliderValue("200");
       }
-    }
+  
   count++;
   console.log(count);
   }
