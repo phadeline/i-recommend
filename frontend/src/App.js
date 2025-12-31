@@ -163,7 +163,7 @@ const decodedToken = decodeURIComponent(userToken);
        }).catch((error) =>{console.error("Error fetching playlists:", error)});
       };
 
-      console.log("myPlaylists: " + MyPlay);
+     
  
   
   return (
