@@ -135,8 +135,8 @@ const decodedToken = decodeURIComponent(userToken);
   
   useEffect(()=>{
 
-  async function getPlaylists() {
- 
+  async function getPlaylists(event) {
+    event.preventDefault();
     console.log(decodedToken);
     const getToken = sessionStorage.getItem("devtoken");
    
@@ -194,7 +194,7 @@ const decodedToken = decodeURIComponent(userToken);
           <div className="textdiv">
             <nav>
               <Link to={`/playlists/`}  state={myPlaylists}>
-                <button style={{display: "none"}}
+                <button style={{display: "flex"}}
                   type=" button"
                   id="image"
                 ></button>
