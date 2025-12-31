@@ -158,10 +158,10 @@ const decodedToken = decodeURIComponent(userToken);
         console.error("Error fetching playlists:", error);
       };
 
-      
+      button.removeEventListener("click", getPlaylists)
   }
   
-  getPlaylists();
+  button.addEventListener("click", getPlaylists)
 
 
 },[count])
