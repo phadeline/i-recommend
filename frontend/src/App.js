@@ -196,7 +196,7 @@ const decodedToken = decodeURIComponent(userToken);
               <Link to={"/playlists"}  state={myPlaylists}>
                 <button style={{display: "none"}}
                   type=" button"
-                 onMouseMove={getPlaylists}
+              
                   id="image"
                 ></button>
               </Link>
