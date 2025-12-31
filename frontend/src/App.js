@@ -72,8 +72,11 @@ const decodedToken = decodeURIComponent(userToken);
         console.log("in handlesmousemove: " + count);
       
     }
-    document.addEventListener("mousemove", handleMouseMove);
-    return () => abortController.abort();
+    if(count < 2){
+
+    document.addEventListener("mousemove", handleMouseMove)}
+    else{document.removeEventListener("mousemove", handleMouseMove)};
+   
 
     
 
@@ -167,7 +170,7 @@ const decodedToken = decodeURIComponent(userToken);
   getPlaylists();
 
 
-},[count = 2])
+},[count = 3])
 
 
 
