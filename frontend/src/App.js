@@ -51,7 +51,7 @@ const decodedToken = decodeURIComponent(userToken);
     async function handleMouseMove(event) {
       event.preventDefault();
       const myToken = sessionStorage.getItem("devtoken");
-      
+      const abortController = new AbortController()
       
         console.log("musickitloaded event fired");
         try {
@@ -72,7 +72,9 @@ const decodedToken = decodeURIComponent(userToken);
       
     }
     document.addEventListener("mousemove", handleMouseMove);
-    document.removeEventListener("mousemove", handleMouseMove)
+    return () => abortController.abort();
+
+    
 
    
   }, []);
