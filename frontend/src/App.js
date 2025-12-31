@@ -72,12 +72,12 @@ function App() {
 
 if(sessionStorage.getItem("devtoken")!= ""){
     rangeSliderRef.current.addEventListener("onClick", Click((event)=>{event.preventDefault()}));
-    console.log("do somthing");
+    console.log("do something");
   async function Click() {
    
 const instance = await MusicKit.getInstance();
 console.log("click");
-    if (sliderValue == "200") {
+    if (sliderValue === "200") {
       
       console.log("slider maxed");
       if (!instance.isAuthorized) {
