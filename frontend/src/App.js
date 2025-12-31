@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, NavLink } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 //import "../../frontend/"
@@ -138,7 +138,7 @@ const decodedToken = decodeURIComponent(userToken);
  
 
   async function getPlaylists(event) {
-     setSearchParams("");
+    
     event.preventDefault();
     console.log(decodedToken);
     const getToken = sessionStorage.getItem("devtoken");
@@ -196,13 +196,13 @@ const decodedToken = decodeURIComponent(userToken);
           </div>
           <div className="textdiv">
           
-              <Link to={"/playlists"}  state={{myPlaylists: myPlaylists}}>
+              <NavLink to={"/playlists"}  state={{myPlaylists: myPlaylists}}>
                 <button style={{display: "none"}}
                   type=" button"
                   onClick={getPlaylists}
                   id="image"
                 ></button>
-              </Link>
+              </NavLink>
        
           </div>
         </div>
