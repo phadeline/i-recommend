@@ -68,11 +68,11 @@ const decodedToken = decodeURIComponent(userToken);
         console.log("in handlesmousemove: " + count);
       
     }
-    if(count < 2){
-
-    document.addEventListener("mousemove", handleMouseMove)}
-
-    else{document.removeEventListener("mousemove", handleMouseMove)};
+    
+    document.addEventListener("mousemove", handleMouseMove);
+    
+if(count > 2){
+  document.removeEventListener("mousemove", handleMouseMove)};
    
 
     
@@ -132,7 +132,7 @@ const decodedToken = decodeURIComponent(userToken);
       }
   
   count++;
-  console.log(count);
+  console.log("in instance event: " + count);
   }
 
 
