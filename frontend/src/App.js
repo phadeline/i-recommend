@@ -6,7 +6,6 @@ import axios from "axios";
 
 /* global MusicKit */
 function App() {
-
   const musicPlaylists = "https://api.music.apple.com/v1/me/library/playlists"; // Example MusicKit API endpoint
   const documentRef = useRef(document);
   const rangeSliderRef = useRef();
@@ -37,8 +36,6 @@ function App() {
     getToken();
   }, [sessionStorage.getItem("devtoken")]);
 
-
-
   useEffect(() => {
     async function handleMouseMove(event) {
       event.preventDefault();
@@ -66,68 +63,52 @@ function App() {
     document.addEventListener("mousemove", handleMouseMove);
   }, [sessionStorage.getItem("devtoken")]);
 
+  useEffect(() => {
+    if (sessionStorage.getItem("devtoken") !== "") {
+      console.log("do something");
 
+      const Click = async (event) => {
+        event.preventDefault();
+        const instance = await MusicKit.getInstance();
+        console.log("click");
+        if (sliderValue === rangeSliderRef.current.max) {
+          console.log("slider maxed");
 
-useEffect(()=>{
+          if (!instance.isAuthorized) {
+            try {
+              console.log("not authorized");
+              setSliderValue(200);
+              documentRef.current.getElementById("myRange").style.opacity =
+                "0.2";
+              await instance
+                .authorize()
+                .then(function (token) {
+                  setSearchParams("");
+                  window.location.href +=
+                    "?music-user-token=" + encodeURIComponent(token);
+                  //const playlists = instance.api.music("v1/me/library/playlists");
 
-if(sessionStorage.getItem("devtoken")!== ""){
-    console.log("do something");
-  const Click = async(event) =>{
-   event.preventDefault()
-const instance = await MusicKit.getInstance();
-console.log("click");
-    if (sliderValue === rangeSliderRef.current.max ) {
-      
-      console.log("slider maxed");
-      if (!instance.isAuthorized) {
-        console.log("not authorized");
-        setSliderValue("200");
-        documentRef.current.getElementById("myRange").style.opacity = "0.2";
-       documentRef.current.getElementById("myRange").value = "200";
-        await instance
-          .authorize()
-          .then(function (token) {
-            setSearchParams("");
-            window.location.href +=
-              "?music-user-token=" + encodeURIComponent(token);
-            //const playlists = instance.api.music("v1/me/library/playlists");
+                  button.style.display = "flex";
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+            } catch (error) {
+              console.error("Authorization error:", error);
+            }
+          }
 
-            button.style.display = "flex";
-          })
-          .catch(function (err) {
-            console.error(err);
-          });
-      }
-    } else if (sliderValue !== "200") {
-      alert("Please click to the end of slider before connecting.");
-    } else {
-      console.log("not authorized2");
-      await instance
-        .authorize()
-        .then(function (token) {
-          setSearchParams("");
-          window.location.href +=
-            "?music-user-token=" + encodeURIComponent(token);
-          //const playlists = instance.api.music("v1/me/library/playlists");
-        })
-        .catch(function (err) {
-          console.error(err);
-        });
-      return setSliderValue("200");
+          count++;
+          console.log("in instance event: " + count);
+        }
+        rangeSliderRef.current.addEventListener("click", Click);
+
+        return () => {
+          rangeSliderRef.current.removeEventListener("click", Click);
+        };
+      };
     }
-
-    count++;
-    console.log("in instance event: " + count);
-   
-  }
-rangeSliderRef.current.addEventListener("click", Click);
-
-return ()=>{rangeSliderRef.current.removeEventListener("click", Click)}
-}
-
-
-
-}, [sliderValue])
+  }, [sliderValue]);
 
   const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
@@ -135,7 +116,7 @@ return ()=>{rangeSliderRef.current.removeEventListener("click", Click)}
     const queryStringIndex = hash.indexOf("?");
     const queryString = hash.substring(queryStringIndex);
     const searchParams = new URLSearchParams(queryString);
-    const decodedToken = searchParams.get('music-user-token')
+    const decodedToken = searchParams.get("music-user-token");
 
     async function getPlaylists() {
       console.log(decodedToken);
@@ -170,7 +151,6 @@ return ()=>{rangeSliderRef.current.removeEventListener("click", Click)}
       .addEventListener("click", getPlaylists);
   }, [MyPlay]);
 
-
   return (
     <div className="App" style={{ textAlign: "center" }}>
       <h1 className="welcome" style={{ textAlign: "center" }}>
@@ -190,9 +170,10 @@ return ()=>{rangeSliderRef.current.removeEventListener("click", Click)}
               className="slider"
               id="myRange"
               ref={rangeSliderRef}
-             defaultValue={sliderValue}
-             onChange={((event)=>{ setSliderValue(event.target.value);})}
-           
+              defaultValue={sliderValue}
+              onChange={(event) => {
+                setSliderValue(event.target.value);
+              }}
             />
           </div>
           <div className="textdiv">
