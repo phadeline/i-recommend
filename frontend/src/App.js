@@ -8,7 +8,7 @@ import axios from "axios";
 
 /* global MusicKit */
 function App() {
-  const musicPlaylists = `https://api.music.apple.com/v1/me/library/playlists`; // Example MusicKit API endpoint
+  const musicPlaylists = "https://api.music.apple.com/v1/me/library/playlists"; // Example MusicKit API endpoint
   const documentRef = useRef(document);
   const button = documentRef.current.getElementById("image");
   const rangeSlider = documentRef.current.getElementById("myRange");
