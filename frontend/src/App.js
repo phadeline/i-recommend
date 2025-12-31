@@ -144,7 +144,7 @@ const decodedToken = decodeURIComponent(userToken);
     const getToken = sessionStorage.getItem("devtoken");
    
 
-    const response = await axios
+    const  response = await axios
       .get(musicPlaylists, {
         headers: {
           "Authorization": `Bearer ${getToken}`,
@@ -153,10 +153,10 @@ const decodedToken = decodeURIComponent(userToken);
         },
       })
       try{
-      console.log(response);
-        setMyPlaylists(response)
+     
+       setMyPlaylists(response)
         // Process the playlist data here
-        
+         console.log(response);
       }
       catch(error) {
         console.error("Error fetching playlists:", error);
