@@ -181,7 +181,7 @@ documentRef.current.getElementById("myRange").addEventListener("onClick", Click)
               className="slider"
               id="myRange"
              defaultValue={sliderValue}
-             onChange={setSliderValue(rangeSlider?.max)}
+             onChange={setSliderValue(this.value)}
        
             />
           </div>
