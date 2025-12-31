@@ -154,7 +154,7 @@ const decodedToken = decodeURIComponent(userToken);
       })
       try{
       console.log(response);
-        setMyPlaylists(response)
+        setMyPlaylists(response.data)
         // Process the playlist data here
         
       }
@@ -162,11 +162,11 @@ const decodedToken = decodeURIComponent(userToken);
         console.error("Error fetching playlists:", error);
       };
 
-      
+      console.log("myPlaylists:", myPlaylists);
   }
   
  
-console.log("myPlaylists:", myPlaylists);
+
 
 
 
