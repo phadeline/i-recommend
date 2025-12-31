@@ -137,9 +137,9 @@ const decodedToken = decodeURIComponent(userToken);
   
  
 
-  async function getPlaylists(event) {
+  async function getPlaylists() {
     
-    event.preventDefault();
+    
     console.log(decodedToken);
     const getToken = sessionStorage.getItem("devtoken");
    
