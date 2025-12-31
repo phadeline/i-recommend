@@ -110,14 +110,14 @@ if (sessionStorage.getItem("devtoken") !== "") {
     }
        
     }
-  }, [sliderValue = 200]);
+  }, [sliderValue]);
 
   const [MyPlay, setMyPlay] = useState([]);
   const hash = location.hash;
     const queryStringIndex = hash.indexOf("?");
     const queryString = hash.substring(queryStringIndex);
     const search = new URLSearchParams(queryString);
-    const decodedToken = search.get("music-user-token");
+   const decodedToken = search.get("music-user-token"); 
   useEffect(() => {
     
 
@@ -144,7 +144,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
    const newButtonRef =  useRef();
    newButtonRef.current.addEventListener("click", getPlaylists)
 
-  }, [decodedToken]);
+  }, [newButtonRef.style.display]);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
