@@ -10,7 +10,7 @@ function App() {
   const documentRef = useRef(document);
   const rangeSliderRef = useRef();
   const button = documentRef.current.getElementById("image");
-  const rangeSlider = documentRef.current.getElementById("myRange");
+  const newButtonRef =  useRef();
   var count = 0;
   const [sliderValue, setSliderValue] = useState(15);
 
@@ -110,7 +110,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
     }
        
     }
-  }, [sliderValue]);
+  }, [sliderValue = 200]);
 
   const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
@@ -120,7 +120,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
     const searchParams = new URLSearchParams(queryString);
     const decodedToken = searchParams.get("music-user-token");
 
-    async function getPlaylists() {
+    const getPlaylists = () => {
       console.log(decodedToken);
       const getToken = sessionStorage.getItem("devtoken");
 
@@ -140,17 +140,15 @@ if (sessionStorage.getItem("devtoken") !== "") {
         })
         .then((data) => {
           console.log(setMyPlay(data.data));
-          documentRef.current
-            .getElementById("image")
-            .removeEventListener("click", getPlaylists);
+          
         })
         .catch((error) => {
           console.error("Error fetching playlists:", error);
         });
     }
-    documentRef.current
-      .getElementById("image")
-      .addEventListener("click", getPlaylists);
+   const newButtonRef =  useRef();
+   newButtonRef.current.addEventListener("click", getPlaylists)
+
   }, [MyPlay]);
 
   return (
@@ -184,6 +182,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
                 <button
                   style={{ display: "none" }}
                   type=" button"
+                  ref={newButtonRef}
                   id="image"
                 ></button>
               </Link>
