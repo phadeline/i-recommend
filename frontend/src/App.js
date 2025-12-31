@@ -174,6 +174,7 @@ function App() {
             />
           </div>
           <div className="textdiv">
+            <nav>
             <Link to={"/playlists"} state={{ MyPlay: MyPlay }}>
               <button
                 style={{ display: "none" }}
@@ -181,6 +182,7 @@ function App() {
                 id="image"
               ></button>
             </Link>
+            </nav>
           </div>
         </div>
         <div>
