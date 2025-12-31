@@ -68,7 +68,7 @@ function App() {
   useEffect(() => {
     if (sessionStorage.getItem("devtoken") !== "") {
       console.log("do something");
-  rangeSliderRef.current.addEventListener("click", Click);
+ 
 
       const Click = async (event) => {
         event.preventDefault();
@@ -105,6 +105,7 @@ function App() {
        
       
       };
+       rangeSliderRef.current.addEventListener("click", Click);
     }
   }, [sliderValue == 200]);
 
