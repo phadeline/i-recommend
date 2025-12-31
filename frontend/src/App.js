@@ -13,7 +13,7 @@ function App() {
   const button = documentRef.current.getElementById("image");
   const rangeSlider = documentRef.current.getElementById("myRange");
   var count = 0;
-  const [sliderValue, setSliderValue] = useState("15");
+  const [sliderValue, setSliderValue] = useState(15);
 
   let [searchParams, setSearchParams] = useSearchParams();
 
@@ -185,8 +185,8 @@ return ()=>{rangeSliderRef.current.removeEventListener("click", Click)}
             <input
               type="range"
               title="Click at end of slider and press Connect"
-              min="0"
-              max="200"
+              min={0}
+              max={200}
               className="slider"
               id="myRange"
               ref={rangeSliderRef}
