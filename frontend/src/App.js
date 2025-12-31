@@ -50,13 +50,14 @@ const decodedToken = decodeURIComponent(userToken);
   useEffect(() => {
     async function handleMouseMove(event) {
       event.preventDefault();
+      myToken = sessionStorage.getItem("devtoken");
       
       if (count < 1) {
         console.log("musickitloaded event fired");
         try {
           // Call configure() to configure an instance of MusicKit on the Web.
           await MusicKit.configure({
-            developerToken: sessionStorage.getItem("devtoken"),
+            developerToken: `${myToken}`,
             app: {
               name: "irecommend",
             },
@@ -76,7 +77,7 @@ const decodedToken = decodeURIComponent(userToken);
     };
 
    
-  }, [sessionStorage.getItem("devtoken")]);
+  }, []);
 
 
 
