@@ -33,7 +33,7 @@ const decodedToken = decodeURIComponent(userToken);
       try{
         sessionStorage.removeItem("devtoken");
         sessionStorage.setItem("devtoken", response.data);
-        console.log(response.status)
+        console.log(response.data)
       }
       catch(error) {
         console.error("your Error: " + error);
@@ -50,7 +50,7 @@ const decodedToken = decodeURIComponent(userToken);
   useEffect(() => {
     async function handleMouseMove(event) {
       event.preventDefault();
-      myToken = sessionStorage.getItem("devtoken");
+      const myToken = sessionStorage.getItem("devtoken");
       
       if (count < 1) {
         console.log("musickitloaded event fired");
