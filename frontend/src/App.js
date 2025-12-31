@@ -14,7 +14,7 @@ function App() {
   const rangeSlider = documentRef.current.getElementById("myRange");
   var count = 0;
   const [sliderValue, setSliderValue] = useState("15");
-const [MyPlaylists, setMyPlaylists] = useState([]);
+
 
   let [searchParams, setSearchParams] = useSearchParams();
      const userToken = searchParams.get("music-user-token");
@@ -142,7 +142,7 @@ const decodedToken = decodeURIComponent(userToken);
     
     console.log(decodedToken);
     const getToken = sessionStorage.getItem("devtoken");
-   
+   const [MyPlay, setMyPlay] = useState([])
 
     const  response = await axios
       .get(musicPlaylists, {
@@ -154,7 +154,7 @@ const decodedToken = decodeURIComponent(userToken);
       })
       try{
      
-       setMyPlaylists([response.data])
+       setMyPlay([response.data])
         // Process the playlist data here
          console.log(response);
       }
@@ -162,7 +162,7 @@ const decodedToken = decodeURIComponent(userToken);
         console.error("Error fetching playlists:", error);
       };
 
-      console.log("myPlaylists:", MyPlaylists);
+      console.log("myPlaylists:", MyPlay);
   }
   
  
@@ -197,7 +197,7 @@ const decodedToken = decodeURIComponent(userToken);
           </div>
           <div className="textdiv">
           
-              <NavLink to={"/playlists"} onClick={getPlaylists} state={{myPlaylists: MyPlaylists}}>
+              <NavLink to={"/playlists"} onClick={getPlaylists} state={{myPlaylists: MyPlay}}>
                 <button style={{display: "none"}}
                   type=" button"
                   id="image"
