@@ -72,13 +72,10 @@ const decodedToken = decodeURIComponent(userToken);
       
     }
     document.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      
-    };
+   
 
    
-  }, []);
+  }, [count=0]);
 
 
 
