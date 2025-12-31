@@ -106,7 +106,7 @@ function App() {
       
       };
     }
-  }, [sliderValue]);
+  }, [sliderValue == 200]);
 
   const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
