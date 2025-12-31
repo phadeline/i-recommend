@@ -180,7 +180,7 @@ documentRef.current.getElementById("myRange").addEventListener("onClick", Click)
               className="slider"
               id="myRange"
              defaultValue={sliderValue}
-             onChange={setSliderValue(rangeSlider.value)}
+             onChange={setSliderValue(rangeSlider.defaultValue)}
        
             />
           </div>
