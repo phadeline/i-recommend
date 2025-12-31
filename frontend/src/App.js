@@ -69,6 +69,9 @@ function App() {
 
 
   useEffect(()=>{
+
+    rangeSliderRef.current.addEventListener("onClick", Click);
+    console.log("do somthing");
   async function Click() {
    
 const instance = await MusicKit.getInstance();
@@ -118,9 +121,9 @@ console.log("click");
    
   }
 
-rangeSliderRef.current.addEventListener("onClick", Click);
 
-}, [count])
+
+}, [rangeSliderRef])
 
   const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
