@@ -137,6 +137,7 @@ const decodedToken = decodeURIComponent(userToken);
   
  
 const [MyPlay, setMyPlay] = useState([])
+
   async function getPlaylists() {
     
     
@@ -163,15 +164,8 @@ const [MyPlay, setMyPlay] = useState([])
       };
 
       console.log("myPlaylists: " + MyPlay);
-  }
-  
  
-
-
-
-
-
-
+  
   return (
     <div className="App" style={{ textAlign: "center" }}>
       <h1 className="welcome" style={{ textAlign: "center" }}>Welcome to i-Recommend</h1>
@@ -197,7 +191,7 @@ const [MyPlay, setMyPlay] = useState([])
           </div>
           <div className="textdiv">
           
-              <NavLink to={"/playlists"} onMouseEnter={getPlaylists} state={{myPlaylists: MyPlay}}>
+              <NavLink to={"/playlists"} onClick={getPlaylists()} state={{myPlaylists: MyPlay}}>
                 <button style={{display: "none"}}
                   type=" button"
                   id="image"
