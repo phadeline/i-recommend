@@ -63,18 +63,18 @@ function App() {
     document.addEventListener("mousemove", handleMouseMove);
   }, [sessionStorage.getItem("devtoken")]);
 
+
+
   useEffect(() => {
     if (sessionStorage.getItem("devtoken") !== "") {
       console.log("do something");
-
+ 
       const Click = async (event) => {
         event.preventDefault();
-        const instance = await MusicKit.getInstance();
+       const instance = await MusicKit.getInstance();
         console.log("click");
-        if (sliderValue === "200") {
+        if (sliderValue === 200) {
           console.log("slider maxed");
-
-          if (!instance.isAuthorized) {
             try {
               console.log("not authorized");
               setSliderValue(200);
@@ -96,7 +96,7 @@ function App() {
             } catch (error) {
               console.error("Authorization error:", error);
             }
-          }
+          
 
           count++;
           console.log("in instance event: " + count);
