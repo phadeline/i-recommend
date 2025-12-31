@@ -120,11 +120,12 @@ if (sessionStorage.getItem("devtoken") !== "") {
     const searchParams = new URLSearchParams(queryString);
     const decodedToken = searchParams.get("music-user-token");
 
-    const getPlaylists = () => {
+    const getPlaylists = async(event) => {
       console.log(decodedToken);
       const getToken = sessionStorage.getItem("devtoken");
+      event.preventDefault();
 
-      axios
+    const response =  await axios
         .get(musicPlaylists, {
           headers: {
             Authorization: `Bearer ${getToken}`,
@@ -132,19 +133,12 @@ if (sessionStorage.getItem("devtoken") !== "") {
             "Content-Type": "application/json",
           },
         })
-        .then((response) => {
-          console.log(response);
-
-          return response;
-          // Process the playlist data here
-        })
-        .then((data) => {
-          console.log(setMyPlay(data.data));
-          
-        })
-        .catch((error) => {
+        try{
+           setMyPlay(await response.data)
+        }
+        catch(error){
           console.error("Error fetching playlists:", error);
-        });
+        }
     }
    const newButtonRef =  useRef();
    newButtonRef.current.addEventListener("click", getPlaylists)
