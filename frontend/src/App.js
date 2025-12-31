@@ -82,7 +82,7 @@ const decodedToken = decodeURIComponent(userToken);
     
     event.preventDefault();
     //this refers to the button element
-   
+    setSearchParams("");
       const instance = MusicKit.getInstance();
       if (sliderValue == "200" && instance.authorize) {
         instance.unauthorize();
@@ -96,11 +96,11 @@ const decodedToken = decodeURIComponent(userToken);
             .authorize()
             .then(function (token) {
                
-              setSearchParams("");
+             
               window.location.href +=
                 "?music-user-token=" + encodeURIComponent(token);
               //const playlists = instance.api.music("v1/me/library/playlists");
-              setSearchParams("");
+              
               button.style.display = "flex";
              
 
@@ -116,11 +116,11 @@ const decodedToken = decodeURIComponent(userToken);
         await instance
           .authorize()
           .then(function (token) {
-            setSearchParams("");
+           
             window.location.href +=
               "?music-user-token=" + encodeURIComponent(token);
             //const playlists = instance.api.music("v1/me/library/playlists");
-            setSearchParams("");
+           
           })
           .catch(function (err) {
             console.error(err);
@@ -130,6 +130,7 @@ const decodedToken = decodeURIComponent(userToken);
   
   count++;
   console.log("in instance event: " + count);
+   setSearchParams("");
   }
 
 
@@ -205,7 +206,7 @@ const decodedToken = decodeURIComponent(userToken);
           </div>
         </div>
         <div ><p>
-          Click the end of the slider to connect your Apple Music account. 
+          DoubleClick the end of the slider to connect your Apple Music account. 
         </p>
         <p>Then press Connect.</p>
         </div>
