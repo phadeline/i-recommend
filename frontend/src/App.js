@@ -144,7 +144,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
    const newButtonRef =  useRef();
    newButtonRef.current.addEventListener("click", getPlaylists)
 
-  }, [decodedToken]);
+  }, []);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
