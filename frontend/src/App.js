@@ -154,7 +154,7 @@ const [MyPlay, setMyPlay] = useState([])
       })
       try{
      
-       setMyPlay([response.data])
+       console.log(setMyPlay([response.data]))
         // Process the playlist data here
          console.log(response);
       }
@@ -162,7 +162,7 @@ const [MyPlay, setMyPlay] = useState([])
         console.error("Error fetching playlists:", error);
       };
 
-      console.log("myPlaylists:", MyPlay);
+      console.log("myPlaylists: " + MyPlay);
   }
   
  
