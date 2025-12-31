@@ -197,11 +197,11 @@ const decodedToken = decodeURIComponent(userToken);
           <div className="textdiv">
           
               <NavLink to={"/playlists"}  state={{myPlaylists: myPlaylists}}>
-                <button style={{display: "none"}}
+                <input style={{display: "none"}}
                   type=" button"
                   onClick={getPlaylists}
                   id="image"
-                ></button>
+                ></input>
               </NavLink>
        
           </div>
