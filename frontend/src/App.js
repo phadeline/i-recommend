@@ -116,7 +116,8 @@ function App() {
     const hash = location.hash;
     const queryStringIndex = hash.indexOf("?");
     const queryString = hash.substring(queryStringIndex);
-    const decodedToken = new URLSearchParams(queryString);
+    const searchParams = new URLSearchParams(queryString);
+    const decodedToken = searchParams.get('music-user-token')
 
     async function getPlaylists() {
       console.log(decodedToken);
