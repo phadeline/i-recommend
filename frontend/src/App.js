@@ -72,7 +72,7 @@ function App() {
     //this refers to the button element
 
     const instance = MusicKit.getInstance();
-
+console.log("click");
     if (documentRef.current.getElementById("myRange").value == "200") {
       
       console.log("slider maxed");
@@ -119,7 +119,7 @@ function App() {
   }
 
 documentRef.current.getElementById("myRange").addEventListener("onClick", Click);
-}, [])
+}, [count = 1])
 
   const [MyPlay, setMyPlay] = useState([]);
   useEffect(() => {
