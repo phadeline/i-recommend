@@ -138,10 +138,10 @@ const decodedToken = decodeURIComponent(userToken);
  
 
 const [MyPlay, setMyPlay] = useState([]);
-
+  useEffect(() => {
   async function getPlaylists() {
     
-    useEffect(() => {
+  
     console.log(decodedToken);
     const getToken = sessionStorage.getItem("devtoken");
    
@@ -162,8 +162,15 @@ const [MyPlay, setMyPlay] = useState([]);
        }).then((data)=>{
   
        setMyPlay(data.data);
+       documentRef.current.getElementById("image").removeEventListener("click", getPlaylists);
+
        }).catch((error) =>{console.error("Error fetching playlists:", error)});
-      },[])} ;
+
+      } documentRef.current.getElementById("image").addEventListener("click", getPlaylists);
+      
+      
+      
+    }, []);
 
      
  
