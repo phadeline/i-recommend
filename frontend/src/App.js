@@ -35,7 +35,7 @@ function App() {
       }
     }
     getToken();
-  }, [sessionStorage.getItem("devtoken")]);
+  }, []);
 
 
 
