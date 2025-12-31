@@ -77,7 +77,7 @@ if(sessionStorage.getItem("devtoken")!= ""){
    
 const instance = await MusicKit.getInstance();
 console.log("click");
-    if (rangeSliderRef.value == "200") {
+    if (sliderValue == "200") {
       
       console.log("slider maxed");
       if (!instance.isAuthorized) {
