@@ -110,10 +110,10 @@ function App() {
 
     count++;
     console.log("in instance event: " + count);
-    documentRef.current.getElementById("myRange").removeEventListener("onClick", Click);
+    documentRef.current.getElementById("myRange").removeEventListener("onChange", Click);
   }
 
-documentRef.current.getElementById("myRange").addEventListener("onClick", Click);
+documentRef.current.getElementById("myRange").addEventListener("onChange", Click);
 }, [count])
 
   const [MyPlay, setMyPlay] = useState([]);
