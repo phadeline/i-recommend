@@ -162,6 +162,7 @@ documentRef.current.getElementById("myRange").addEventListener("onClick", Click)
       .addEventListener("click", getPlaylists);
   }, [MyPlay]);
 
+
   return (
     <div className="App" style={{ textAlign: "center" }}>
       <h1 className="welcome" style={{ textAlign: "center" }}>
@@ -181,7 +182,7 @@ documentRef.current.getElementById("myRange").addEventListener("onClick", Click)
               className="slider"
               id="myRange"
              defaultValue={sliderValue}
-             onChange={setSliderValue(this.value)}
+             onChange={((event)=>{ setSliderValue(event.target.value);})}
        
             />
           </div>
