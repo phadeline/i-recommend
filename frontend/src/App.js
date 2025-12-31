@@ -164,7 +164,7 @@ const decodedToken = decodeURIComponent(userToken);
   getPlaylists();
 
 
-},[count = 4])
+},[count])
 
 
 
