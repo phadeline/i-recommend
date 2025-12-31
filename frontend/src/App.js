@@ -159,7 +159,7 @@ const [MyPlay, setMyPlay] = useState([])
         // Process the playlist data here
          
        }).then((data)=>{
-        setMyPlay(data.data)
+        setMyPlay([data.data])
        }).catch((error) =>{console.error("Error fetching playlists:", error)});
       };
 
