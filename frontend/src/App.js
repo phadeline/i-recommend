@@ -103,9 +103,7 @@ function App() {
         }
         rangeSliderRef.current.addEventListener("click", Click);
 
-        return () => {
-          rangeSliderRef.current.removeEventListener("click", Click);
-        };
+      
       };
     }
   }, [sliderValue]);
