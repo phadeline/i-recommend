@@ -85,7 +85,7 @@ const decodedToken = decodeURIComponent(userToken);
     
     event.preventDefault();
     //this refers to the button element
-    if (count < 2) {
+    if (count = 2) {
       const instance = MusicKit.getInstance();
       if (sliderValue == "200" && instance.authorize) {
         instance.unauthorize();
