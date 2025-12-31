@@ -14,7 +14,7 @@ function App() {
   const rangeSlider = documentRef.current.getElementById("myRange");
   var count = 0;
   const [sliderValue, setSliderValue] = useState("15");
-const [myPlaylists, setMyPlaylists] = useState([]);
+const [MyPlaylists, setMyPlaylists] = useState([]);
 
   let [searchParams, setSearchParams] = useSearchParams();
      const userToken = searchParams.get("music-user-token");
@@ -162,7 +162,7 @@ const decodedToken = decodeURIComponent(userToken);
         console.error("Error fetching playlists:", error);
       };
 
-      console.log("myPlaylists:", myPlaylists);
+      console.log("myPlaylists:", MyPlaylists);
   }
   
  
@@ -197,7 +197,7 @@ const decodedToken = decodeURIComponent(userToken);
           </div>
           <div className="textdiv">
           
-              <NavLink to={"/playlists"} onClick={getPlaylists} state={{myPlaylists: myPlaylists}}>
+              <NavLink to={"/playlists"} onClick={getPlaylists} state={{myPlaylists: MyPlaylists}}>
                 <button style={{display: "none"}}
                   type=" button"
                   id="image"

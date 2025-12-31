@@ -6,11 +6,10 @@ import axios from "axios";
 const PlaylistsLists = () => {
   const location = useLocation();
   const myPlaylists = location.state.myPlaylists || {};
-  const [myMusicData, setMyMusicData] = useState([]);
+  
   //console.log(`Hello ${myPlaylists.data[0].attributes.name}`);
 
-  
-  console.log(myMusicData);
+ ;
   return (
     <div className="playlistbackground">
       <h1 className="Header">Select A Playlist To View Recommended Songs</h1>
