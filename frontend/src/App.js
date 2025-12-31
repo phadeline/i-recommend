@@ -177,7 +177,7 @@ documentRef.current.getElementById("myRange").addEventListener("onChange", Click
               max="200"
               className="slider"
               id="myRange"
-             value="200"
+             defaultValue={sliderValue}
        
             />
           </div>
