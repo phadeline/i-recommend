@@ -48,10 +48,11 @@ const decodedToken = decodeURIComponent(userToken);
 
 
   useEffect(() => {
+    const abortController = new AbortController()
     async function handleMouseMove(event) {
       event.preventDefault();
       const myToken = sessionStorage.getItem("devtoken");
-      const abortController = new AbortController()
+      
       
         console.log("musickitloaded event fired");
         try {
