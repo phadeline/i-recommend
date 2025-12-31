@@ -9,6 +9,7 @@ function App() {
 
   const musicPlaylists = "https://api.music.apple.com/v1/me/library/playlists"; // Example MusicKit API endpoint
   const documentRef = useRef(document);
+  const rangeSliderRef = useRef();
   const button = documentRef.current.getElementById("image");
   const rangeSlider = documentRef.current.getElementById("myRange");
   var count = 0;
@@ -114,10 +115,10 @@ console.log("click");
 
     count++;
     console.log("in instance event: " + count);
-    documentRef.getElementById("myRange").removeEventListener("onClick", Click);
+    rangeSliderRef.current.removeEventListener("onClick", Click);
   }
 
-documentRef.getElementById("myRange").addEventListener("onClick", Click);
+rangeSlider.current.addEventListener("onClick", Click);
 }, [count])
 
   const [MyPlay, setMyPlay] = useState([]);
@@ -180,6 +181,7 @@ documentRef.getElementById("myRange").addEventListener("onClick", Click);
               max="200"
               className="slider"
               id="myRange"
+              ref={rangeSliderRef}
              defaultValue={sliderValue}
              onChange={((event)=>{ setSliderValue(event.target.value);})}
        
