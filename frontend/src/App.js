@@ -192,15 +192,15 @@ const decodedToken = decodeURIComponent(userToken);
             />
           </div>
           <div className="textdiv">
-            <nav>
-              <Link to={`/playlists`}  onClick={getPlaylists} state={myPlaylists}>
-                <button style={{display: "flex"}}
+          
+              <Link to={`/playlists`}  state={myPlaylists}>
+                <button style={{display: "none"}}
                   type=" button"
-                 
+                 onClick={getPlaylists}
                   id="image"
                 ></button>
               </Link>
-            </nav>
+       
           </div>
         </div>
         <div ><p>
