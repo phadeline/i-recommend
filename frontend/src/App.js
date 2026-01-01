@@ -94,7 +94,7 @@ function App() {
                   console.log(err);
                 });
 
-              if (searchParams.get(location.hash)) {
+              if (activates === "false") {
                 newButtonRef.current.style.display = "flex";
                 setActivates("true");
                 console.log(activates);
