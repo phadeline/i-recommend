@@ -89,7 +89,10 @@ function App() {
                   window.location.href +=
                     "?music-user-token=" + encodeURIComponent(token);
                   //const playlists = instance.api.music("v1/me/library/playlists");
-                 
+                  if (token){
+                    button.style.display = "flex";
+                    setActivates("true");
+                  }
                 })
                 .catch((err) => {
                   console.error(err);
@@ -99,10 +102,7 @@ function App() {
             }
 
             console.log("in instance event: " + count);
-             if (instance.isAuthorized) {
-                    button.style.display = "flex";
-                    setActivates("true");
-                  }
+            
           }
         };
         rangeSliderRef.current.addEventListener("click", Click);
