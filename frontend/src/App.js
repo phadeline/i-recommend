@@ -153,7 +153,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
         }
     }
    const newButtonRef =  useRef();
-   newButtonRef.current.addEventListener("mouseenter", getPlaylists)
+   newButtonRef.current.addEventListener("mousemove", getPlaylists)
   }
 
   }, []);
