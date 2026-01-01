@@ -14,7 +14,7 @@ function App() {
   var count = 0;
   const [sliderValue, setSliderValue] = useState(15);
   const [activate, setActivate] = useState(false);
-
+  const [MyPlay, setMyPlay] = useState([]);
   let [searchParams, setSearchParams] = useSearchParams();
 
   //http://localhost:8000/token
@@ -114,7 +114,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
     }
   }, [sliderValue]);
 
-  const [MyPlay, setMyPlay] = useState([]);
+
   
   useEffect(() => {
     
@@ -141,8 +141,9 @@ if (sessionStorage.getItem("devtoken") !== "") {
           },
         })
         try{
-           setMyPlay(await response.data)
-           console.log(response.data)
+           setMyPlay(response.data)
+           console.log(await response.data)
+           console.log("Myplaylists: " + MyPlay)
         }
         catch(error){
           console.error("Error fetching playlists:", error);
