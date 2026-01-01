@@ -113,7 +113,7 @@ function App() {
   }, [sliderValue]);
 
   useEffect(() => {
-   
+   if(newButtonRef.current.style.display = "flex"){
       const getPlaylists = async (event) => {
         event.preventDefault();
 
@@ -143,7 +143,7 @@ function App() {
       const newButtonRef = useRef();
       newButtonRef.current.addEventListener("mouseover", getPlaylists);
   
-  }, [newButtonRef]);
+}}, [newButtonRef]);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
