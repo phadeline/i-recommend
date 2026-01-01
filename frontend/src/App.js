@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, use } from "react";
+import React, { useEffect, useState, useRef, use, act } from "react";
 import { useSearchParams, Link, NavLink, useLocation } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
@@ -13,6 +13,7 @@ function App() {
   const newButtonRef =  useRef();
   var count = 0;
   const [sliderValue, setSliderValue] = useState(15);
+  const [activate, setActivate] = useState(false);
 
   let [searchParams, setSearchParams] = useSearchParams();
 
@@ -91,6 +92,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
                   //const playlists = instance.api.music("v1/me/library/playlists");
 
                   button.style.display = "flex";
+                  setActivate(true);
                 })
                 .catch((err) => {
                   console.error(err);
@@ -112,12 +114,15 @@ if (sessionStorage.getItem("devtoken") !== "") {
     }
   }, [sliderValue]);
 
-  /*const [MyPlay, setMyPlay] = useState([]);
+  const [MyPlay, setMyPlay] = useState([]);
   
   useEffect(() => {
     
-
+ if (activate){
+  
     const getPlaylists = async(event) => {
+ event.preventDefault();
+
       const hash = location.hash;
     const queryStringIndex = hash.indexOf("?");
     const queryString = hash.substring(queryStringIndex);
@@ -125,7 +130,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
    const decodedToken = search.get("music-user-token"); 
       console.log(decodedToken);
       const getToken = sessionStorage.getItem("devtoken");
-      event.preventDefault();
+      
 
     const response =  await axios
         .get(musicPlaylists, {
@@ -144,8 +149,9 @@ if (sessionStorage.getItem("devtoken") !== "") {
     }
    const newButtonRef =  useRef();
    newButtonRef.current.addEventListener("click", getPlaylists)
+  }
 
-  }, [MyPlay]);*/
+  }, [MyPlay]);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
@@ -174,7 +180,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
           </div>
           <div className="textdiv">
             <nav>
-              <Link to={"/playlists"} /*state={{ MyPlay: MyPlay }}*/>
+              <Link to={"/playlists"} state={{ MyPlay: MyPlay }}>
                 <button
                   style={{ display: "none" }}
                   type=" button"
