@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, use, act } from "react";
 import { useSearchParams, Link, NavLink, useLocation } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
-import { response } from "express";
+import { response, response } from "express";
 //import "../../frontend/"
 
 /* global MusicKit */
@@ -86,13 +86,12 @@ function App() {
 
               documentRef.current.getElementById("myRange").style.opacity =
                 "0.2";
-              const response = await instance.authorize();
-             
-                  setSearchParams("");
+              instance.authorize().then((response)=>{ setSearchParams("");
                   window.location.href +=
                     "?music-user-token=" + encodeURIComponent(response);
-                  //const playlists = instance.api.music("v1/me/library/playlists");
-                    if(searchParams.get(location.hash)){
+                 }).catch((err)=>{console.log(err)})
+      
+                  if(searchParams.get(location.hash)){
                   newButtonRef.current.style.display = "flex";
                   setActivates("true");
                   console.log(activates);
