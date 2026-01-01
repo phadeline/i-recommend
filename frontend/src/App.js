@@ -94,8 +94,8 @@ function App() {
                   });
 
               
-                newButtonRef.current.style.display = "flex";
-                setActivates("false");
+              
+                setActivates("true");
                
                 setSliderValue(200);
                  console.log(activates);
@@ -103,7 +103,7 @@ function App() {
               } catch (error) {
                 console.error("Authorization error:", error);
               }
-
+  newButtonRef.current.style.display = "flex";
               console.log("in instance event: " + count);
             }
           };
@@ -117,7 +117,7 @@ function App() {
   }, [sliderValue]);
 
   useEffect(() => {
-    if (activates === "true") {
+   
       const getPlaylists = async (event) => {
         event.preventDefault();
 
@@ -146,7 +146,7 @@ function App() {
       };
       const newButtonRef = useRef();
       newButtonRef.current.addEventListener("mouseover", getPlaylists);
-    }
+  
   }, [activates]);
 
   return (
