@@ -95,8 +95,8 @@ count++;
   }
 
 
-      const getPlaylists = async (event) => {
-        event.preventDefault();
+      const getPlaylists = async (play) => {
+       
         const hash = location.hash;
         const queryString = hash.indexOf("?");
         console.log(hash)
@@ -123,7 +123,7 @@ count++;
         } catch (error) {
           console.error("Error fetching playlists:", error);
         }
-
+navigate(play, { state: { MyPlay: MyPlay } })
       };
  
 
@@ -162,8 +162,8 @@ count++;
                   ref={newButtonRef}
                  onMouseEnter={(event) => {
                   event.preventDefault();
-      getPlaylists();
-      navigate("/playlists", { state: { MyPlay: MyPlay } })
+      getPlaylists("playlists");
+      
     }}
    
                   id="image"
