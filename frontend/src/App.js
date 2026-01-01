@@ -76,10 +76,11 @@ if (sessionStorage.getItem("devtoken") !== "") {
         event.preventDefault();
        const instance = await MusicKit.getInstance();
         console.log("click");
-        if (sliderValue === "200") {
-          instance.unauthorize();
+        if (sliderValue === "200" && !instance.isAuthorized) {
+         
           console.log("slider maxed");
             try {
+               instance.unauthorize();
               console.log("not authorized");
               setSliderValue(200);
               documentRef.current.getElementById("myRange").style.opacity =
