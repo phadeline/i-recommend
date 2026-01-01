@@ -90,10 +90,11 @@ function App() {
                   window.location.href +=
                     "?music-user-token=" + encodeURIComponent(token);
                   //const playlists = instance.api.music("v1/me/library/playlists");
-                  if (token !== null && count >= 1){
+                 
                     button.style.display = "flex";
                     setActivates("true");
-                  }
+                    console.log(activates)
+                
                 })
                 .catch((err) => {
                   console.error(err);
