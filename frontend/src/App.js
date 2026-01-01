@@ -56,7 +56,7 @@ function App() {
         console.log("not a success: " + err);
         // Handle configuration error
       }
-      count++;
+      
       console.log("in handlesmousemove: " + count);
       document.removeEventListener("mousemove", handleMouseMove);
     }
@@ -73,10 +73,12 @@ function App() {
 if (sessionStorage.getItem("devtoken") !== "") {
 
       const Click = async (event) => {
+
         event.preventDefault();
        const instance = await MusicKit.getInstance();
         console.log("click");
-        if (sliderValue === "200" && instance) {
+         count++;
+        if (sliderValue === "200" && count == 1) {
         
           console.log("slider maxed");
             try {
@@ -103,7 +105,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
             }
           
 
-          count++;
+         
           console.log("in instance event: " + count);
         }
        
