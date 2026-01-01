@@ -89,7 +89,7 @@ function App() {
                   window.location.href +=
                     "?music-user-token=" + encodeURIComponent(token);
                   //const playlists = instance.api.music("v1/me/library/playlists");
-                  if (token && count === 2){
+                  if (token && count >= 1){
                     button.style.display = "flex";
                     setActivates("true");
                   }
