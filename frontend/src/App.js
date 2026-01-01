@@ -136,7 +136,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
       
 
     const response =  await axios
-        .get(musicPlaylists, {
+        .post(musicPlaylists, {
           headers: {
             Authorization: `Bearer ${getToken}`,
             "Music-User-Token": `${decodedToken}`,
