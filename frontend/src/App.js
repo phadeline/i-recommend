@@ -19,10 +19,11 @@ function App() {
   let [searchParams, setSearchParams] = useSearchParams();
 const navigate = useNavigate();
   //
+  //http://localhost:9000/
   useEffect(() => {
     async function getToken() {
       const response = await axios.get(
-        "http://localhost:9000/token",
+        "/token",
         (e) => {
           e.preventDefault();
         }

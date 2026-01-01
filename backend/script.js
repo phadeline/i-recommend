@@ -10,11 +10,11 @@ const port = process.env.PORT || 9000;
 import jwt from "jsonwebtoken";
 
 
-const frontendBuildPath = path.join(__dirname, "../frontend/public");
+//const frontendBuildPath = path.join(__dirname, "../frontend/public");
 
-app.use(express.static(frontendBuildPath));
+//app.use(express.static(frontendBuildPath));
 
-//const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:3000';
+const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:9000';
 
 
 
@@ -66,7 +66,7 @@ app.get("/", (req, res) => {
 
 app.get("/token", (req, res) => {
   res.status(200);
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin", API_URL);
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.send(myFunction());
