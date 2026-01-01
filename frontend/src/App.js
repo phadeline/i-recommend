@@ -140,10 +140,10 @@ function App() {
         }
       };
        const newButtonRef = useRef();
-    newButtonRef.current.addEventListener("mousemove", getPlaylists);
+    newButtonRef.current.addEventListener("mouseover", getPlaylists);
     }
    
-  }, []);
+  }, [activates]);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
