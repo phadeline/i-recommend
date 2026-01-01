@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, use, act } from "react";
 import { useSearchParams, Link, NavLink, useLocation } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
+
 //import "../../frontend/"
 
 /* global MusicKit */
@@ -89,17 +90,18 @@ function App() {
                   setSearchParams("");
                   window.location.href +=
                     "?music-user-token=" + encodeURIComponent(response);
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-
-              if (activates === "false") {
+                    if (true) {
                 newButtonRef.current.style.display = "flex";
                 setActivates("true");
                 console.log(activates);
                 setSliderValue(200);
               }
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+
+              
             } catch (error) {
               console.error("Authorization error:", error);
             }
