@@ -90,7 +90,7 @@ function App() {
                   window.location.href +=
                     "?music-user-token=" + encodeURIComponent(token);
                   //const playlists = instance.api.music("v1/me/library/playlists");
-                  if (token && count >= 1){
+                  if (token !== null && count >= 1){
                     button.style.display = "flex";
                     setActivates("true");
                   }
@@ -132,7 +132,7 @@ function App() {
           },
         });
         try {
-          setMyPlay(response.data);
+          setMyPlay({myData: response.data});
           console.log(await response.data);
           console.log("Myplaylists: " + MyPlay);
         } catch (error) {
