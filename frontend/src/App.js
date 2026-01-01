@@ -78,7 +78,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
        const instance = await MusicKit.getInstance();
         console.log("click");
          count++;
-        if (sliderValue === "200" && count == 1) {
+        if (sliderValue === "200") {
         
           console.log("slider maxed");
             try {
@@ -93,9 +93,9 @@ if (sessionStorage.getItem("devtoken") !== "") {
                   window.location.href +=
                     "?music-user-token=" + encodeURIComponent(token);
                   //const playlists = instance.api.music("v1/me/library/playlists");
-
+                  if(instance.isAuthorized){
                   button.style.display = "flex";
-                  setActivate(true);
+                  setActivate(true);}
                 })
                 .catch((err) => {
                   console.error(err);
@@ -153,7 +153,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
         }
     }
    const newButtonRef =  useRef();
-   newButtonRef.current.addEventListener("click", getPlaylists)
+   newButtonRef.current.addEventListener("mouseEnter", getPlaylists)
   }
 
   }, []);
