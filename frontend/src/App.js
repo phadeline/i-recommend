@@ -10,7 +10,7 @@ function App() {
   const musicPlaylists = "https://api.music.apple.com/v1/me/library/playlists"; // Example MusicKit API endpoint
   const documentRef = useRef(document);
   const rangeSliderRef = useRef();
-  const button = documentRef.current.getElementById("image");
+  //const button = documentRef.current.getElementById("image");
   const newButtonRef = useRef();
   var count = 0;
   const [sliderValue, setSliderValue] = useState(15);
@@ -96,11 +96,12 @@ function App() {
                 });
               
 
-              if (1===1) {
+              if (true) {
                 newButtonRef.current.style.display = "flex";
                 setActivates("true");
-                console.log(activates);
+               
                 setSliderValue(200);
+                 console.log(activates);
               }
               
             } catch (error) {
