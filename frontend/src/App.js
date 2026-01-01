@@ -95,7 +95,7 @@ function App() {
 
               
               
-                setActivates("true");
+               
                
                 setSliderValue(200);
                  console.log(activates);
@@ -103,7 +103,7 @@ function App() {
               } catch (error) {
                 console.error("Authorization error:", error);
               }
-  newButtonRef.current.style.display = "flex";
+               newButtonRef.current.style.display = "flex";
               console.log("in instance event: " + count);
             }
           };
