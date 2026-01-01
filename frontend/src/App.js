@@ -76,8 +76,8 @@ if (sessionStorage.getItem("devtoken") !== "") {
         event.preventDefault();
        const instance = await MusicKit.getInstance();
         console.log("click");
-        if (sliderValue === "200" && !instance.isAuthorized) {
-         
+        if (sliderValue === "200" && instance) {
+        
           console.log("slider maxed");
             try {
                instance.unauthorize();
@@ -98,7 +98,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
                 .catch((err) => {
                   console.error(err);
                 });
-            } catch (error) {
+            }catch (error) {
               console.error("Authorization error:", error);
             }
           
