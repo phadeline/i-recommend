@@ -94,19 +94,21 @@ function App() {
                 .catch((err) => {
                   console.log(err);
                 });
+              
 
+              if (1===1) {
+                newButtonRef.current.style.display = "flex";
+                setActivates("true");
+                console.log(activates);
+                setSliderValue(200);
+              }
               
             } catch (error) {
               console.error("Authorization error:", error);
             }
 
             console.log("in instance event: " + count);
-            if (1===1) {
-                newButtonRef.current.style.display = "flex";
-                setActivates("true");
-                console.log(activates);
-                setSliderValue(200);
-              }
+            
           }
         };
         rangeSliderRef.current.addEventListener("click", Click);
