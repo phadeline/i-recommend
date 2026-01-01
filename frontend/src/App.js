@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef, use, act } from "react";
 import { useSearchParams, Link, NavLink, useLocation } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
-import { response, response } from "express";
 //import "../../frontend/"
 
 /* global MusicKit */
@@ -65,8 +64,6 @@ function App() {
     document.addEventListener("mousemove", handleMouseMove);
   }, [sessionStorage.getItem("devtoken")]);
 
-
-
   useEffect(() => {
     if (sessionStorage.getItem("devtoken") !== "") {
       console.log("do something");
@@ -86,18 +83,23 @@ function App() {
 
               documentRef.current.getElementById("myRange").style.opacity =
                 "0.2";
-              instance.authorize().then((response)=>{ setSearchParams("");
+              instance
+                .authorize()
+                .then((response) => {
+                  setSearchParams("");
                   window.location.href +=
                     "?music-user-token=" + encodeURIComponent(response);
-                 }).catch((err)=>{console.log(err)})
-      
-                  if(searchParams.get(location.hash)){
-                  newButtonRef.current.style.display = "flex";
-                  setActivates("true");
-                  console.log(activates);
-                  setSliderValue(200);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+
+              if (searchParams.get(location.hash)) {
+                newButtonRef.current.style.display = "flex";
+                setActivates("true");
+                console.log(activates);
+                setSliderValue(200);
               }
-              
             } catch (error) {
               console.error("Authorization error:", error);
             }
