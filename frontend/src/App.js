@@ -68,7 +68,7 @@ function App() {
   useEffect(() => {
     if (sessionStorage.getItem("devtoken") !== "") {
       console.log("do something");
-      if (setActivates === "true") {
+      if (activates === "true") {
         if (sessionStorage.getItem("devtoken") !== "") {
           const Click = async (event) => {
             event.preventDefault();
@@ -95,7 +95,7 @@ function App() {
                     console.log(err);
                   });
 
-                if (true) {
+                if (activates === "true") {
                 newButtonRef.current.style.display = "flex";
                 setActivates("false");
                
