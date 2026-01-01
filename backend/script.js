@@ -69,6 +69,6 @@ app.get("/token", (req, res) => {
   res.header("Access-Control-Allow-Origin", API_URL);
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
-  res.send(myFunction);
+  res.send(myFunction());
   
 });
