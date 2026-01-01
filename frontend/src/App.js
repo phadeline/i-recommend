@@ -73,7 +73,7 @@ function App() {
             const instance = await MusicKit.getInstance();
             console.log("click");
             count++;
-            instance.unauthorize();
+            setSliderValue("200");
             if (sliderValue === "200") {
           
               console.log("slider maxed");
