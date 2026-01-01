@@ -142,6 +142,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
         })
         try{
            setMyPlay(await response.data)
+           console.log(response.data)
         }
         catch(error){
           console.error("Error fetching playlists:", error);
@@ -151,7 +152,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
    newButtonRef.current.addEventListener("click", getPlaylists)
   }
 
-  }, [MyPlay]);
+  }, []);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
