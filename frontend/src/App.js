@@ -113,7 +113,7 @@ function App() {
    
    
     }
-      setActivates("true");
+     // setActivates("true");
   }, [sliderValue]);
 
   useEffect(() => {
