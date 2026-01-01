@@ -108,7 +108,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
        
       
       };
-    rangeSliderRef.current.addEventListener("change", Click);
+    rangeSliderRef.current.addEventListener("click", Click);
     }
        
     }
