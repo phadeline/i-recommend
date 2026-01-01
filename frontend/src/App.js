@@ -66,7 +66,7 @@ function App() {
   }, [sessionStorage.getItem("devtoken")]);
 
   useEffect(() => {
-    if (sessionStorage.getItem("devtoken") !== "" && activates ==="true") {
+    if (sessionStorage.getItem("devtoken") !== "") {
       console.log("do something");
           const Click = async (event) => {
             event.preventDefault();
@@ -93,13 +93,13 @@ function App() {
                     console.log(err);
                   });
 
-                if (activates === "true") {
+              
                 newButtonRef.current.style.display = "flex";
                 setActivates("false");
                
                 setSliderValue(200);
                  console.log(activates);
-              }
+             
               } catch (error) {
                 console.error("Authorization error:", error);
               }
@@ -113,7 +113,7 @@ function App() {
    
    
     }
-     // setActivates("true");
+   
   }, [sliderValue]);
 
   useEffect(() => {
