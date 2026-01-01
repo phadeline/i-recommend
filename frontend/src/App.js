@@ -96,13 +96,13 @@ function App() {
                 });
               
 
-              if (true) {
+              /*if (true) {
                 newButtonRef.current.style.display = "flex";
                 setActivates("true");
                
                 setSliderValue(200);
                  console.log(activates);
-              }
+              }*/
               
             } catch (error) {
               console.error("Authorization error:", error);
