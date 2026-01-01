@@ -79,10 +79,10 @@ if (sessionStorage.getItem("devtoken") !== "") {
         console.log("click");
          count++;
         if (sliderValue === "200") {
-        
+         await instance.unauthorize();
           console.log("slider maxed");
             try {
-               instance.unauthorize();
+              
               console.log("not authorized");
               setSliderValue(200);
               documentRef.current.getElementById("myRange").style.opacity =
