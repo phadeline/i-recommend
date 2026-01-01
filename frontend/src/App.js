@@ -140,7 +140,7 @@ function App() {
           console.error("Error fetching playlists:", error);
         }
       };
-      const newButtonRef = useRef();
+    
       newButtonRef.current.addEventListener("mouseover", getPlaylists);
   
 }}, [newButtonRef]);
