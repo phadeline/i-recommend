@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, use, act } from "react";
-import { useSearchParams, Link, NavLink, useLocation } from "react-router-dom";
+import { useSearchParams, Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 
@@ -7,7 +7,7 @@ import axios from "axios";
 
 /* global MusicKit */
 function App() {
-  const musicPlaylists = "https://api.music.apple.com/v1/me/library/playlists"; // Example MusicKit API endpoint
+  const musicPlaylists = "api.music.apple.com/v1/me/library/playlists"; // Example MusicKit API endpoint
   const documentRef = useRef(document);
   const rangeSliderRef = useRef();
   //const button = documentRef.current.getElementById("image");
@@ -17,12 +17,12 @@ function App() {
   const [activates, setActivates] = useState("false");
   const [MyPlay, setMyPlay] = useState([]);
   let [searchParams, setSearchParams] = useSearchParams();
-
-  //http://localhost:8000/token
+const navigate = useNavigate();
+  //
   useEffect(() => {
     async function getToken() {
       const response = await axios.get(
-        "https://i-recommend-289e22b5c5f5.herokuapp.com/token",
+        "http://localhost:8000/token",
         (e) => {
           e.preventDefault();
         }
@@ -57,94 +57,75 @@ function App() {
         console.log("not a success: " + err);
         // Handle configuration error
       }
-
+count++;
       console.log("in handlesmousemove: " + count);
       document.removeEventListener("mousemove", handleMouseMove);
+      
     }
 
     document.addEventListener("mousemove", handleMouseMove);
   }, [sessionStorage.getItem("devtoken")]);
 
-  useEffect(() => {
-    if (sessionStorage.getItem("devtoken") !== "") {
-      console.log("do something");
-          const Click = async (event) => {
-            event.preventDefault();
-            const instance = await MusicKit.getInstance();
-            console.log("click");
-            count++;
-            setSliderValue("200");
-            if (sliderValue === "200") {
-          
-              console.log("slider maxed");
-              try {
-               
-                console.log("not authorized");
+  
+ 
+  const Click = async () => {
+  
+  if(sessionStorage.getItem("devtoken")){
 
-                documentRef.current.getElementById("myRange").style.opacity =
-                  "0.2";
-                instance
-                  .authorize()
-                  .then((response) => {
-                    searchParams.delete("music-user-token")
-                    window.location.href +=
-                      "?music-user-token=" + encodeURIComponent(response);
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
-               
-                
-           
-             
-              } catch (error) {
-                console.error("Authorization error:", error);
-              }
-               newButtonRef.current.style.display = "flex";
-              console.log("in instance event: " + count);
-            }
-          };
-           rangeSliderRef.current.addEventListener("click", Click);
-     
-        
-   
-   
+  const instance = await MusicKit.getInstance();
+
+  console.log("click");
+
+    
+  if (rangeSliderRef.current.value === rangeSliderRef.current.max) {
+    instance.unauthorize();
+    setSearchParams("");
+    try {
+      const response = await instance.authorize();
+      searchParams.delete("music-user-token");
+      window.location.href += "?music-user-token=" + encodeURIComponent(response);
+      if(response){
+      newButtonRef.current.style.display = "flex"};
+    } catch (err) {
+      console.log("Authorization error:", err);
     }
-   
-  }, [sliderValue]);
+  }
+};
+  }
 
-  useEffect(() => {
-   if(newButtonRef.current.style.display = "flex"){
+
       const getPlaylists = async (event) => {
         event.preventDefault();
-
         const hash = location.hash;
-        const queryStringIndex = hash.indexOf("?");
-        const queryString = hash.substring(queryStringIndex);
-        const search = new URLSearchParams(queryString);
+        const queryString = hash.indexOf("?");
+        console.log(hash)
+        const newString = hash.substring(queryString);
+        console.log(newString);
+        const search = new URLSearchParams(newString);
         const decodedToken = search.get("music-user-token");
-        console.log(decodedToken);
+
+        console.log("decoded token " + decodedToken);
         const getToken = sessionStorage.getItem("devtoken");
 
-        const response = await axios.post(musicPlaylists, {
+        const response = await axios.get(musicPlaylists, {
           headers: {
-            Authorization: `Bearer ${getToken}`,
+             Authorization: `Bearer ${getToken}`,
             "Music-User-Token": `${decodedToken}`,
             "Content-Type": "application/json",
           },
         });
         try {
-          setMyPlay({ myData: response.data });
+          setMyPlay([JSON.stringify(response.data) ]);
           console.log(await response.data);
           console.log("Myplaylists: " + MyPlay);
+           setSearchParams("");
         } catch (error) {
           console.error("Error fetching playlists:", error);
         }
+
+        navigate("/playlists");
       };
-    
-      newButtonRef.current.addEventListener("mouseover", getPlaylists);
-  
-}}, [newButtonRef]);
+ 
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
@@ -166,6 +147,7 @@ function App() {
               id="myRange"
               ref={rangeSliderRef}
               defaultValue={sliderValue}
+              onClick={Click}
               onChange={(event) => {
                 setSliderValue(event.target.value);
               }}
@@ -173,14 +155,15 @@ function App() {
           </div>
           <div className="textdiv">
             <nav>
-              <Link to={"/playlists"} state={{ MyPlay: MyPlay }}>
+              
                 <button
                   style={{ display: "none" }}
                   type=" button"
                   ref={newButtonRef}
+                  onClick={getPlaylists}
                   id="image"
                 ></button>
-              </Link>
+           
             </nav>
           </div>
         </div>
