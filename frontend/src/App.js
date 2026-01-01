@@ -87,17 +87,17 @@ function App() {
               documentRef.current.getElementById("myRange").style.opacity =
                 "0.2";
               const response = await instance.authorize();
-           
+             
                   setSearchParams("");
                   window.location.href +=
                     "?music-user-token=" + encodeURIComponent(response);
                   //const playlists = instance.api.music("v1/me/library/playlists");
-
+                    if(searchParams.get(location.hash)){
                   newButtonRef.current.style.display = "flex";
                   setActivates("true");
                   console.log(activates);
                   setSliderValue(200);
-              
+              }
               
             } catch (error) {
               console.error("Authorization error:", error);
