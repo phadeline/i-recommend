@@ -89,13 +89,7 @@ function App() {
                 .then((response) => {
                   setSearchParams("");
                   window.location.href +=
-                    "?music-user-token=" + encodeURIComponent(response);
-                    if (true) {
-                button.current.style.display = "flex";
-                setActivates("true");
-                console.log(activates);
-                setSliderValue(200);
-              }
+                    "?music-user-token=" + encodeURIComponent(response)
                 })
                 .catch((err) => {
                   console.log(err);
@@ -107,6 +101,12 @@ function App() {
             }
 
             console.log("in instance event: " + count);
+            if (true) {
+                button.current.style.display = "flex";
+                setActivates("true");
+                console.log(activates);
+                setSliderValue(200);
+              }
           }
         };
         rangeSliderRef.current.addEventListener("click", Click);
