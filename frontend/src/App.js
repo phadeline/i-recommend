@@ -91,7 +91,7 @@ function App() {
                   window.location.href +=
                     "?music-user-token=" + encodeURIComponent(response);
                     if (true) {
-                newButtonRef.current.style.display = "flex";
+                button.current.style.display = "flex";
                 setActivates("true");
                 console.log(activates);
                 setSliderValue(200);
