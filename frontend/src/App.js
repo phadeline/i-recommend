@@ -112,7 +112,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
     }
   }, [sliderValue]);
 
-  const [MyPlay, setMyPlay] = useState([]);
+  /*const [MyPlay, setMyPlay] = useState([]);
   
   useEffect(() => {
     const hash = location.hash;
@@ -144,7 +144,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
    const newButtonRef =  useRef();
    newButtonRef.current.addEventListener("click", getPlaylists)
 
-  }, [MyPlay]);
+  }, [MyPlay]);*/
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
@@ -173,7 +173,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
           </div>
           <div className="textdiv">
             <nav>
-              <Link to={"/playlists"} state={{ MyPlay: MyPlay }}>
+              <Link to={"/playlists"} /*state={{ MyPlay: MyPlay }}*/>
                 <button
                   style={{ display: "none" }}
                   type=" button"
