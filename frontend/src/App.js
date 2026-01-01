@@ -65,6 +65,8 @@ function App() {
     document.addEventListener("mousemove", handleMouseMove);
   }, [sessionStorage.getItem("devtoken")]);
 
+
+
   useEffect(() => {
     if (sessionStorage.getItem("devtoken") !== "") {
       console.log("do something");
@@ -91,7 +93,7 @@ function App() {
                     "?music-user-token=" + encodeURIComponent(response);
                   //const playlists = instance.api.music("v1/me/library/playlists");
 
-                  button.style.display = "flex";
+                  newButtonRef.current.style.display = "flex";
                   setActivates("true");
                   console.log(activates);
                   setSliderValue(200);
