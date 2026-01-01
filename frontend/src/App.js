@@ -73,11 +73,12 @@ function App() {
             const instance = await MusicKit.getInstance();
             console.log("click");
             count++;
+            instance.unauthorize();
             if (sliderValue === "200") {
-              await instance.unauthorize();
+          
               console.log("slider maxed");
               try {
-                instance.unauthorize();
+               
                 console.log("not authorized");
 
                 documentRef.current.getElementById("myRange").style.opacity =
