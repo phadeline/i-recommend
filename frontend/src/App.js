@@ -108,7 +108,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
        
       
       };
-    rangeSliderRef.current.addEventListener("click", Click);
+    rangeSliderRef.current.addEventListener("change", Click);
     }
        
     }
@@ -119,7 +119,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
   useEffect(() => {
     
  if (activate){
-  
+
     const getPlaylists = async(event) => {
  event.preventDefault();
 
