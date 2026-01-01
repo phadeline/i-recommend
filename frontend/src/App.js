@@ -101,8 +101,8 @@ function App() {
             }
 
             console.log("in instance event: " + count);
-            if (true) {
-                button.current.style.display = "flex";
+            if (1===1) {
+                newButtonRef.current.style.display = "flex";
                 setActivates("true");
                 console.log(activates);
                 setSliderValue(200);
