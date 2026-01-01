@@ -42,12 +42,15 @@ const myheader = {
 
 //console.log(process.env.ISS)
 
+function myFunction(){
 const token = jwt.sign(
   JSON.stringify(payload),
   secretOrPrivateKey,
   { header: myheader }
   //JSON.stringify({header: header})
-);
+)
+return token;
+};
 
 
 
@@ -66,6 +69,6 @@ app.get("/token", (req, res) => {
   res.header("Access-Control-Allow-Origin", API_URL);
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
-  res.send(token);
+  res.send(myFunction);
   
 });
