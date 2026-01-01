@@ -81,31 +81,27 @@ function App() {
             try {
               instance.unauthorize();
               console.log("not authorized");
-             
+
               documentRef.current.getElementById("myRange").style.opacity =
                 "0.2";
-              instance
-                .authorize()
-                try{ const response = function(){
+              const response = await instance.authorize();
+           
                   setSearchParams("");
                   window.location.href +=
                     "?music-user-token=" + encodeURIComponent(response);
                   //const playlists = instance.api.music("v1/me/library/playlists");
-                 
-                    button.style.display = "flex";
-                    setActivates("true");
-                    console.log(activates)
-                    setSliderValue(200);}}
-               
-                catch(err) {
-                  console.error(err);
-                };
+
+                  button.style.display = "flex";
+                  setActivates("true");
+                  console.log(activates);
+                  setSliderValue(200);
+              
+              
             } catch (error) {
               console.error("Authorization error:", error);
             }
 
             console.log("in instance event: " + count);
-            
           }
         };
         rangeSliderRef.current.addEventListener("click", Click);
@@ -134,17 +130,16 @@ function App() {
           },
         });
         try {
-          setMyPlay({myData: response.data});
+          setMyPlay({ myData: response.data });
           console.log(await response.data);
           console.log("Myplaylists: " + MyPlay);
         } catch (error) {
           console.error("Error fetching playlists:", error);
         }
       };
-       const newButtonRef = useRef();
-    newButtonRef.current.addEventListener("mouseover", getPlaylists);
+      const newButtonRef = useRef();
+      newButtonRef.current.addEventListener("mouseover", getPlaylists);
     }
-   
   }, [activates]);
 
   return (
