@@ -85,20 +85,16 @@ function App() {
                 instance
                   .authorize()
                   .then((response) => {
-                    setSearchParams("");
+                    searchParams.delete("music-user-token")
                     window.location.href +=
                       "?music-user-token=" + encodeURIComponent(response);
                   })
                   .catch((err) => {
                     console.log(err);
                   });
-
-              
-              
                
-               
-                setSliderValue(200);
-                 console.log(activates);
+                
+           
              
               } catch (error) {
                 console.error("Authorization error:", error);
@@ -147,7 +143,7 @@ function App() {
       const newButtonRef = useRef();
       newButtonRef.current.addEventListener("mouseover", getPlaylists);
   
-  }, [activates]);
+  }, [newButtonRef]);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
