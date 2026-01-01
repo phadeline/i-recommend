@@ -68,8 +68,6 @@ function App() {
   useEffect(() => {
     if (sessionStorage.getItem("devtoken") !== "" && activates ==="true") {
       console.log("do something");
-     
-        if (sessionStorage.getItem("devtoken") !== "") {
           const Click = async (event) => {
             event.preventDefault();
             const instance = await MusicKit.getInstance();
@@ -109,10 +107,10 @@ function App() {
               console.log("in instance event: " + count);
             }
           };
-          rangeSliderRef.current.addEventListener("click", Click);
-        }
+           rangeSliderRef.current.addEventListener("click", Click);
+     
         
-    
+   
    
     }
       setActivates("true");
