@@ -66,9 +66,9 @@ function App() {
   }, [sessionStorage.getItem("devtoken")]);
 
   useEffect(() => {
-    if (sessionStorage.getItem("devtoken") !== "") {
+    if (sessionStorage.getItem("devtoken") !== "" && activates ==="true") {
       console.log("do something");
-      if (activates === "true") {
+     
         if (sessionStorage.getItem("devtoken") !== "") {
           const Click = async (event) => {
             event.preventDefault();
@@ -112,9 +112,10 @@ function App() {
           rangeSliderRef.current.addEventListener("click", Click);
         }
         
-      }
-      setActivates("true");
+    
+   
     }
+      setActivates("true");
   }, [sliderValue]);
 
   useEffect(() => {
