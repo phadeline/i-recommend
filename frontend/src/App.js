@@ -111,7 +111,7 @@ function App() {
   }, [sliderValue]);
 
   useEffect(() => {
-    if (activates == "true") {
+    if (activates === "true") {
       const getPlaylists = async (event) => {
         event.preventDefault();
 
