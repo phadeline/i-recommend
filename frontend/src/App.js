@@ -7,7 +7,7 @@ import axios from "axios";
 
 /* global MusicKit */
 function App() {
-  const musicPlaylists = "api.music.apple.com/v1/me/library/playlists"; // Example MusicKit API endpoint
+  const musicPlaylists = "https://api.music.apple.com/v1/me/library/playlists"; // Example MusicKit API endpoint
   const documentRef = useRef(document);
   const rangeSliderRef = useRef();
   //const button = documentRef.current.getElementById("image");
@@ -22,7 +22,7 @@ const navigate = useNavigate();
   useEffect(() => {
     async function getToken() {
       const response = await axios.get(
-        "http://localhost:8000/token",
+        "http://localhost:9000/token",
         (e) => {
           e.preventDefault();
         }
@@ -109,21 +109,20 @@ count++;
 
         const response = await axios.get(musicPlaylists, {
           headers: {
-             Authorization: `Bearer ${getToken}`,
+             "Authorization": `Bearer ${getToken}`,
             "Music-User-Token": `${decodedToken}`,
             "Content-Type": "application/json",
           },
         });
         try {
           setMyPlay([JSON.stringify(response.data) ]);
-          console.log(await response.data);
+       //   console.log(await response.data);
           console.log("Myplaylists: " + MyPlay);
            setSearchParams("");
         } catch (error) {
           console.error("Error fetching playlists:", error);
         }
 
-        navigate("/playlists");
       };
  
 
@@ -154,17 +153,22 @@ count++;
             />
           </div>
           <div className="textdiv">
-            <nav>
+         
               
                 <button
                   style={{ display: "none" }}
                   type=" button"
                   ref={newButtonRef}
-                  onClick={getPlaylists}
+                 onMouseEnter={(event) => {
+                  event.preventDefault();
+      getPlaylists();
+      navigate("/playlists", { state: { MyPlay: MyPlay } })
+    }}
+   
                   id="image"
                 ></button>
            
-            </nav>
+         
           </div>
         </div>
         <div>
