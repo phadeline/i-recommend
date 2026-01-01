@@ -10,10 +10,10 @@ function App() {
   const documentRef = useRef(document);
   const rangeSliderRef = useRef();
   const button = documentRef.current.getElementById("image");
-  const newButtonRef =  useRef();
+  const newButtonRef = useRef();
   var count = 0;
   const [sliderValue, setSliderValue] = useState(15);
-  const [activate, setActivate] = useState(false);
+  const [activate, setActivate] = useState("false");
   const [MyPlay, setMyPlay] = useState([]);
   let [searchParams, setSearchParams] = useSearchParams();
 
@@ -56,7 +56,7 @@ function App() {
         console.log("not a success: " + err);
         // Handle configuration error
       }
-      
+
       console.log("in handlesmousemove: " + count);
       document.removeEventListener("mousemove", handleMouseMove);
     }
@@ -64,98 +64,82 @@ function App() {
     document.addEventListener("mousemove", handleMouseMove);
   }, [sessionStorage.getItem("devtoken")]);
 
-
-
   useEffect(() => {
     if (sessionStorage.getItem("devtoken") !== "") {
       console.log("do something");
- 
-if (sessionStorage.getItem("devtoken") !== "") {
 
-      const Click = async (event) => {
-
-        event.preventDefault();
-       const instance = await MusicKit.getInstance();
-        console.log("click");
-         count++;
-        if (sliderValue === "200") {
-         await instance.unauthorize();
-          console.log("slider maxed");
+      if (sessionStorage.getItem("devtoken") !== "") {
+        const Click = async (event) => {
+          event.preventDefault();
+          const instance = await MusicKit.getInstance();
+          console.log("click");
+          count++;
+          if (sliderValue === "200") {
+            await instance.unauthorize();
+            console.log("slider maxed");
             try {
-              
               console.log("not authorized");
               setSliderValue(200);
               documentRef.current.getElementById("myRange").style.opacity =
                 "0.2";
-             instance.authorize()
+              instance
+                .authorize()
                 .then(function (token) {
                   setSearchParams("");
                   window.location.href +=
                     "?music-user-token=" + encodeURIComponent(token);
                   //const playlists = instance.api.music("v1/me/library/playlists");
-                  if(instance.isAuthorized){
-                  button.style.display = "flex";
-                  setActivate(true);}
+                  if (instance.isAuthorized) {
+                    button.style.display = "flex";
+                    setActivate("true");
+                  }
                 })
                 .catch((err) => {
                   console.error(err);
                 });
-            }catch (error) {
+            } catch (error) {
               console.error("Authorization error:", error);
             }
-          
 
-         
-          console.log("in instance event: " + count);
-        }
-       
-      
-      };
-    rangeSliderRef.current.addEventListener("click", Click);
-    }
-       
+            console.log("in instance event: " + count);
+          }
+        };
+        rangeSliderRef.current.addEventListener("click", Click);
+      }
     }
   }, [sliderValue]);
 
-
-  
   useEffect(() => {
-    
- if (activate){
+    if (activate) {
+      const getPlaylists = async (event) => {
+        event.preventDefault();
 
-    const getPlaylists = async(event) => {
- event.preventDefault();
+        const hash = location.hash;
+        const queryStringIndex = hash.indexOf("?");
+        const queryString = hash.substring(queryStringIndex);
+        const search = new URLSearchParams(queryString);
+        const decodedToken = search.get("music-user-token");
+        console.log(decodedToken);
+        const getToken = sessionStorage.getItem("devtoken");
 
-      const hash = location.hash;
-    const queryStringIndex = hash.indexOf("?");
-    const queryString = hash.substring(queryStringIndex);
-    const search = new URLSearchParams(queryString);
-   const decodedToken = search.get("music-user-token"); 
-      console.log(decodedToken);
-      const getToken = sessionStorage.getItem("devtoken");
-      
-
-    const response =  await axios
-        .post(musicPlaylists, {
+        const response = await axios.post(musicPlaylists, {
           headers: {
             Authorization: `Bearer ${getToken}`,
             "Music-User-Token": `${decodedToken}`,
             "Content-Type": "application/json",
           },
-        })
-        try{
-           setMyPlay(response.data)
-           console.log(await response.data)
-           console.log("Myplaylists: " + MyPlay)
-        }
-        catch(error){
+        });
+        try {
+          setMyPlay(response.data);
+          console.log(await response.data);
+          console.log("Myplaylists: " + MyPlay);
+        } catch (error) {
           console.error("Error fetching playlists:", error);
         }
+      };
+      const newButtonRef = useRef();
+      newButtonRef.current.addEventListener("mousemove", getPlaylists);
     }
-   const newButtonRef =  useRef();
-   newButtonRef.current.addEventListener("mousemove", getPlaylists)
-  }
-
   }, []);
 
   return (
