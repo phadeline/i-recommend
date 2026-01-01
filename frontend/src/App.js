@@ -112,16 +112,17 @@ if (sessionStorage.getItem("devtoken") !== "") {
     }
   }, [sliderValue]);
 
-  /*const [MyPlay, setMyPlay] = useState([]);
+  const [MyPlay, setMyPlay] = useState([]);
   
   useEffect(() => {
-    const hash = location.hash;
+    
+
+    const getPlaylists = async(event) => {
+      const hash = location.hash;
     const queryStringIndex = hash.indexOf("?");
     const queryString = hash.substring(queryStringIndex);
     const search = new URLSearchParams(queryString);
    const decodedToken = search.get("music-user-token"); 
-
-    const getPlaylists = async(event) => {
       console.log(decodedToken);
       const getToken = sessionStorage.getItem("devtoken");
       event.preventDefault();
@@ -144,7 +145,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
    const newButtonRef =  useRef();
    newButtonRef.current.addEventListener("click", getPlaylists)
 
-  }, [MyPlay]);*/
+  }, [MyPlay]);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
@@ -173,7 +174,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
           </div>
           <div className="textdiv">
             <nav>
-              <Link to={"/playlists"} /*state={{ MyPlay: MyPlay }}*/>
+              <Link to={"/playlists"} state={{ MyPlay: MyPlay }}>
                 <button
                   style={{ display: "none" }}
                   type=" button"
