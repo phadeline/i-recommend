@@ -68,57 +68,57 @@ function App() {
   useEffect(() => {
     if (sessionStorage.getItem("devtoken") !== "") {
       console.log("do something");
+      if (setActivates === "true") {
+        if (sessionStorage.getItem("devtoken") !== "") {
+          const Click = async (event) => {
+            event.preventDefault();
+            const instance = await MusicKit.getInstance();
+            console.log("click");
+            count++;
+            if (sliderValue === "200") {
+              await instance.unauthorize();
+              console.log("slider maxed");
+              try {
+                instance.unauthorize();
+                console.log("not authorized");
 
-      if (sessionStorage.getItem("devtoken") !== "") {
-        const Click = async (event) => {
-          event.preventDefault();
-          const instance = await MusicKit.getInstance();
-          console.log("click");
-          count++;
-          if (sliderValue === "200") {
-            await instance.unauthorize();
-            console.log("slider maxed");
-            try {
-              instance.unauthorize();
-              console.log("not authorized");
+                documentRef.current.getElementById("myRange").style.opacity =
+                  "0.2";
+                instance
+                  .authorize()
+                  .then((response) => {
+                    setSearchParams("");
+                    window.location.href +=
+                      "?music-user-token=" + encodeURIComponent(response);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
 
-              documentRef.current.getElementById("myRange").style.opacity =
-                "0.2";
-              instance
-                .authorize()
-                .then((response) => {
-                  setSearchParams("");
-                  window.location.href +=
-                    "?music-user-token=" + encodeURIComponent(response)
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-              
-
-              /*if (true) {
+                if (true) {
                 newButtonRef.current.style.display = "flex";
-                setActivates("true");
+                setActivates("false");
                
                 setSliderValue(200);
                  console.log(activates);
-              }*/
-              
-            } catch (error) {
-              console.error("Authorization error:", error);
-            }
+              }
+              } catch (error) {
+                console.error("Authorization error:", error);
+              }
 
-            console.log("in instance event: " + count);
-            
-          }
-        };
-        rangeSliderRef.current.addEventListener("click", Click);
+              console.log("in instance event: " + count);
+            }
+          };
+          rangeSliderRef.current.addEventListener("click", Click);
+        }
+        
       }
+      setActivates("true");
     }
   }, [sliderValue]);
 
   useEffect(() => {
-    if (activates === "true") {
+    if (activates === "false") {
       const getPlaylists = async (event) => {
         event.preventDefault();
 
