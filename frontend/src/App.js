@@ -13,7 +13,7 @@ function App() {
   const newButtonRef = useRef();
   var count = 0;
   const [sliderValue, setSliderValue] = useState(15);
-  const [activate, setActivate] = useState("false");
+  const [activates, setActivates] = useState("false");
   const [MyPlay, setMyPlay] = useState([]);
   let [searchParams, setSearchParams] = useSearchParams();
 
@@ -91,7 +91,7 @@ function App() {
                   //const playlists = instance.api.music("v1/me/library/playlists");
                   if (instance.isAuthorized) {
                     button.style.display = "flex";
-                    setActivate("true");
+                    setActivates("true");
                   }
                 })
                 .catch((err) => {
@@ -110,7 +110,7 @@ function App() {
   }, [sliderValue]);
 
   useEffect(() => {
-    if (activate) {
+    if (activates == "true") {
       const getPlaylists = async (event) => {
         event.preventDefault();
 
