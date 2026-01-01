@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, use } from "react";
-import { useSearchParams, Link, NavLink } from "react-router-dom";
+import { useSearchParams, Link, NavLink, useLocation } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 //import "../../frontend/"
@@ -113,13 +113,13 @@ if (sessionStorage.getItem("devtoken") !== "") {
   }, [sliderValue]);
 
   const [MyPlay, setMyPlay] = useState([]);
-  const hash = location.hash;
+  
+  useEffect(() => {
+    const hash = location.hash;
     const queryStringIndex = hash.indexOf("?");
     const queryString = hash.substring(queryStringIndex);
     const search = new URLSearchParams(queryString);
    const decodedToken = search.get("music-user-token"); 
-  useEffect(() => {
-    
 
     const getPlaylists = async(event) => {
       console.log(decodedToken);
@@ -144,7 +144,7 @@ if (sessionStorage.getItem("devtoken") !== "") {
    const newButtonRef =  useRef();
    newButtonRef.current.addEventListener("click", getPlaylists)
 
-  }, []);
+  }, [MyPlay]);
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
