@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, use, act } from "react";
 import { useSearchParams, Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
+import { HashLink } from 'react-router-hash-link';
 
 //import "../../frontend/"
 
@@ -14,16 +15,15 @@ function App() {
   const newButtonRef = useRef();
   var count = 0;
   const [sliderValue, setSliderValue] = useState(15);
-  const [activates, setActivates] = useState("false");
+  const [activates, setActivates] = useState(false);
   const [MyPlay, setMyPlay] = useState([]);
   let [searchParams, setSearchParams] = useSearchParams();
 const navigate = useNavigate();
-  //
-  //http://localhost:9000/
+
   useEffect(() => {
     async function getToken() {
       const response = await axios.get(
-        "/token",
+        "http://localhost:9000/token",
         (e) => {
           e.preventDefault();
         }
@@ -84,10 +84,17 @@ count++;
     try {
       const response = await instance.authorize();
       searchParams.delete("music-user-token");
+
+      //put music user token as session storage
       window.location.href += "?music-user-token=" + encodeURIComponent(response);
-      if(response){
-      newButtonRef.current.style.display = "flex"};
-    } catch (err) {
+     setActivates(true);
+     setSliderValue(200);
+     rangeSliderRef.current.style.opacity = 0.2;
+      console.log("Authorized, music user token: " + response);
+      console.log(activates);
+    }
+     
+      catch (err) {
       console.log("Authorization error:", err);
     }
   }
@@ -95,7 +102,7 @@ count++;
   }
 
 
-      const getPlaylists = async (play) => {
+      const getPlaylists = async () => {
        
         const hash = location.hash;
         const queryString = hash.indexOf("?");
@@ -116,14 +123,14 @@ count++;
           },
         });
         try {
-          setMyPlay([JSON.stringify(response.data) ]);
+          setMyPlay([response.data]);
        //   console.log(await response.data);
           console.log("Myplaylists: " + MyPlay);
            setSearchParams("");
         } catch (error) {
           console.error("Error fetching playlists:", error);
         }
-navigate(play, { state: { MyPlay: MyPlay } })
+
       };
  
 
@@ -157,13 +164,13 @@ navigate(play, { state: { MyPlay: MyPlay } })
          
               
                 <button
-                  style={{ display: "none" }}
+                  disabled={activates ? false : true}
                   type=" button"
                   ref={newButtonRef}
                  onMouseEnter={(event) => {
                   event.preventDefault();
-      getPlaylists("playlists");
-      
+      getPlaylists();
+      navigate("playlists", { state: { MyPlay: MyPlay } })
     }}
    
                   id="image"
