@@ -83,15 +83,18 @@ count++;
     setSearchParams("");
     try {
       const response = await instance.authorize();
-      searchParams.delete("music-user-token");
+     // searchParams.delete("music-user-token");
 
       //put music user token as session storage
-      window.location.href += "?music-user-token=" + encodeURIComponent(response);
-     setActivates(true);
-     setSliderValue(200);
+     // window.location.href += "?music-user-token=" + encodeURIComponent(response);
+    
      rangeSliderRef.current.style.opacity = 0.2;
+      sessionStorage.setItem("music-user-token", response);
       console.log("Authorized, music user token: " + response);
       console.log(activates);
+      if(sessionStorage.getItem("music-user-token")){
+         setActivates(true);
+          setSliderValue(200);}
     }
      
       catch (err) {
@@ -102,22 +105,22 @@ count++;
   }
 
 
-      const getPlaylists = async () => {
-       
-        const hash = location.hash;
+      const getPlaylists = async (event) => {
+       event.preventDefault();
+      /*  const hash = location.hash;
         const queryString = hash.indexOf("?");
         console.log(hash)
         const newString = hash.substring(queryString);
         console.log(newString);
         const search = new URLSearchParams(newString);
-        const decodedToken = search.get("music-user-token");
+        const decodedToken = search.get("music-user-token");*/
 
-        console.log("decoded token " + decodedToken);
+        const decodedToken = sessionStorage.getItem("music-user-token");
         const getToken = sessionStorage.getItem("devtoken");
 
         const response = await axios.get(musicPlaylists, {
           headers: {
-             "Authorization": `Bearer ${getToken}`,
+            "Authorization": `Bearer ${getToken}`,
             "Music-User-Token": `${decodedToken}`,
             "Content-Type": "application/json",
           },
@@ -169,7 +172,7 @@ count++;
                   ref={newButtonRef}
                  onMouseEnter={(event) => {
                   event.preventDefault();
-      getPlaylists();
+      getPlaylists(event);
       navigate("playlists", { state: { MyPlay: MyPlay } })
     }}
    
