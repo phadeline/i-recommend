@@ -9,16 +9,12 @@ import Recommendations from "./recommendations.js";
 
 function AllMusic() {
   const location = useLocation();
-  const decodedToken = location.state.decodedToken;
+ 
   const Name = location.state.Name;
   const [OnePlaylistData, setOnePlaylistData] = useState([]);
-  //const url = window.location.hash;
-  // console.log(url);
-  //const UrlName = decodeURIComponent(url);
-  //console.log(UrlName);
-  //const finalglobalID = UrlName.replace("#/", "")
+  
   const finalglobalID = location.state.globalId;
-  //console.log(finalglobalID)
+
   const getToken = sessionStorage.getItem("devtoken");
   const playlistTracksUrl = `https://api.music.apple.com/v1/catalog/us/playlists/${finalglobalID}/tracks`;
 

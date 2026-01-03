@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     async function getToken() {
-      const response = await axios.get("/token", (e) => {
+      const response = await axios.get("http://localhost:9000/token", (e) => {
         e.preventDefault();
       });
       try {
@@ -70,22 +70,20 @@ function App() {
   }, [sessionStorage.getItem("devtoken")]);
 
   const Click = async () => {
-
     sessionStorage.removeItem("music-user-token");
-    if (sessionStorage.getItem("devtoken") && !sessionStorage.getItem("music-user-token")) {
+    if (
+      sessionStorage.getItem("devtoken") &&
+      !sessionStorage.getItem("music-user-token")
+    ) {
       const instance = await MusicKit.getInstance();
 
       console.log("click");
- 
+
       if (rangeSliderRef.current.value === rangeSliderRef.current.max) {
         instance.unauthorize();
 
         try {
           const response = await instance.authorize();
-          // searchParams.delete("music-user-token");
-
-          //put music user token as session storage
-          // window.location.href += "?music-user-token=" + encodeURIComponent(response);
 
           rangeSliderRef.current.style.opacity = 0.2;
           sessionStorage.setItem("music-user-token", response);
@@ -104,13 +102,6 @@ function App() {
 
   const getPlaylists = async (event) => {
     event.preventDefault();
-    /*  const hash = location.hash;
-        const queryString = hash.indexOf("?");
-        console.log(hash)
-        const newString = hash.substring(queryString);
-        console.log(newString);
-        const search = new URLSearchParams(newString);
-        const decodedToken = search.get("music-user-token");*/
 
     const decodedToken = sessionStorage.getItem("music-user-token");
     const getToken = sessionStorage.getItem("devtoken");
@@ -152,7 +143,6 @@ function App() {
               id="myRange"
               ref={rangeSliderRef}
               defaultValue={sliderValue}
-              // onClick={Click}
               onChange={Click}
             />
           </div>
@@ -161,8 +151,8 @@ function App() {
               disabled={activates ? false : true}
               type="button"
               ref={newButtonRef}
-              onMouseEnter={() => {
-                getPlaylists(event);
+              onClick={() => {
+                getPlaylists();
               }}
               id="image"
             ></button>
@@ -170,8 +160,7 @@ function App() {
         </div>
         <div>
           <p>
-            Drag to the end of the slider to connect your Apple Music
-            account.
+            Drag to the end of the slider to connect your Apple Music account.
           </p>
           <p>Then press Connect.</p>
         </div>
