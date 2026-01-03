@@ -133,7 +133,7 @@ count++;
         } catch (error) {
           console.error("Error fetching playlists:", error);
         }
-
+ navigate("playlists", { state: { MyPlay: MyPlay } })
       };
  
 
@@ -168,12 +168,12 @@ count++;
               
                 <button
                   disabled={activates ? false : true}
-                  type=" button"
+                  type="button"
                   ref={newButtonRef}
-                 onMouseEnter={(event) => {
-                  event.preventDefault();
+                 onMouseEnter={() => {
+                 
       getPlaylists(event);
-      navigate("playlists", { state: { MyPlay: MyPlay } })
+     
     }}
    
                   id="image"

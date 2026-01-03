@@ -1,17 +1,16 @@
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import "../../src/styles/playlistpage.css";
+import "../styles/playlistpage.css";
 import React, { use, useState } from "react";
 import axios from "axios";
 
 const PlaylistsLists = () => {
-  location = useLocation();
+  const location = useLocation();
   const MyPlay = location.state.MyPlay || {};
 
 
   
   //console.log(`Hello ${myPlaylists.data[0].attributes.name}`);
 
- ;
   return (
     <div className="playlistbackground">
       <h1 className="Header">Select A Playlist To View Recommended Songs</h1>

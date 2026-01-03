@@ -5,7 +5,7 @@ import PlaylistsLists from "./Components/playlistpage.js";
 import AllMusic from "./Components/AllMusic.js";
 
 
-import reportWebVitals from "./reportWebVitals.js";
+
 import {
   RouterProvider,
   //createBrowserRouter,
@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createHashRouter([
   { path: "/", element: <App/> },
   { path: "playlists", element: <PlaylistsLists/> },
-  {path: `/OnePlaylist`, element: <AllMusic/>},
+  {path: `OnePlaylist`, element: <AllMusic/>},
 ]);
 root.render(
   <StrictMode>
@@ -27,4 +27,4 @@ root.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
