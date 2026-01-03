@@ -5,7 +5,8 @@ import axios from "axios";
 
 const PlaylistsLists = () => {
   const location = useLocation();
-  const MyPlay = location.state.MyPlay || {};
+  const MyPlays = location.state.MyPlays;
+  console.log(MyPlays);
 
 
   
@@ -15,9 +16,9 @@ const PlaylistsLists = () => {
     <div className="playlistbackground">
       <h1 className="Header">Select A Playlist To View Recommended Songs</h1>
       <ul className="AllPlaylists">
-        {MyPlay.length ? (
+        {MyPlays.meta.total ? (
         
-        MyPlay.data?.map((playlist) => (
+        MyPlays.data?.map((playlist) => (
           
             <Link
             

@@ -80,7 +80,7 @@ count++;
     
   if (rangeSliderRef.current.value === rangeSliderRef.current.max) {
     instance.unauthorize();
-    setSearchParams("");
+   
     try {
       const response = await instance.authorize();
      // searchParams.delete("music-user-token");
@@ -126,14 +126,14 @@ count++;
           },
         });
         try {
-          setMyPlay([response.data]);
+          const MyPlays = await response.data;
        //   console.log(await response.data);
-          console.log("Myplaylists: " + MyPlay);
-           setSearchParams("");
+         
+           navigate("playlists", { state: { MyPlays: MyPlays } })
         } catch (error) {
           console.error("Error fetching playlists:", error);
         }
- navigate("playlists", { state: { MyPlay: MyPlay } })
+ 
       };
  
 
