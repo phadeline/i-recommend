@@ -16,10 +16,7 @@ let [searchParams, setSearchParams] = useSearchParams();
   
 
 
-const DisplayPlaylists = () => {
-    // Navigate to the '/playlists' route
-    navigate("/playlists");
-  };
+
 
  const userToken = searchParams.get("music-user-token");
 const decodedToken = decodeURIComponent(userToken);

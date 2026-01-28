@@ -78,7 +78,10 @@ function AllMusic() {
                   </div>
                   <div>
                     <Recommendations
-                      state={song.attributes.genreNames[0]}
+                      genreName={song.attributes.genreNames.map(
+                        (genre) => genre
+                        )}
+                      Token = {sessionStorage.getItem("devtoken")}
                     ></Recommendations>
                   </div>
                 </Carousel.Item>

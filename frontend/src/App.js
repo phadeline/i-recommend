@@ -1,29 +1,21 @@
-import React, { useEffect, useState, useRef, use, act } from "react";
+import React, { useEffect, useState, useRef} from "react";
 import {
   useSearchParams,
-  Link,
-  NavLink,
-  useLocation,
   useNavigate,
 } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
-import { HashLink } from "react-router-hash-link";
 
-//import "../../frontend/"
 
 /* global MusicKit */
 function App() {
   const musicPlaylists = "https://api.music.apple.com/v1/me/library/playlists"; // Example MusicKit API endpoint
-  const documentRef = useRef(document);
   const rangeSliderRef = useRef();
   //const button = documentRef.current.getElementById("image");
   const newButtonRef = useRef();
   var count = 0;
   const [sliderValue, setSliderValue] = useState(15);
   const [activates, setActivates] = useState(false);
-  const [MyPlay, setMyPlay] = useState([]);
-  let [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -100,8 +92,8 @@ function App() {
     }
   };
 
-  const getPlaylists = async (event) => {
-    event.preventDefault();
+  const getPlaylists = async () => {
+  
 
     const decodedToken = sessionStorage.getItem("music-user-token");
     const getToken = sessionStorage.getItem("devtoken");
@@ -136,7 +128,7 @@ function App() {
           <div>
             <input
               type="range"
-              title="Click at end of slider and press Connect"
+              title="Drag to end of the slider then press Connect."
               min={0}
               max={200}
               className="slider"
