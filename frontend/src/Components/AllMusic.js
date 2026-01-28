@@ -78,9 +78,7 @@ function AllMusic() {
                   </div>
                   <div>
                     <Recommendations
-                      genreName={song.attributes.genreNames.map(
-                        (genre) => genre
-                        )}
+                      genreName={song.attributes.genreNames}
                       Token = {sessionStorage.getItem("devtoken")}
                     ></Recommendations>
                   </div>

@@ -5,15 +5,15 @@ import axios from "axios";
 
 function Recommendations({genreName, Token}) {
     console.log("in recommendations component, genreName: " + genreName);
-    var separateGenres = [];
-    separateGenres.push(...genreName.toString().split(","));
+
+   
 const [genres, setGenres] = useState([]);
 
     useEffect(() => {
    
     const FetchAllGenres = async () => {
       try {
-        const response = await axios.get("https://api.music.apple.com/v1/catalog/us/genres", {
+        const response = await axios.get(`https://api.music.apple.com/v1/catalog/us/search?types=songs,&term=${genreName}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
@@ -36,8 +36,16 @@ const [genres, setGenres] = useState([]);
 
  // console.log(genres.length);
 
-  const songmatches = separateGenres.filter(song => genres.map(genre => genre.attributes.name).includes(song));
-    console.log("song matches: " + songmatches);
+ /*const songmatches = genreName.filter(song => genres.map(genre => genre.attributes.name).includes(song));
+ const matchedGenresId = songmatches.map(name => {
+    const genre = genres.find(genre => genre.attributes.name === name);
+    return genre ? genre.id : null;
+  }).filter(id => id !== null);
+
+  console.log(matchedGenresId[0]);
+
+
+    console.log(songmatches[0]); */
 
     return (
         <div>
