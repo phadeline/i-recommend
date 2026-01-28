@@ -11,9 +11,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "npm run ../backend/script.js",
+    "server": "npm run ./backend/script.js",
     "client": "npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run client\" \"npm run server\" ",
     "build": "react-scripts build"
   },
   "repository": {

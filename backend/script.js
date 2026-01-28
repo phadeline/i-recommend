@@ -25,7 +25,7 @@ const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seco
 
 //const secretOrPrivateKey = process.env.MY_NEW_KEY;
 
-const secretOrPrivateKey = fs.readFileSync("./.env.keys", "utf8") ;
+const secretOrPrivateKey = fs.readFileSync("../.env.keys", "utf8") ;
 
 const payload = {
   iss: "P97D3C79H5",
