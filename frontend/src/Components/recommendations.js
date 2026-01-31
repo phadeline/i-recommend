@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { Link } from "react-router-dom";
+import "../styles/recommendations.css";
 import axios from "axios";
 
-function Recommendations({genreName, Token}) {
-    console.log("in recommendations component, genreName: " + genreName);
+function Recommendations({genreName, Token, artistName, songName}) {
+ 
+
 
    
 const [genres, setGenres] = useState([]);
@@ -13,18 +14,18 @@ const [genres, setGenres] = useState([]);
    
     const FetchAllGenres = async () => {
       try {
-        const response = await axios.get(`https://api.music.apple.com/v1/catalog/us/search?types=songs,&term=${genreName}`, {
+        const response = await axios.get(`https://api.music.apple.com/v1/catalog/us/search?types=songs&term=${genreName[0]+genreName[1]}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
           },
         });
         if (response.status == 200) {
-          console.log(response);
-          setGenres(response.data.data);
+          setGenres(response.data.results.songs);
+          
         }
       } catch (error) {
-        console.log("here is the error: " + error);
+        console.log("here is the error for recommendations: " + error);
       }
     };
 
@@ -32,31 +33,19 @@ const [genres, setGenres] = useState([]);
     
       FetchAllGenres();
     }
-  }, []);
+  }, [artistName]);
 
- // console.log(genres.length);
-
- /*const songmatches = genreName.filter(song => genres.map(genre => genre.attributes.name).includes(song));
- const matchedGenresId = songmatches.map(name => {
-    const genre = genres.find(genre => genre.attributes.name === name);
-    return genre ? genre.id : null;
-  }).filter(id => id !== null);
-
-  console.log(matchedGenresId[0]);
+  console.log(genres)
 
 
-    console.log(songmatches[0]); */
 
     return (
         <div>
-            <h2>{genreName}</h2>
-            <p>Welcome to the recommendations component</p>
-            <h2>Recommendations</h2>
-            <p>Welcome to the recommendations component</p>
-            <h2>{genreName}</h2>
-            <p>Welcome to the recommendations component</p>
-            <h2>Recommendations</h2>
-            <p>Welcome to the recommendations component</p>
+            <h2>Because you like:</h2>
+            <h4>{songName}</h4>
+            {genres ? (genres.data?.map((song)=>(
+            <p className="recommendedArtist" key={song.attributes.id}>{song.attributes.artistName}</p>))) : (<p>LOADING...</p>)
+           (<p>LOADING</p>)}
         </div>
     );
 }

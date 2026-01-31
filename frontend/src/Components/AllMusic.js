@@ -43,7 +43,7 @@ function AllMusic() {
     }
   }, [finalglobalID]);
 
-  console.log(OnePlaylistData.length);
+  console.log(OnePlaylistData);
 
   return (
     <div>
@@ -70,16 +70,13 @@ function AllMusic() {
                       alt="Image One"
                     />
                   </div>
-                  <div className="songsNames">
-                    <h3 style={{ fontSize: 15 }}>
-                      {song.attributes.artistName}
-                    </h3>
-                    <p style={{ fontSize: 15 }}>{song.attributes.name}</p>
-                  </div>
+                
                   <div>
                     <Recommendations
                       genreName={song.attributes.genreNames}
                       Token = {sessionStorage.getItem("devtoken")}
+                      artistName = {song.attributes.artistName}
+                      songName = {song.attributes.name}
                     ></Recommendations>
                   </div>
                 </Carousel.Item>

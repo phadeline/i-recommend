@@ -17,6 +17,7 @@ function App() {
   const [sliderValue, setSliderValue] = useState(15);
   const [activates, setActivates] = useState(false);
   const navigate = useNavigate();
+  const instance = MusicKit.getInstance();
 
   useEffect(() => {
     async function getToken() {
