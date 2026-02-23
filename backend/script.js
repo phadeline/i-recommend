@@ -1,7 +1,12 @@
 import fs from "fs";
 import "dotenv/config";
 import express from "express";
+import cors from "cors";
+import fetch from "node-fetch"
 const app = express();
+app.use(cors({
+  origin: "http://localhost:3000"
+}));
 import path from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
@@ -59,6 +64,7 @@ app.listen(port, () => {
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(frontendBuildPath, "index.html"));
+  
 });
 
 
@@ -66,11 +72,49 @@ app.get("/", (req, res) => {
 app.get("/token", (req, res) => {
   res.status(200);
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token, Authorization");
   res.send(myFunction());
   
 });
 
 
-//"http://localhost:9000/token", "http://localhost:3000"
+app.get("/api/:songId", async (req, res) => {
+  try {
+    const songId = req.params.songId;
+
+    const response = await fetch(
+      `https://api.music.apple.com/v1/catalog/us/songs/${songId}`,
+      {
+        headers: {
+          Authorization: req.headers.authorization,
+        }
+      }
+    );
+
+    const text = await response.text();
+
+    console.log("Status:", response.status);
+    console.log("Raw response:", text);
+
+    if (!text) {
+      return res.status(response.status).json({
+        error: "Empty response from Apple",
+        status: response.status
+      });
+    }
+
+    const data = JSON.parse(text);
+
+    if (!response.ok) {
+      return res.status(response.status).json(data);
+    }
+
+    res.json(data);
+
+  } catch (error) {
+    console.error("Server Crash:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+    //"http://localhost:9000/token", "http://localhost:3000"
