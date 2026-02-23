@@ -6,6 +6,7 @@ import axios from "axios";
 const PlaylistsLists = () => {
   const location = useLocation();
   const MyPlays = location.state.MyPlays;
+  const decodedToken = location.state.musictoken;
   console.log(MyPlays);
 
 
@@ -24,7 +25,7 @@ const PlaylistsLists = () => {
             
               style={{ textDecoration: "none", color: "white" }}
               to={`/OnePlaylist`}
-              state={{ Name: playlist.attributes.name, globalId: playlist.attributes.playParams.globalId}}
+              state={{ Name: playlist.attributes.name, decodedToken: decodedToken, globalId: playlist.attributes.playParams.globalId}}
               
               
             >

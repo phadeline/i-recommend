@@ -11,6 +11,7 @@ function AllMusic() {
   const location = useLocation();
  
   const Name = location.state.Name;
+  const decodedToken = location.state.decodedToken;
   const [OnePlaylistData, setOnePlaylistData] = useState([]);
   
   const finalglobalID = location.state.globalId;
@@ -77,6 +78,7 @@ function AllMusic() {
                       Token = {sessionStorage.getItem("devtoken")}
                       artistName = {song.attributes.artistName}
                       songName = {song.attributes.name}
+                      decodedToken = {decodedToken}
                     ></Recommendations>
                   </div>
                 </Carousel.Item>
