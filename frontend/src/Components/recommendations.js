@@ -18,7 +18,7 @@ const [genres, setGenres] = useState([]);
    
     const FetchAllGenres = async () => {
       try {
-        const response = await axios.get(`https://api.music.apple.com/v1/catalog/us/search?types=songs&term=${genreName[0]}`, {
+        const response = await axios.get(`https://api.music.apple.com/v1/catalog/us/search?types=songs&term=${genreName[0]}+${genreName[1]}+${genreName[2]}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
@@ -54,7 +54,7 @@ const playSongPreview = async (songId) => {
 
       });
       if (response.status == 200) {
-        const previewUrl = response.data.data[0].attributes.previews[0].url;
+        const previewUrl = response.data.data.map((song) => song.attributes.previews.map((preview) => preview.url));
        // console.log("Preview URL:", previewUrl);
         setSongURL(previewUrl);
       }
@@ -68,7 +68,8 @@ const playSongPreview = async (songId) => {
 }
 
  const handlePlayClick = () => {
-    playMusicRef.current.play();
+
+;    playMusicRef.current.play();
   };
 
   const handlePauseClick = () => {
@@ -81,9 +82,12 @@ console.log(songURL);
             <h2>Because you like:</h2>
             <h4>{songName}</h4>
             {genres ? (genres.data?.map((song)=>(
-            <p className="recommendedArtist" key={song.attributes.id} onMouseEnter={()=>playSongPreview(song.attributes.playParams.id)}>{song.attributes.artistName} <button onClick={handlePlayClick}>Play</button>
-      <button onClick={handlePauseClick}>Pause</button>
+            <p className="recommendedArtist" key={song.attributes.id} onMouseEnter={()=>playSongPreview(song.attributes.playParams.id)}>{song.attributes.artistName}
+     <div>
+      <button style={{ backgroundColor: 'green', color: 'white', margin: '5px' }} onClick={handlePlayClick}>Play</button>
+      <button style={{ backgroundColor: 'red', color: 'white', margin: '5px' }} onClick={handlePauseClick}>Pause</button>
       {/* The audio element is hidden if controls are not included */}
+      </div>
       <audio ref={playMusicRef} src={songURL} /></p> ))) : (<p>LOADING...</p>)
            (<p>LOADING</p>)}
         </div>

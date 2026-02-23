@@ -1,7 +1,10 @@
 .recommendedArtist{
     font-size: 20px;
-    padding: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     margin-top: 30px;
     background-color: blue;
     color: white;
+    border-radius: 10px;
+    text-align: center;
 }  
