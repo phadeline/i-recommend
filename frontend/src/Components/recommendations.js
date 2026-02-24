@@ -18,25 +18,22 @@ const [genres, setGenres] = useState([]);
    
     const FetchAllGenres = async () => {
       try {
-        const response = await axios.get(`https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${genreName[1]}:term=${genreName[0]}`, {
+        let searchTerm = genreName[2] ? genreName[2] : genreName[0];
+        const response = await axios.get(`https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${searchTerm}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
           },
         });
-        if (response.status == 200) {
+        if (response.status === 200) {
           setGenres(response.data.results.songs);
-          
         }
       } catch (error) {
         console.log("here is the error for recommendations: " + error);
       }
     };
 
-    if (true) {
-    
-      FetchAllGenres();
-    }
+    FetchAllGenres();
   }, []);
 
   console.log(genres)
