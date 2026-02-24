@@ -16,9 +16,9 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "predeploy": "npm run build",
     "deploy": "cd frontend npm install && gh-pages -d build",
-    //"build": "cd frontend && npm install && npm run build && cd backend && npm install && npm start",
       "build": "npm install --prefix frontend && npm run build --prefix frontend",
     "heroku-postbuild": "cd frontend && npm install && npm run build"
+     
   },
   "repository": {
     "type": "git",
