@@ -10,11 +10,10 @@
     "node": "22.11.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "server": "node ./backend/script.js",
-    "client": "npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\" ",
-    "build": "react-scripts build"
+     "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
