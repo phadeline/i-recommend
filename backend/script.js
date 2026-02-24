@@ -19,7 +19,7 @@ import jwt from "jsonwebtoken";
 
 //app.use(express.static(frontendBuildPath));
 
-const API_URL = process.env.NODE_ENV
+const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:3000';
 
 
 const frontendBuildPath = path.join(__dirname, "..", "/frontend/build");
@@ -61,9 +61,13 @@ app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);
 });
 
+//app.get("/", (req, res) => {
+//  res.sendFile(path.join(frontendBuildPath, "index.html"));
+//  
+//});
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(frontendBuildPath, "index.html"));
-  
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
 
 
