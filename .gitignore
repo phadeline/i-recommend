@@ -4681,6 +4681,7 @@ vite.config.ts.timestamp-*
 
 # Added by ggshield
 .cache_ggshield
+<<<<<<< HEAD
 
 # Added by ggshield
 .cache_ggshield
@@ -4693,3 +4694,5 @@ vite.config.ts.timestamp-*
 
 # Added by ggshield
 .cache_ggshield
+=======
+>>>>>>> 6994eaf7030dd215b876fe8a584ef84c5713147b
