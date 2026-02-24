@@ -18,7 +18,7 @@ const [genres, setGenres] = useState([]);
    
     const FetchAllGenres = async () => {
       try {
-        const response = await axios.get(`https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${genreName[0]}+${genreName[1]}+${genreName[2]}`, {
+        const response = await axios.get(`https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${genreName[1]}&term=${genreName[0]}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
