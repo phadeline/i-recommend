@@ -82,13 +82,13 @@ console.log(songURL);
             <h3 style={{ marginLeft: '20px' }}>Because you like:</h3>
             <h4>{songName}</h4>
             {genres ? (genres.data?.map((song)=>(
-            <p className="recommendedArtist" key={song.attributes.id} onMouseEnter={()=>playSongPreview(song.attributes.playParams.id)} style={{margin:'10px',}}>{song.attributes.artistName}
+            <p className="recommendedArtist" key={song.attributes.id} onMouseEnter={()=>playSongPreview(song.attributes.playParams.id)} style={{margin:'10px',}}>{song.attributes.artistName} - {song.attributes.name}
      <div>
       <button style={{ backgroundColor: 'green', color: 'white', margin: '5px' }} onClick={handlePlayClick}>Play</button>
       <button style={{ backgroundColor: 'red', color: 'white', margin: '5px' }} onClick={handlePauseClick}>Pause</button>
       {/* The audio element is hidden if controls are not included */}
       </div>
-      <audio ref={playMusicRef} src={songURL} /></p> ))) : 
+      <audio ref={playMusicRef} src={songURL} /></p> )) ): 
            (<p>LOADING</p>)}
         </div>
     );
