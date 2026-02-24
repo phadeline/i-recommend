@@ -41,10 +41,10 @@ const [genres, setGenres] = useState([]);
 
   console.log(genres)
 
-
+//const playingsong = `http://localhost:9000/api/${songId}`;
 const playSongPreview = async (songId) => {
   const musicToken = sessionStorage.getItem("music-user-token");
-    const playingsong = `http://localhost:9000/api/${songId}`;
+    const playingsong = `/api/${songId}`;
     try {const response = await axios.get(playingsong, {
         headers: {
             "Content-Type": "application/json",
