@@ -18,7 +18,7 @@ const [genres, setGenres] = useState([]);
    
     const FetchAllGenres = async () => {
       try {
-        let searchTerm = genreName[2] ? genreName[2] || genreName[1] : genreName[0];
+        let searchTerm = genreName[1] ? genreName[1] : genreName[0];
         console.log("Search term for recommendations: " + searchTerm);
         const response = await axios.get(`https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${searchTerm}`, {
           headers: {
