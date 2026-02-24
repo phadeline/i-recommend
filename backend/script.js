@@ -19,7 +19,7 @@ import jwt from "jsonwebtoken";
 
 //app.use(express.static(frontendBuildPath));
 
-const API_URL = process.env.NODE_ENV === "production" ? "https://i-recommend-289e22b5c5f5.herokuapp.com" : "http://localhost:9000";
+const API_URL = process.env.NODE_ENV
 
 
 const frontendBuildPath = path.join(__dirname, "..", "/frontend/build");
