@@ -37,7 +37,7 @@ const [genres, setGenres] = useState([]);
     
       FetchAllGenres();
     }
-  }, [artistName]);
+  }, [songName]);
 
   console.log(genres)
 
