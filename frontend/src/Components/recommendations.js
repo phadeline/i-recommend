@@ -33,7 +33,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
     };
 
     FetchAllGenres();
-  }, []);
+  }, [songName, artistName, genreName]);
 
   console.log(genres);
 
