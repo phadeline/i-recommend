@@ -49,7 +49,8 @@ function AllMusic() {
   return (
     <div>
       <div className="CarouselContainer">
-        <h1 className="PlaylistTitle">Playlist: {Name}</h1>
+     
+        <h2>{Name}</h2>
         <div className="Carousel">
           <Carousel
             interval={null}

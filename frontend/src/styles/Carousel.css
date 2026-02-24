@@ -4,17 +4,17 @@ width: 50vh;
 
 }
 
-.PlaylistTitle{
-    background-image: linear-gradient(to right,
-    rgb(55, 145, 241),
-    rgb(233, 207, 238));;
-    font-weight: bold;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
 
+h2{
+    font-size: 50px;
+    color: rgba(0, 213, 255, 0.871);
+    text-shadow: 1px 1px 5px black, 0 0 10em blue, 0 0 10em blue;
+    width: max-content;
+    text-align: center;
+    margin: auto;
+    font-weight: bolder;
+
+}
 .CarouselContainer{
     display: flex;
     flex-direction: column;
@@ -42,7 +42,7 @@ width: 50vh;
   background-image: none !important;
   color: transparent;
   position: absolute;
-  top:25%;
+  top:11%;
 
   
 
@@ -57,9 +57,10 @@ width: 50vh;
 
 .carousel-control-prev-icon:after {
   content: '<'; /* Use an actual icon or character */
-  font-size: 50px; /* Adjust size as needed */
-   color: rgb(231, 252, 0);
+  font-size: 90px; /* Adjust size as needed */
+   color: rgb(0, 29, 252);
   font-weight: bolder;
+ 
 
 }
 
@@ -67,11 +68,9 @@ width: 50vh;
 
 .carousel-control-next-icon:after {
   content: '>'; /* Use an actual icon or character */
-  color: rgb(231, 252, 0);
-  font-size: 50px;
+ color: rgb(0, 29, 252);
+  font-size: 90px;
   font-weight: bolder;
-
-  
 
 }
 

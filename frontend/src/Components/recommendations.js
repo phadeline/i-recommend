@@ -18,7 +18,7 @@ const [genres, setGenres] = useState([]);
    
     const FetchAllGenres = async () => {
       try {
-        const response = await axios.get(`https://api.music.apple.com/v1/catalog/us/search?types=songs&term=${genreName[0]}+${genreName[1]}+${genreName[2]}`, {
+        const response = await axios.get(`https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${genreName[0]}+${genreName[1]}+${genreName[2]}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
@@ -79,16 +79,16 @@ const playSongPreview = async (songId) => {
 console.log(songURL);
     return (
         <div>
-            <h2>Because you like:</h2>
+            <h3 style={{ marginLeft: '20px' }}>Because you like:</h3>
             <h4>{songName}</h4>
             {genres ? (genres.data?.map((song)=>(
-            <p className="recommendedArtist" key={song.attributes.id} onMouseEnter={()=>playSongPreview(song.attributes.playParams.id)}>{song.attributes.artistName}
+            <p className="recommendedArtist" key={song.attributes.id} onMouseEnter={()=>playSongPreview(song.attributes.playParams.id)} style={{margin:'10px',}}>{song.attributes.artistName}
      <div>
       <button style={{ backgroundColor: 'green', color: 'white', margin: '5px' }} onClick={handlePlayClick}>Play</button>
       <button style={{ backgroundColor: 'red', color: 'white', margin: '5px' }} onClick={handlePauseClick}>Pause</button>
       {/* The audio element is hidden if controls are not included */}
       </div>
-      <audio ref={playMusicRef} src={songURL} /></p> ))) : (<p>LOADING...</p>)
+      <audio ref={playMusicRef} src={songURL} /></p> ))) : 
            (<p>LOADING</p>)}
         </div>
     );

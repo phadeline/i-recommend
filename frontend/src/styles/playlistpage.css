@@ -15,7 +15,6 @@
  display: flex;
  flex-direction: column;
  text-decoration: none;
-
 }
 
 li {
@@ -27,6 +26,11 @@ li {
     border-radius:20px;
  padding: 30px;
 text-decoration: none;
+box-shadow: 
+    /* Bottom shadow for overall depth */
+    0 4px 8px rgba(0, 0, 0, 0.7),
+    /* Deeper, offset shadow for directionality */
+    2px 2px 5px rgba(0, 0, 0.5, 0.4); 
     
 }
 
