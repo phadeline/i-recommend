@@ -44,7 +44,6 @@ const myheader = {
   kid: "Y2JCYYP2DS",
 };
 
-//console.log(process.env.ISS)
 
 function myFunction(){
 const token = jwt.sign(

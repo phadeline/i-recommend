@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "npm start ../backend/script.js",
+    "server": "node ../backend/script.js",
     "client": "npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
     "build": "react-scripts build"
