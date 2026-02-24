@@ -22,7 +22,7 @@ import jwt from "jsonwebtoken";
 const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:3000';
 
 
-const frontendBuildPath = path.join(__dirname, "..", "/frontend/build");
+const frontendBuildPath = path.join(__dirname, "../frontend/build");
 app.use("/", express.static(frontendBuildPath));
 
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
@@ -61,13 +61,9 @@ app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);
 });
 
-//app.get("/", (req, res) => {
-//  res.sendFile(path.join(frontendBuildPath, "index.html"));
-//  
-//});
-
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+  res.sendFile(path.join(frontendBuildPath, "index.html"));
+  
 });
 
 
