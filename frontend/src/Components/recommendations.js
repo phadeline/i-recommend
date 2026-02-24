@@ -3,29 +3,27 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../styles/recommendations.css";
 import axios from "axios";
 
-function Recommendations({genreName, Token, artistName, songName})
+function Recommendations({ genreName, Token, artistName, songName }) {
+  const playMusicRef = useRef(null);
 
+  const [songURL, setSongURL] = useState("");
 
- {
-const playMusicRef = useRef(null);
+  const [genres, setGenres] = useState([]);
 
-const [songURL, setSongURL] = useState("");
-
-   
-const [genres, setGenres] = useState([]);
-
-    useEffect(() => {
-   
+  useEffect(() => {
     const FetchAllGenres = async () => {
       try {
         let searchTerm = genreName[1] ? genreName[1] : genreName[0];
         console.log("Search term for recommendations: " + searchTerm);
-        const response = await axios.get(`https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${searchTerm}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${Token}`,
+        const response = await axios.get(
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${searchTerm}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${Token}`,
+            },
           },
-        });
+        );
         if (response.status === 200) {
           setGenres(response.data.results.songs);
         }
@@ -37,59 +35,85 @@ const [genres, setGenres] = useState([]);
     FetchAllGenres();
   }, []);
 
-  console.log(genres)
+  console.log(genres);
 
-//const playingsong = `http://localhost:9000/api/${songId}`;
-const playSongPreview = async (songId) => {
-  const musicToken = sessionStorage.getItem("music-user-token");
+  //const playingsong = `http://localhost:9000/api/${songId}`;
+  const playSongPreview = async (songId) => {
+    const musicToken = sessionStorage.getItem("music-user-token");
     const playingsong = `/api/${songId}`;
-    try {const response = await axios.get(playingsong, {
+    try {
+      const response = await axios.get(playingsong, {
         headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${Token}`,
-            "Music-User-Token": `${musicToken}`,
-        }
-
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Token}`,
+          "Music-User-Token": `${musicToken}`,
+        },
       });
       if (response.status == 200) {
-        const previewUrl = response.data.data.map((song) => song.attributes.previews.map((preview) => preview.url));
-       // console.log("Preview URL:", previewUrl);
+        const previewUrl = response.data.data.map((song) =>
+          song.attributes.previews.map((preview) => preview.url),
+        );
+        // console.log("Preview URL:", previewUrl);
         setSongURL(previewUrl);
       }
-    
-}catch (error) {
-    console.log("Error playing song preview: " + error);
-}
+    } catch (error) {
+      console.log("Error playing song preview: " + error);
+    }
+  };
 
-
-
-}
-
- const handlePlayClick = () => {
-
-;    playMusicRef.current.play();
+  const handlePlayClick = () => {
+    playMusicRef.current.play();
   };
 
   const handlePauseClick = () => {
     playMusicRef.current.pause();
   };
-  
-console.log(songURL);
-    return (
-        <div>
-            <h3 style={{ marginLeft: '20px' }}>Because you like:</h3>
-            <h4>{songName}</h4>
-            {genres ? (genres.data?.map((song)=>(
-            <p className="recommendedArtist" key={song.attributes.id} onMouseEnter={()=>playSongPreview(song.attributes.playParams.id)} style={{margin:'10px',}}>{song.attributes.artistName} - {song.attributes.name}
-     <div>
-      <button style={{ backgroundColor: 'green', color: 'white', margin: '5px' }} onClick={handlePlayClick}>Play</button>
-      <button style={{ backgroundColor: 'red', color: 'white', margin: '5px' }} onClick={handlePauseClick}>Pause</button>
-      {/* The audio element is hidden if controls are not included */}
-      </div>
-      <audio ref={playMusicRef} src={songURL} /></p> )) ): 
-           (<p>LOADING</p>)}
-        </div>
-    );
+
+  console.log(songURL);
+  return (
+    <div>
+      <h3 style={{ marginLeft: "20px" }}>Because you like:</h3>
+      <h4>{songName}</h4>
+      {genres ? (
+        genres.data?.map((song) => (
+          <p
+            className="recommendedArtist"
+            key={song.attributes.id}
+            onMouseEnter={() => playSongPreview(song.attributes.playParams.id)}
+            style={{ margin: "10px" }}
+          >
+            {song.attributes.artistName} - {song.attributes.name}
+            <div>
+              <button
+                style={{
+                  backgroundColor: "green",
+                  color: "white",
+                  margin: "5px",
+                }}
+                onClick={handlePlayClick}
+              >
+                Play
+              </button>
+              <button
+                style={{
+                  backgroundColor: "red",
+                  color: "white",
+                  margin: "5px",
+                }}
+                onClick={handlePauseClick}
+              >
+                Pause
+              </button>
+              {/* The audio element is hidden if controls are not included */}
+            </div>
+            <audio ref={playMusicRef} src={songURL} />
+          </p>
+        ))
+      ) : (
+        <p>LOADING</p>
+      )}
+    </div>
+  );
 }
 
-export default Recommendations
+export default Recommendations;
