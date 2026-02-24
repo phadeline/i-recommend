@@ -11,17 +11,17 @@ import axios from "axios";
 function App() {
   const musicPlaylists = "https://api.music.apple.com/v1/me/library/playlists"; // Example MusicKit API endpoint
   const rangeSliderRef = useRef();
-  //const button = documentRef.current.getElementById("image");
+
   const newButtonRef = useRef();
   var count = 0;
   const [sliderValue, setSliderValue] = useState(15);
   const [activates, setActivates] = useState(false);
   const navigate = useNavigate();
 
-
+//http://localhost:9000
   useEffect(() => {
     async function getToken() {
-      const response = await axios.get("http://localhost:9000/token", (e) => {
+      const response = await axios.get("/token", (e) => {
         e.preventDefault();
       });
       try {
