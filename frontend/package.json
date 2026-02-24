@@ -4,14 +4,14 @@
   "homepage": "https://i-recommend-289e22b5c5f5.herokuapp.com",
   "private": true,
   "description": "",
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:9000",
   "main": "index.js",
   "engines": {
     "node": "22.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "node ../backend/script.js",
+    "server": "node ./backend/script.js",
     "client": "npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
     "build": "react-scripts build"
