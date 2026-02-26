@@ -39,8 +39,17 @@ function Recommendations({ genreName, Token, artistName, songName }) {
 
   console.log(genres);
 
+const randomNumber = [];
+useEffect(() => {
+   const max = 100;
+  function getRandomInt(max) {
+    for (let i = 0; i < 10; i++) {
+   const randomIndex = Math.floor(Math.random() * max);
+   randomNumber.push(randomIndex);
+  }
+}}, [genreName]);
 
-
+console.log(randomNumber);
 
   //const playingsong = `http://localhost:9000/api/${songId}`;
   const playSongPreview = async (songId) => {
