@@ -25,6 +25,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
           },
         );
         for (let i = 0; i < response.data.results.songs.length; i++) {
+          console.log("Number of results found for artist: ")
           if (response.data.results.songs[i].attributes.length < 10) {
             console.log("No results found for artist: " + artistName + ". Trying song name: " + songName);
             const response2 = await axios.get(
@@ -36,6 +37,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
             },
           },
         );
+        console.log("Response for song name search:");
           setGenres(response2.data.results.songs);
         }
         else if(response.status === 200) {
