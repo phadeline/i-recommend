@@ -16,7 +16,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
         let searchTerm = genreName[2] ? genreName[2] || genreName[1] : genreName[1] || genreName[0] 
         console.log("Search term for recommendations: " + searchTerm);
        const response = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs,albums&limit=10&term=${artistName}+${searchTerm}+${songName}`,
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs,albums&limit=10&term=${artistName}+${searchTerm}`,
           {
             headers: {
               "Content-Type": "application/json",
