@@ -94,43 +94,52 @@ console.log(randomIndex);
       <h3 style={{ marginLeft: "20px" }}>Because you like:</h3>
       <h4>{songName}</h4>
       {genres ? (
-         randomIndex?.map((index) => genres.data?.[index])(
-          <p
-            className="recommendedArtist"
-            key={genres.data?.[index].attributes.id}
-            onMouseEnter={() => playSongPreview(genres.data?.[index].attributes.playParams.id)}
-            style={{ margin: "10px" }}
+  randomIndex?.map((index) => {
+    const item = genres.data?.[index];
+    if (!item) return null;
+
+    return (
+      <p
+        className="recommendedArtist"
+        key={item.attributes.id}
+        onMouseEnter={() =>
+          playSongPreview(item.attributes.playParams.id)
+        }
+        style={{ margin: "10px" }}
+      >
+        {item.attributes.artistName} - {item.attributes.name}
+
+        <div>
+          <button
+            style={{
+              backgroundColor: "green",
+              color: "white",
+              margin: "5px",
+            }}
+            onClick={handlePlayClick}
           >
-            {genres.data?.[index].attributes.artistName} - {genres.data?.[index].attributes.name}
-            <div>
-              <button
-                style={{
-                  backgroundColor: "green",
-                  color: "white",
-                  margin: "5px",
-                }}
-                onClick={handlePlayClick}
-              >
-                Play
-              </button>
-              <button
-                style={{
-                  backgroundColor: "red",
-                  color: "white",
-                  margin: "5px",
-                }}
-                onClick={handlePauseClick}
-              >
-                Pause
-              </button>
-              {/* The audio element is hidden if controls are not included */}
-            </div>
-            <audio ref={playMusicRef} src={songURL} />
-          </p>
-      )
-      ) : (
-        <p>LOADING</p>
-      )}
+            Play
+          </button>
+
+          <button
+            style={{
+              backgroundColor: "red",
+              color: "white",
+              margin: "5px",
+            }}
+            onClick={handlePauseClick}
+          >
+            Pause
+          </button>
+        </div>
+
+        <audio ref={playMusicRef} src={songURL} />
+      </p>
+    );
+  })
+) : (
+  <p>LOADING</p>
+)}
     </div>
   );
 }
