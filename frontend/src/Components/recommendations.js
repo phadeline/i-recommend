@@ -51,6 +51,8 @@ useEffect(() => {
 }, [genreName]);
 
 console.log(randomIndex);
+
+
   //const playingsong = `http://localhost:9000/api/${songId}`;
   const playSongPreview = async (songId) => {
     const musicToken = sessionStorage.getItem("music-user-token");
