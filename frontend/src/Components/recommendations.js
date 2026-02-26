@@ -94,7 +94,7 @@ console.log(randomIndex);
       <h3 style={{ marginLeft: "20px" }}>Because you like:</h3>
       <h4>{songName}</h4>
       {genres ? (
-         genres.data?.[forEach(randomIndex)].map((song) => (
+         randomIndex.map((index) => genres.data[index]).map((song) => (
           <p
             className="recommendedArtist"
             key={song.attributes.id}
