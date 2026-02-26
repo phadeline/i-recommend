@@ -42,6 +42,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
 
 
 useEffect(() => {
+  const max = 100;
     for (let i = 0; i < 10; i++) {
    const randomIndex = Math.floor(Math.random() * max);
    setRandomIndex((prevIndexes) => [...prevIndexes, randomIndex]);
