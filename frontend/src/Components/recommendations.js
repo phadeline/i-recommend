@@ -94,7 +94,7 @@ console.log(randomIndex);
       <h3 style={{ marginLeft: "20px" }}>Because you like:</h3>
       <h4>{songName}</h4>
       {genres ? (
-         randomIndex.map((index) => genres.data?.[index])(
+         randomIndex?.map((index) => genres.data?.[index])(
           <p
             className="recommendedArtist"
             key={genres.data?.[index].attributes.id}
@@ -127,7 +127,7 @@ console.log(randomIndex);
             </div>
             <audio ref={playMusicRef} src={songURL} />
           </p>
-        )
+      )
       ) : (
         <p>LOADING</p>
       )}
