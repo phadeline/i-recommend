@@ -34,7 +34,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
             },
           },
         );
-
+          setGenres(response.data.results.songs);
         }
         else if(response.status === 200) {
           setGenres(response.data.results.songs);
