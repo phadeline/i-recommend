@@ -44,8 +44,10 @@ function Recommendations({ genreName, Token, artistName, songName }) {
 useEffect(() => {
   const max = 25;
     for (let i = 0; i < 5; i++) {
-   const randomIndex = Math.floor(Math.random() * max);
-   setRandomIndex((prevIndexes) => [...prevIndexes, randomIndex]);
+   const randomNumber = Math.floor(Math.random() * max);
+   if (!randomIndex.includes(randomNumber)) {
+     setRandomIndex((prevIndexes) => [...prevIndexes, randomNumber]);
+   }else{i--;}
   }
 
 
@@ -92,7 +94,7 @@ console.log(randomIndex);
       <h3 style={{ marginLeft: "20px" }}>Because you like:</h3>
       <h4>{songName}</h4>
       {genres ? (
-        genres.data?.map((song) => (
+        genres.data.filter((song, index) => randomIndex.includes(index)).map((song) => (
           <p
             className="recommendedArtist"
             key={song.attributes.id}
