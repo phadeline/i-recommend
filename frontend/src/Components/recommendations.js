@@ -26,7 +26,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
         );
         for (let i = 0; i < response.data.results.songs.length; i++) {
           console.log("Number of results found for artist: ")
-          if (response.data.results.songs[i].attributes.length < 10) {
+          if (response.data.results.songs[i] = response.status===400) {
             console.log("No results found for artist: " + artistName + ". Trying song name: " + songName);
             const response2 = await axios.get(
               `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${searchTerm}`,
