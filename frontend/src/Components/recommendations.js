@@ -17,7 +17,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
         let searchTerm = genreName[2] ? genreName[2] || genreName[1] : genreName[0] ;
    //     console.log("Search term for recommendations: " + searchTerm);
        const response = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=50&term=${searchTerm}`,
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${searchTerm}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -42,8 +42,8 @@ function Recommendations({ genreName, Token, artistName, songName }) {
 
 
 useEffect(() => {
-  const max = 100;
-    for (let i = 0; i < 10; i++) {
+  const max = 25;
+    for (let i = 0; i < 5; i++) {
    const randomIndex = Math.floor(Math.random() * max);
    setRandomIndex((prevIndexes) => [...prevIndexes, randomIndex]);
   }
