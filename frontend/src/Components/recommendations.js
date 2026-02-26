@@ -16,7 +16,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
         let searchTerm = genreName[2] ? genreName[2] || genreName[1] : genreName[1] || genreName[0] 
         console.log("Search term for recommendations: " + searchTerm);
        const response = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=albums&limit=10&term=${searchTerm}`,
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${artistName}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -24,10 +24,10 @@ function Recommendations({ genreName, Token, artistName, songName }) {
             },
           },
         );
-        if(response == [] || response == undefined || response.status !== 200) {
+        if(response.data.results.songs.length < 10 || response == undefined || response.status !== 200) {
           console.log("No results found for artist: " + artistName + ". Trying song name: " + songName);
            response = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${searchTerm}`,
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=0&term=${searchTerm}`,
           {
             headers: {
               "Content-Type": "application/json",
