@@ -13,10 +13,10 @@ function Recommendations({ genreName, Token, artistName, songName }) {
   useEffect(() => {
     const FetchAllGenres = async () => {
       try {
-        let searchTerm = genreName[2] ? genreName[2] || genreName[1] : genreName[1] || genreName[0] 
+        let searchTerm = genreName[2] ? genreName[2] || genreName[1] : genreName[0] 
    //     console.log("Search term for recommendations: " + searchTerm);
        const response = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${artistName}`,
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=100&term=${searchTerm}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -25,22 +25,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
           },
         );
        
-          
-          if (response.data.length <= 10 || response.status === 400) {
-            console.log("No results found for artist: " + artistName + ". Trying song name: " + songName);
-            const response2 = await axios.get(
-              `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${searchTerm}`,
-              {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${Token}`,
-            },
-          },
-        );
-        console.log("Response for song name search:");
-          setGenres(response2.data.results.songs);
-        }
-        else if(response.status === 200) {
+          if(response.status === 200) {
           setGenres(response.data.results.songs);
         }
    }
@@ -53,6 +38,9 @@ function Recommendations({ genreName, Token, artistName, songName }) {
   }, [songName]);
 
   console.log(genres);
+
+
+
 
   //const playingsong = `http://localhost:9000/api/${songId}`;
   const playSongPreview = async (songId) => {
