@@ -94,14 +94,14 @@ console.log(randomIndex);
       <h3 style={{ marginLeft: "20px" }}>Because you like:</h3>
       <h4>{songName}</h4>
       {genres ? (
-         genres.data[0].map((song) => (
+         randomIndex.map((index) => genres.data?.[index])(
           <p
             className="recommendedArtist"
-            key={song.attributes.id}
-            onMouseEnter={() => playSongPreview(song.attributes.playParams.id)}
+            key={genres.data?.[index].attributes.id}
+            onMouseEnter={() => playSongPreview(genres.data?.[index].attributes.playParams.id)}
             style={{ margin: "10px" }}
           >
-            {song.attributes.artistName} - {song.attributes.name}
+            {genres.data?.[index].attributes.artistName} - {genres.data?.[index].attributes.name}
             <div>
               <button
                 style={{
@@ -127,7 +127,7 @@ console.log(randomIndex);
             </div>
             <audio ref={playMusicRef} src={songURL} />
           </p>
-        ))
+        )
       ) : (
         <p>LOADING</p>
       )}
