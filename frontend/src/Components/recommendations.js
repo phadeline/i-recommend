@@ -42,8 +42,8 @@ function Recommendations({ genreName, Token, songName }) {
     
        
           const [responseone, responsetwo] = await Promise.all([requestone, requesttwo]);
-          setGenres(responseone);
-          setSecondGenres(responsetwo);
+          setGenres(...responseone.data.results.songs);
+          setSecondGenres(...responsetwo.data.results.songs);
           console.log("Genres:", genres);
           console.log("Second Genres:", secondGenres);
        
