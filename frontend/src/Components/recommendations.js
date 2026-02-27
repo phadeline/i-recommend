@@ -35,7 +35,7 @@ axios.all(requests).then((responses) => {
       status: resp.status,
       fields: Object.keys(resp.data).toString(),
     };
-    setFinalGenresArray(resp.data.results.songs.data);
+    setFinalGenresArray(resp.data.results.songs);
     console.info(resp.config.url);
     console.table(msg);
   });
