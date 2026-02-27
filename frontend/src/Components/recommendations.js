@@ -125,7 +125,7 @@ console.log(randomIndex);
       <h4>{songName}</h4>
       {finalGenres? (
   randomIndex?.map((index) => {
-    const item = genres.data?.[index];
+    const item = finalGenres?.[index];
     if (!item) return null;
 
     return (
