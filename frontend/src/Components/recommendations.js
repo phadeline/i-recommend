@@ -17,7 +17,7 @@ function Recommendations({ genreName, Token, songName }) {
 
        genreName = genreName.map((genre) => genre.replace("R&B/Soul", "Soul"));
        console.log("genreName:", genreName);
-       let urls = [`https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}`]
+       let urls = [`https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}or${genreName[1]}`];
   
   const requests = urls.map((url) => axios.get(url,{
     headers: {
@@ -25,12 +25,7 @@ function Recommendations({ genreName, Token, songName }) {
       Authorization: `Bearer ${Token}`,
     },
   }));
-/*
-| For waiting the Promise is fulfilled
-| with the Response, use the then() method.
-| If the HTTP request received errors
-| use catch() method
-*/
+
 axios.all(requests).then((responses) => {
   responses.forEach((resp) => {
     let msg = {
@@ -45,38 +40,6 @@ axios.all(requests).then((responses) => {
   });
 });
   
-       /* try {
-      const requestone = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${Token}`
-            },
-          },
-        );
-      const requesttwo = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${Token}`
-            },
-          },
-        );
-
-    
-       
-          const [responseone, responsetwo] = await Promise.all([requestone, requesttwo]);
-          setGenres(...responseone.data.results.songs);
-          setSecondGenres(...responsetwo.data.results.songs);
-          console.log("Genres:", genres);
-          console.log("Second Genres:", secondGenres);
-       
-   }
-      catch (error) {
-        console.log("here is the error for recommendations2: " + error);
-      } */
     };
 
     FetchAllGenres();
