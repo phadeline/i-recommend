@@ -13,14 +13,10 @@ function Recommendations({ genreName, Token, artistName, songName }) {
   const [secondGenres, setSecondGenres] = useState([]);
   const [finalGenresArray, setFinalGenresArray] = useState([]);
 
- 
-
+  
   useEffect(() => {
-    const FetchFirstGenres = async () => {
-      try {
-       
-   //     console.log("Search term for recommendations: " + searchTerm);
-       const response = await axios.get(
+    const FetchAllGenres = async () => {
+      const requestone = await axios.get(
           `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}`,
           {
             headers: {
@@ -29,25 +25,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
             },
           },
         );
-       
-          if(response.status === 200) {
-          setGenres(response.data.results.songs);
-        }
-   }
-      catch (error) {
-        console.log("here is the error for recommendations: " + error);
-      }
-    };
-
-    FetchFirstGenres();
-  }, [songName]);
-
-  useEffect(() => {
-    const FetchSecondGenres = async () => {
-      try {
-       
-   //     console.log("Search term for recommendations: " + searchTerm);
-       const responsesecond = await axios.get(
+      const requesttwo = await axios.get(
           `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${artistName}`,
           {
             headers: {
@@ -56,9 +34,14 @@ function Recommendations({ genreName, Token, artistName, songName }) {
             },
           },
         );
+
+      try {
        
-          if(responsesecond.status === 200) {
-          setSecondGenres(responsesecond.data.results.songs);
+       
+          if(requesttwo.status === 200 && requestone.status === 200) {
+          const [responseone, responsetwo] = await Promise.all([requestone, requesttwo]);
+          setGenres(responseone.data.results.songs);
+          setSecondGenres(responsetwo.data.results.songs);
         }
    }
       catch (error) {
@@ -66,7 +49,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
       }
     };
 
-    FetchSecondGenres();
+    FetchAllGenres();
   }, [songName]);
 
 
