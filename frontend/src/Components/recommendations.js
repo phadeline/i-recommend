@@ -12,11 +12,12 @@ function Recommendations({ genreName, Token, songName }) {
   const [genres, setGenres] = useState([]);
   const [secondGenres, setSecondGenres] = useState([]);
   const [finalGenresArray, setFinalGenresArray] = useState([]);
-  genreName = genreName.map((genre) => genre.replace("R&B/Soul", "Soul"));
 
   
   useEffect(() => {
     const FetchAllGenres = async () => {
+       genreName = genreName.map((genre) => genre.replace("R&B/Soul", "Soul"));
+
       const requestone = await axios.get(
           `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}`,
           {
@@ -43,6 +44,8 @@ function Recommendations({ genreName, Token, songName }) {
           const [responseone, responsetwo] = await Promise.all([requestone, requesttwo]);
           setGenres(responseone.data.results.songs);
           setSecondGenres(responsetwo.data.results.songs);
+          console.log("Genres:", genres);
+          console.log("Second Genres:", secondGenres);
         }
    }
       catch (error) {
