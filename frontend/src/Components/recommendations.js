@@ -50,7 +50,7 @@ const FetchAllGenres2 = async () => {
        
           if(response2.status === 200) {
 
-          setGenres((prevGenres) => [...prevGenres, response2.data.results.songs]);
+         // setGenres((prevGenres) => [...prevGenres, response2.data.results.songs]);
 
         }
    }
