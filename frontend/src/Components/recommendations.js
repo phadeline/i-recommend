@@ -17,7 +17,7 @@ function Recommendations({ genreName, Token, songName }) {
        
    //     console.log("Search term for recommendations: " + searchTerm);
        const response = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}`,
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=15&term=${genreName[0]}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const FetchAllGenres2 = async () => {
         
    //     console.log("Search term for recommendations: " + searchTerm);
        const response2 = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[1]}`,
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${genreName[1]}`,
           {
             headers: {
               "Content-Type": "application/json",
