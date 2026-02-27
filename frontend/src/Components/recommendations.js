@@ -24,7 +24,7 @@ function Recommendations({ genreName, Token, songName }) {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${Token}`,
+              Authorization: `Bearer ${Token}`
             },
           },
         );
@@ -33,7 +33,7 @@ function Recommendations({ genreName, Token, songName }) {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${Token}`,
+              Authorization: `Bearer ${Token}`
             },
           },
         );
