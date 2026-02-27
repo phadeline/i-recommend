@@ -13,10 +13,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
   const [secondGenres, setSecondGenres] = useState([]);
   const [finalGenresArray, setFinalGenresArray] = useState([]);
 
-  useEffect(() => {
-    const combinedGenres = [...genres, ...secondGenres];
-    setFinalGenresArray(combinedGenres);
-  }, [genres, secondGenres]); 
+ 
 
   useEffect(() => {
     const FetchFirstGenres = async () => {
@@ -85,9 +82,6 @@ useEffect(() => {
 
 }, [genreName]);
 
-console.log("genres: ", genres);
-console.log("secondGenres: ", secondGenres);
-console.log("finalGenresArray: ", finalGenresArray);
 
 
   //const playingsong = `http://localhost:9000/api/${songId}`;
@@ -124,15 +118,24 @@ console.log("finalGenresArray: ", finalGenresArray);
 
   console.log(songURL);
   return (
+    
     <div>
       <h3 style={{ marginLeft: "20px" }}>Because you like:</h3>
       <h4>{songName}</h4>
-      {finalGenresArray? (
+      {
+      secondGenres.length > 0 && genres.length > 0 ? (
+        setFinalGenresArray(genres.concat(secondGenres))
+      ) : (
+        <p>LOADING</p>
+      )}
+      {
+      finalGenresArray.length > 0 ? (
   randomIndex?.map((index) => {
-    const item = finalGenresArray.data?.[index];
+    const item = finalGenresArray[index];
     if (!item) return null;
 
     return (
+      
       <p
         className="recommendedArtist"
         key={item.attributes.id}
