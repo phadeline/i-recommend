@@ -21,7 +21,12 @@ function Recommendations({ genreName, Token, songName }) {
        console.log("genreName:", genreName);
        let urls = [`https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}`, `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[1]}`]
   
-  const requests = urls.map((url) => axios.get(url));
+  const requests = urls.map((url) => axios.get(url,{
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Token}`,
+    },
+  }));
 /*
 | For waiting the Promise is fulfilled
 | with the Response, use the then() method.
@@ -35,8 +40,8 @@ axios.all(requests).then((responses) => {
       status: resp.status,
       fields: Object.keys(resp.data).toString(),
     };
-    setFinalGenresArray(resp.data.results.songs);
-    console.info(resp.config.url);
+    setFinalGenresArray(resp.data.results.songs.data);
+    console.info(finalGenresArray);
     console.table(msg);
   });
 });
