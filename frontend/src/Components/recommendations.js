@@ -26,7 +26,7 @@ function Recommendations({ genreName, Token, artistName, songName }) {
           },
         );
       const requesttwo = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${artistName}`,
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[1]}`,
           {
             headers: {
               "Content-Type": "application/json",
