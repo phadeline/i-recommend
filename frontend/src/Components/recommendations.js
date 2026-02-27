@@ -11,10 +11,8 @@ function Recommendations({ genreName, Token, artistName, songName }) {
 
   const [genres, setGenres] = useState([]);
   const [secondGenres, setSecondGenres] = useState([]);
-  const [finalGenres, setFinalGenres] = useState([]);
-  useEffect(() => {
-    setFinalGenres([...genres.data, ...secondGenres.data]);
-  }, [genres, secondGenres]);
+  //const [finalGenres, setFinalGenres] = useState([]);
+  const finalGenresArray = genres.concat(secondGenres);
 
   useEffect(() => {
     const FetchFirstGenres = async () => {
@@ -123,9 +121,9 @@ console.log(randomIndex);
     <div>
       <h3 style={{ marginLeft: "20px" }}>Because you like:</h3>
       <h4>{songName}</h4>
-      {finalGenres? (
+      {finalGenresArray? (
   randomIndex?.map((index) => {
-    const item = finalGenres?.[index];
+    const item = finalGenresArray.data?.[index];
     if (!item) return null;
 
     return (
