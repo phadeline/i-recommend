@@ -11,8 +11,12 @@ function Recommendations({ genreName, Token, artistName, songName }) {
 
   const [genres, setGenres] = useState([]);
   const [secondGenres, setSecondGenres] = useState([]);
-  //const [finalGenres, setFinalGenres] = useState([]);
-  const finalGenresArray = genres.concat(secondGenres);
+  const [finalGenresArray, setFinalGenresArray] = useState([]);
+
+  useEffect(() => {
+    const combinedGenres = [...genres, ...secondGenres];
+    setFinalGenresArray(combinedGenres);
+  }, [genres, secondGenres]); 
 
   useEffect(() => {
     const FetchFirstGenres = async () => {
@@ -81,7 +85,9 @@ useEffect(() => {
 
 }, [genreName]);
 
-console.log(randomIndex);
+console.log("genres: ", genres);
+console.log("secondGenres: ", secondGenres);
+console.log("finalGenresArray: ", finalGenresArray);
 
 
   //const playingsong = `http://localhost:9000/api/${songId}`;
