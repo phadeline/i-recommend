@@ -39,6 +39,7 @@ axios.all(requests).then((responses) => {
       server: resp.headers.server,
       status: resp.status,
       fields: Object.keys(resp.data).toString(),
+      myData: resp.data.results.songs
     };
     setFinalGenresArray(resp.data.results.songs.data);
     console.log("Final Genres Array:", finalGenresArray);
