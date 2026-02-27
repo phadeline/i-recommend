@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../styles/recommendations.css";
 import axios from "axios";
 
-function Recommendations({ genreName, Token, artistName, songName }) {
+function Recommendations({ genreName, Token, songName }) {
   const playMusicRef = useRef(null);
 
   const [songURL, setSongURL] = useState("");
