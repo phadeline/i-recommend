@@ -34,15 +34,37 @@ function Recommendations({ genreName, Token, songName }) {
         console.log("here is the error for recommendations: " + error);
       }
     };
-
+const FetchAllGenres2 = async () => {
+      try {
+        
+   //     console.log("Search term for recommendations: " + searchTerm);
+       const response2 = await axios.get(
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[1]}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${Token}`,
+            },
+          },
+        );
+       
+          if(response2.status === 200) {
+          genres.push(response2.data.results.songs);
+        }
+   }
+      catch (error) {
+        console.log("here is the error for recommendations:2 " + error);
+      }
+    };
     FetchAllGenres();
+    FetchAllGenres2()
   }, [songName]);
 
   console.log(genres);
 
 
 useEffect(() => {
-  const max = 25;
+  const max = 50;
     for (let i = 0; i < 5; i++) {
    const randomNumber = Math.floor(Math.random() * max);
    if (!randomIndex.includes(randomNumber)) {
