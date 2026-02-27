@@ -19,7 +19,29 @@ function Recommendations({ genreName, Token, songName }) {
 
        genreName = genreName.map((genre) => genre.replace("R&B/Soul", "Soul"));
        console.log("genreName:", genreName);
-  try {
+       let urls = [`https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}`, `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[1]}`]
+  
+  const requests = urls.map((url) => axios.get(url));
+/*
+| For waiting the Promise is fulfilled
+| with the Response, use the then() method.
+| If the HTTP request received errors
+| use catch() method
+*/
+axios.all(requests).then((responses) => {
+  responses.forEach((resp) => {
+    let msg = {
+      server: resp.headers.server,
+      status: resp.status,
+      fields: Object.keys(resp.data).toString(),
+    };
+    setFinalGenresArray(resp.data.results.songs.data);
+    console.info(resp.config.url);
+    console.table(msg);
+  });
+});
+  
+       /* try {
       const requestone = await axios.get(
           `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}`,
           {
@@ -50,7 +72,7 @@ function Recommendations({ genreName, Token, songName }) {
    }
       catch (error) {
         console.log("here is the error for recommendations2: " + error);
-      }
+      } */
     };
 
     FetchAllGenres();
@@ -109,12 +131,6 @@ useEffect(() => {
     <div>
       <h3 style={{ marginLeft: "20px" }}>Because you like:</h3>
       <h4>{songName}</h4>
-      {
-      secondGenres.length > 0 && genres.length > 0 ? (
-        setFinalGenresArray(genres.concat(secondGenres))
-      ) : (
-        <p>LOADING</p>
-      )}
       {
       finalGenresArray.length > 0 ? (
   randomIndex?.map((index) => {
