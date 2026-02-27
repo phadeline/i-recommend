@@ -14,7 +14,7 @@ function Recommendations({ genreName, Token, songName }) {
   useEffect(() => {
     const FetchAllGenres = async () => {
       try {
-        let searchTerm = genreName[1] ? genreName[1] : genreName[0] ;
+       
    //     console.log("Search term for recommendations: " + searchTerm);
        const response = await axios.get(
           `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}`,
@@ -49,7 +49,10 @@ const FetchAllGenres2 = async () => {
         );
        
           if(response2.status === 200) {
-          genres.push(response2.data.results.songs);
+          setGenres((prevGenres) => ({
+            ...prevGenres,
+            data: [...(prevGenres.data || []), ...(response2.data.results.songs.data || [])],
+          }));
         }
    }
       catch (error) {
@@ -60,7 +63,7 @@ const FetchAllGenres2 = async () => {
     FetchAllGenres2()
   }, [songName]);
 
-  console.log(genres);
+  console.log(genres.length);
 
 
 useEffect(() => {
