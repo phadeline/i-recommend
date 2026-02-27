@@ -62,7 +62,7 @@ const FetchAllGenres2 = async () => {
     FetchAllGenres2()
   }, [songName]);
 
-  console.log(genres.data.length);
+  console.log(genres);
 
 
 useEffect(() => {
