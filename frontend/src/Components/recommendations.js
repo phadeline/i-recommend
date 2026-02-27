@@ -49,10 +49,9 @@ const FetchAllGenres2 = async () => {
         );
        
           if(response2.status === 200) {
-          setGenres((prevGenres) => ({
-            ...prevGenres,
-            data: [...(prevGenres.data || []), ...(response2.data.results.songs.data || [])],
-          }));
+
+          setGenres((prevGenres) => [...prevGenres, ...(response2.data.results.songs || [])]);
+
         }
    }
       catch (error) {
