@@ -11,15 +11,18 @@ function Recommendations({ genreName, Token, songName }) {
 
   const [genres, setGenres] = useState([]);
   const [secondGenres, setSecondGenres] = useState([]);
-  const finalGenres = [...genres, ...secondGenres];
+  const [finalGenres, setFinalGenres] = useState([]);
+  useEffect(() => {
+    setFinalGenres([...genres, ...secondGenres]);
+  }, [genres, secondGenres]);
 
   useEffect(() => {
-    const FetchAllGenres = async () => {
+    const FetchFirstGenres = async () => {
       try {
        
    //     console.log("Search term for recommendations: " + searchTerm);
        const response = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=15&term=${genreName[0]}`,
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -36,12 +39,17 @@ function Recommendations({ genreName, Token, songName }) {
         console.log("here is the error for recommendations: " + error);
       }
     };
-const FetchAllGenres2 = async () => {
+
+    FetchFirstGenres();
+  }, [songName]);
+
+  useEffect(() => {
+    const FetchSecondGenres = async () => {
       try {
-        
+       
    //     console.log("Search term for recommendations: " + searchTerm);
-       const response2 = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${genreName[1]}`,
+       const responsesecond = await axios.get(
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[1]}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -50,21 +58,17 @@ const FetchAllGenres2 = async () => {
           },
         );
        
-          if(response2.status === 200) {
-
-          setSecondGenres(response2.data.results.songs);
-
+          if(responsesecond.status === 200) {
+          setSecondGenres(responsesecond.data.results.songs);
         }
    }
       catch (error) {
-        console.log("here is the error for recommendations:2 " + error);
+        console.log("here is the error for recommendations2: " + error);
       }
     };
-    FetchAllGenres();
-    FetchAllGenres2()
-  }, [songName]);
 
-  
+    FetchSecondGenres();
+  }, [songName]);
 
 
 useEffect(() => {
