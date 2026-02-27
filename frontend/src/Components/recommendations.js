@@ -9,8 +9,6 @@ function Recommendations({ genreName, Token, songName }) {
   const [songURL, setSongURL] = useState("");
   const [randomIndex, setRandomIndex] = useState([]);
 
-  const [genres, setGenres] = useState([]);
-  const [secondGenres, setSecondGenres] = useState([]);
   const [finalGenresArray, setFinalGenresArray] = useState([]);
 
   
