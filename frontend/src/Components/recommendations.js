@@ -16,9 +16,10 @@ function Recommendations({ genreName, Token, songName }) {
   
   useEffect(() => {
     const FetchAllGenres = async () => {
+
        genreName = genreName.map((genre) => genre.replace("R&B/Soul", "Soul"));
        console.log("genreName:", genreName);
-
+  try {
       const requestone = await axios.get(
           `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}`,
           {
@@ -38,7 +39,7 @@ function Recommendations({ genreName, Token, songName }) {
           },
         );
 
-      try {
+    
        
           const [responseone, responsetwo] = await Promise.all([requestone, requesttwo]);
           setGenres(responseone.data.results.songs);
