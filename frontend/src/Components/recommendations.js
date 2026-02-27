@@ -118,6 +118,7 @@ useEffect(() => {
 
         <div>
           <button
+          key={item.attributes.id}
             style={{
               backgroundColor: "green",
               color: "white",
