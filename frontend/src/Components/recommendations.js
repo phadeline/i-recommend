@@ -19,7 +19,7 @@ function Recommendations({ genreName, Token, songName }) {
        genreName = genreName.map((genre) => genre.replace("R&B/Soul", "Soul"));
 
       const requestone = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[0]}`,
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=15&term=${genreName[0]}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -28,7 +28,7 @@ function Recommendations({ genreName, Token, songName }) {
           },
         );
       const requesttwo = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${songName}`,
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=10&term=${genreName[0]}`,
           {
             headers: {
               "Content-Type": "application/json",
