@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../styles/recommendations.css";
 import axios from "axios";
 
-function Recommendations({ genreName, Token, songName }) {
+function Recommendations({ genreName, Token, artistName, songName }) {
   const playMusicRef = useRef(null);
 
   const [songURL, setSongURL] = useState("");
@@ -13,7 +13,7 @@ function Recommendations({ genreName, Token, songName }) {
   const [secondGenres, setSecondGenres] = useState([]);
   const [finalGenres, setFinalGenres] = useState([]);
   useEffect(() => {
-    setFinalGenres([...genres, ...secondGenres]);
+    setFinalGenres([...genres.data, ...secondGenres.data]);
   }, [genres, secondGenres]);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ function Recommendations({ genreName, Token, songName }) {
        
    //     console.log("Search term for recommendations: " + searchTerm);
        const responsesecond = await axios.get(
-          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${genreName[1]}`,
+          `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${artistName}`,
           {
             headers: {
               "Content-Type": "application/json",
