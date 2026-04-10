@@ -17,34 +17,41 @@ function App() {
   const [sliderValue, setSliderValue] = useState(15);
   const [activates, setActivates] = useState(false);
   const navigate = useNavigate();
-
+const hasFetched = useRef(false);
 //http://localhost:9000
   useEffect(() => {
-    async function getToken() {
-      const response = await axios.get("/token", (e) => {
-        e.preventDefault();
-      });
-      try {
-        sessionStorage.removeItem("devtoken");
-        sessionStorage.setItem("devtoken", response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("your Error: " + error);
-      }
+   
+  async function getToken() {
+    try {
+      const response = await axios.get("http://localhost:9000/token", {
+      headers: {
+        "Content-Type": "application/json",
+      }});
+      const token = response.data;
+      sessionStorage.setItem("devtoken", token);
+      //console.log("devtoken: " + token);
+      
+    } catch (error) {
+      console.error(error);
     }
-    getToken();
-  }, [sessionStorage.getItem("devtoken")]);
+  }
 
+  getToken();
+}, []);
+  if (hasFetched.current) return;
   useEffect(() => {
     async function handleMouseMove(event) {
       event.preventDefault();
-      const myToken = sessionStorage.getItem("devtoken");
-
+ 
+      if (!sessionStorage.getItem("devtoken")) {
+        console.log("devtoken not found");
+        return;
+      }else{
       console.log("musickitloaded event fired");
       try {
         // Call configure() to configure an instance of MusicKit on the Web.
         await MusicKit.configure({
-          developerToken: myToken,
+          developerToken: sessionStorage.getItem("devtoken"),
           app: {
             name: "irecommend",
           },
@@ -59,6 +66,7 @@ function App() {
       document.removeEventListener("mousemove", handleMouseMove);
     }
 
+  }
     document.addEventListener("mousemove", handleMouseMove);
   }, [sessionStorage.getItem("devtoken")]);
 

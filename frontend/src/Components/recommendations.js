@@ -6,7 +6,7 @@ import axios from "axios";
 function Recommendations({ genreName, Token, songName }) {
   const playMusicRef = useRef(null);
 
-  const [songURL, setSongURL] = useState("");
+  const [songURL, setSongURL] = useState(null);
   const [randomIndex, setRandomIndex] = useState([]);
 
   const [finalGenresArray, setFinalGenresArray] = useState([]);
@@ -36,7 +36,7 @@ axios.all(requests).then((responses) => {
     };
     setFinalGenresArray(resp.data.results.songs.data);
     console.log("Final Genres Array:", finalGenresArray);
-    console.table(msg);
+    console.log(msg);
   });
 });
   
@@ -55,28 +55,29 @@ useEffect(() => {
    }else{i--;}
   }
 
-
-}, [genreName]);
+console.log("Random Indexes:", randomIndex);
+}, []);
 
 
 
   //const playingsong = `http://localhost:9000/api/${songId}`;
   const playSongPreview = async (songId) => {
-    const musicToken = sessionStorage.getItem("music-user-token");
-    const playingsong = `/api/${songId}`;
+  
+    const playingsong = `http://localhost:9000/api/${songId}`;
     try {
       const response = await axios.get(playingsong, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${Token}`,
-          "Music-User-Token": `${musicToken}`,
+          "Music-User-Token": sessionStorage.getItem("music-user-token"),
         },
       });
-      if (response.status == 200) {
-        const previewUrl = response.data.data.map((song) =>
-          song.attributes.previews.map((preview) => preview.url),
+      if (response.status === 200) {
+        console.log("Song preview response:", response.data);
+        const previewUrl = response.data.data?.map((song) =>
+          song.attributes.previews?.map((preview) => preview.url),
         );
-        // console.log("Preview URL:", previewUrl);
+       // console.log("Preview URL:", previewUrl);
         setSongURL(previewUrl);
       }
     } catch (error) {
@@ -106,7 +107,7 @@ useEffect(() => {
 
     return (
       
-      <p
+      <div
         className="recommendedArtist"
         key={item.attributes.id}
         onMouseEnter={() =>
@@ -142,7 +143,7 @@ useEffect(() => {
         </div>
 
         <audio ref={playMusicRef} src={songURL} />
-      </p>
+      </div>
     );
   })
 ) : (

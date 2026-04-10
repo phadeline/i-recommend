@@ -4,16 +4,33 @@
   "homepage": "https://i-recommend-289e22b5c5f5.herokuapp.com",
   "private": true,
   "description": "",
-  "proxy": "http://localhost:9000",
+  "proxy": "http://localhost:3000",
   "type": "module",
+ 
   "engines": {
     "node": "22.11.0"
   },
+  "browserslist": {
+  "production": [
+    "chrome >= 67",
+    "edge >= 79",
+    "firefox >= 68",
+    "opera >= 54",
+    "safari >= 14"
+  ],
+  "development": [
+    "last 1 chrome version",
+    "last 1 firefox version",
+    "last 1 safari version"
+  ]
+},
   "scripts": {
-    "start": "node backend/script.js",
+    "start": "react-scripts start",
     "build": "npm install --prefix frontend && npm run build --prefix frontend",
     "heroku-postbuild": "npm run build",
-    "dev": "concurrently \"node backend/script.js\" \"npm start --prefix frontend\""
+    "frontend": "npm start",
+  "backend": "nodemon backend/index.js",
+  "dev": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\""
   },
   "repository": {
     "type": "git",
@@ -45,6 +62,7 @@
     "react": "^19.2.3",
     "react-bootstrap": "^2.10.10",
     "react-router-hash-link": "^2.4.3",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "serve": "^14.2.6"
   }
 }

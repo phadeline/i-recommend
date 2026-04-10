@@ -17,16 +17,16 @@ function AllMusic() {
   const finalglobalID = location.state.globalId;
 
   const getToken = sessionStorage.getItem("devtoken");
-  const playlistTracksUrl = `https://api.music.apple.com/v1/catalog/us/playlists/${finalglobalID}/tracks`;
 
   useEffect(() => {
     console.log(finalglobalID);
     const FetchAll = async () => {
       try {
-        const response = await axios.get(playlistTracksUrl, {
+        const response = await axios.get(`http://localhost:9000/api/getAllTracks/${finalglobalID}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${getToken}`,
+            "music-user-token": sessionStorage.getItem("music-user-token"),
           },
         });
         if (response.status == 200) {
