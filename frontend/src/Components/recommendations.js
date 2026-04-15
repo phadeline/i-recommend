@@ -32,10 +32,10 @@ useEffect(() => {
       const songs = response.data?.results?.songs?.data || [];
 
       const storedIds = new Set(
-        JSON.parse(sessionStorage.getItem("displayedSongIds") || "[]")
+        JSON.parse(sessionStorage.getItem("displayedSongIds") || `[]`)
       );
       const storedTitles = new Set(
-        JSON.parse(sessionStorage.getItem("displayedSongTitles") || "[]")
+        JSON.parse(sessionStorage.getItem("displayedSongTitles") || `[]`)
       );
 
       const filtered = [];
@@ -85,7 +85,8 @@ useEffect(() => {
 
       setFinalGenresArray(filtered);
       setRandomIndexes(chosenIndexes);
-
+sessionStorage.removeItem("displayedSongIds");
+sessionStorage.removeItem("displayedSongTitles");
     } catch (error) {
       console.error("Error fetching genre songs:", error);
     }
@@ -93,10 +94,8 @@ useEffect(() => {
   };
 
   FetchAllGenres();
-  if(sessionStorage.getItem("displayedSongIds")!= []){
-    sessionStorage.removeItem("displayedSongIds");
-sessionStorage.removeItem("displayedSongTitles");}
-   
+  
+
 }, [songName, genreName, Token]);
 
 
@@ -174,7 +173,9 @@ sessionStorage.removeItem("displayedSongTitles");}
     return (
     <div>
       <h3 style={{ marginLeft: "20px" }}>Because you like:</h3>
+
       <h4>{songName}</h4>
+      <h5>Genre: {genreName[0]}</h5>
 
       {finalGenresArray.length > 0 ? (
         randomIndexes.map((index) => {
@@ -238,7 +239,7 @@ sessionStorage.removeItem("displayedSongTitles");}
                 <div>
                   <button
                     style={{
-                      backgroundColor: "rgba(255,255,255,0.2)",
+                      backgroundColor: "rgba(31, 190, 7, 0.2)",
                       color: "white",
                       border: "1px solid rgba(255,255,255,0.5)",
                       borderRadius: "6px",
@@ -254,7 +255,7 @@ sessionStorage.removeItem("displayedSongTitles");}
 
                   <button
                     style={{
-                      backgroundColor: "rgba(255,255,255,0.2)",
+                      backgroundColor: "rgba(249, 7, 7, 0.2)",
                       color: "white",
                       border: "1px solid rgba(255,255,255,0.5)",
                       borderRadius: "6px",
