@@ -56,7 +56,7 @@ return token;
 };
 
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: API_URL,
   methods: ["GET", "POST", "PUT", "PATCH", "OPTIONS"],
   allowedHeaders: ["Origin", "Content-Type", "X-Auth-Token", "Authorization", "Music-User-Token"]
 }));
