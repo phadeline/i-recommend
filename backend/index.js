@@ -14,14 +14,11 @@ const port =  process.env.PORT;
 import jwt from "jsonwebtoken";
 
 
-//const frontendBuildPath = path.join(__dirname, "../frontend/public");
-
-//app.use(express.static(frontendBuildPath));
-
 const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL : 'http://localhost:3000';
 
 
-const frontendBuildPath = process.env.NODE_ENV === 'production' ? path.join(__dirname, "../frontend/build") 
+const frontendBuildPath = process.env.NODE_ENV === 'production' ? path.join(__dirname, "../frontend/build") : path.join(__dirname, "../frontend/public"); 
+
 app.use(express.static(frontendBuildPath));
 
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
@@ -29,7 +26,7 @@ const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seco
 
 const secretOrPrivateKey = process.env.NODE_ENV === 'production' ? process.env.MY_NEW_KEY : fs.readFileSync("../.env.keys", "utf8") ;
 
-//const secretOrPrivateKey = fs.readFileSync("../.env.keys", "utf8") ;
+
 
 const payload = {
   iss: "P97D3C79H5",
@@ -56,7 +53,7 @@ return token;
 };
 
 app.use(cors({
-  origin: process.env.REACT_URL,
+  origin: API_URL,
   methods: ["GET", "POST", "PUT", "PATCH", "OPTIONS"],
   allowedHeaders: ["Origin", "Content-Type", "X-Auth-Token", "Authorization", "Music-User-Token"]
 }));
