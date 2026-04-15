@@ -22,7 +22,7 @@ function AllMusic() {
     console.log(finalglobalID);
     const FetchAll = async () => {
       try {
-        const response = await axios.get(`http://localhost:9000/api/getAllTracks/${finalglobalID}`, {
+        const response = await axios.get(`/api/getAllTracks/${finalglobalID}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${getToken}`,

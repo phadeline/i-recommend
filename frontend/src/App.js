@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     async function getToken() {
       try {
-        const response = await axios.get("http://localhost:9000/token", {
+        const response = await axios.get("/token", {
           headers: { "Content-Type": "application/json" },
         });
         sessionStorage.setItem("devtoken", response.data);
