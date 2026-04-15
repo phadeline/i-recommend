@@ -18,12 +18,12 @@ import jwt from "jsonwebtoken";
 
 //app.use(express.static(frontendBuildPath));
 
-const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL: 'http://localhost:3000';
+const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL : 'http://localhost:3000';
 
 
 const frontendBuildPath = process.env.NODE_ENV === 'production' ? path.join(__dirname, "../frontend/build") : path.join(__dirname, "../frontend/public");
 app.use(express.static(frontendBuildPath));
-//console.log("frontendBuildPath: " + frontendBuildPath);
+
 const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
 const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
 
@@ -56,7 +56,7 @@ return token;
 };
 
 app.use(cors({
-  origin: API_URL,
+  origin: process.env.REACT_URL,
   methods: ["GET", "POST", "PUT", "PATCH", "OPTIONS"],
   allowedHeaders: ["Origin", "Content-Type", "X-Auth-Token", "Authorization", "Music-User-Token"]
 }));
@@ -66,7 +66,7 @@ app.options(/.*/, cors());
 
 
 app.get("/", (req, res) => {
-  res.sendFile(frontendBuildPath);
+  res.sendFile(path.join(frontendBuildPath, 'index.html'));
   console.log("status: " + res.statusCode)
 });
 
