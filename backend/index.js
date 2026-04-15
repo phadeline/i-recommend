@@ -66,7 +66,7 @@ app.options(/.*/, cors());
 
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(frontendBuildPath));
+  res.sendFile(frontendBuildPath + "/index.html");
   console.log("status: " + res.statusCode)
 });
 
