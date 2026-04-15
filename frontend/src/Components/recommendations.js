@@ -13,78 +13,93 @@ function Recommendations({ genreName, Token, songName }) {
 
 
   // 1. Fetch songs by genre, exclude the current song
-  useEffect(() => {
+useEffect(() => {
   if (!genreName || genreName.length === 0) return;
 
   const FetchAllGenres = async () => {
-    const normalizedGenres = genreName.map((genre) =>
-      genre.replace("R&B/Soul", "Soul")
-    );
+    const primaryGenre = genreName
+      .map((genre) => genre.replace("R&B/Soul", "Soul"))[0];
 
-    const primaryGenre = normalizedGenres[0];
-    const secondaryGenre = normalizedGenres[1];
-
-    // Fetch primary genre first
-    const fetchGenre = async (genre) => {
-      const url = `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${encodeURIComponent(genre)}`;
+    try {
+      const url = `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${encodeURIComponent(primaryGenre)}`;
       const response = await axios.get(url, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${Token}`,
         },
       });
-      return response.data?.results?.songs?.data || [];
-    };
 
-    try {
-      // Always fetch primary genre
-      let primarySongs = await fetchGenre(primaryGenre);
+      const songs = response.data?.results?.songs?.data || [];
 
-      // Filter out current song from primary results
-      const seen = new Set();
-      let filtered = primarySongs.filter((song) => {
+      const storedIds = new Set(
+        JSON.parse(sessionStorage.getItem("displayedSongIds") || "[]")
+      );
+      const storedTitles = new Set(
+        JSON.parse(sessionStorage.getItem("displayedSongTitles") || "[]")
+      );
+
+      const filtered = [];
+      const seenInResponse = new Set();
+      const seenTitles = new Set(storedTitles);
+
+      songs.forEach((song) => {
         const id = song.id;
         const name = song.attributes?.name?.toLowerCase();
-        const isDuplicate = seen.has(id);
         const isCurrentSong = name === songName?.toLowerCase();
+        const alreadyDisplayed = storedIds.has(id);
+        const duplicateInResponse = seenInResponse.has(id);
+        const duplicateTitle = seenTitles.has(name);
 
-        if (!isDuplicate && !isCurrentSong) {
-          seen.add(id);
-          return true;
+        if (!isCurrentSong && !alreadyDisplayed && !duplicateInResponse && !duplicateTitle) {
+          seenInResponse.add(id);
+          seenTitles.add(name);
+          filtered.push(song);
         }
-        return false;
       });
 
-      // Only fetch secondary genre if primary didn't yield 5 unique songs
-      if (filtered.length < 5 && secondaryGenre) {
-        console.log(
-          `Primary genre "${primaryGenre}" only returned ${filtered.length} songs. Fetching secondary genre "${secondaryGenre}"...`
-        );
+      // Compute indexes immediately after filtering, no separate useEffect
+      const max = filtered.length;
+      const count = Math.min(5, max);
+      const indexes = new Set();
 
-        const secondarySongs = await fetchGenre(secondaryGenre);
-
-        // Add secondary songs, skipping anything already in the primary results
-        secondarySongs.forEach((song) => {
-          const id = song.id;
-          const name = song.attributes?.name?.toLowerCase();
-          const isDuplicate = seen.has(id);
-          const isCurrentSong = name === songName?.toLowerCase();
-
-          if (!isDuplicate && !isCurrentSong) {
-            seen.add(id);
-            filtered.push(song);
-          }
-        });
+      while (indexes.size < count) {
+        indexes.add(Math.floor(Math.random() * max));
       }
 
+      const chosenIndexes = [...indexes];
+
+      // Save displayed ids and titles to sessionStorage
+      const updatedIds = new Set(storedIds);
+      const updatedTitles = new Set(storedTitles);
+
+      chosenIndexes.forEach((i) => {
+        const song = filtered[i];
+        if (song) {
+          updatedIds.add(song.id);
+          updatedTitles.add(song.attributes?.name?.toLowerCase());
+        }
+      });
+
+      sessionStorage.setItem("displayedSongIds", JSON.stringify([...updatedIds]));
+      sessionStorage.setItem("displayedSongTitles", JSON.stringify([...updatedTitles]));
+
       setFinalGenresArray(filtered);
+      setRandomIndexes(chosenIndexes);
+
     } catch (error) {
       console.error("Error fetching genre songs:", error);
     }
+   
   };
 
   FetchAllGenres();
+  if(sessionStorage.getItem("displayedSongIds")!= []){
+    sessionStorage.removeItem("displayedSongIds");
+sessionStorage.removeItem("displayedSongTitles");}
+   
 }, [songName, genreName, Token]);
+
+
   // 3. Pick random indexes AFTER songs are loaded
   useEffect(() => {
     if (finalGenresArray.length === 0) return;
@@ -156,7 +171,7 @@ function Recommendations({ genreName, Token, songName }) {
     }
   };
 
-  return (
+    return (
     <div>
       <h3 style={{ marginLeft: "20px" }}>Because you like:</h3>
       <h4>{songName}</h4>
@@ -168,43 +183,92 @@ function Recommendations({ genreName, Token, songName }) {
 
           const songId = item.id;
           const { artistName, name, artwork } = item.attributes;
+          const artworkUrl = artwork?.url
+            ? artwork.url.replace("{w}", "300").replace("{h}", "300")
+            : null;
 
           return (
             <div
               className="recommendedArtist"
               key={songId}
-              style={{ margin: "10px", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}
+              style={{
+                margin: "10px",
+                display: "flex",
+                alignItems: "flex-end",
+                justifyContent: "space-between",
+                width: "300px",
+                height: "300px",
+                borderRadius: "12px",
+                backgroundImage: artworkUrl ? `url(${artworkUrl})` : "none",
+                backgroundColor: artworkUrl ? "transparent" : "#333",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                position: "relative",
+                overflow: "hidden",
+                cursor: "pointer",
+              }}
             >
-              {/* Artwork thumbnail */}
-              {artwork?.url && (
-                <img
-                  src={artwork.url.replace("{w}", "100").replace("{h}", "100")}
-                  alt={name}
-                  style={{ width: 100, height: 100, borderRadius: 4 }}
-                />
-              )}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: "50%",
+                  background: "linear-gradient(to top, rgba(0,0,0,0.85), transparent)",
+                  borderRadius: "0 0 12px 12px",
+                }}
+              />
 
-              <div>
-                <strong>{artistName}</strong> — {name}
+              <div
+                style={{
+                  position: "relative",
+                  zIndex: 1,
+                  padding: "12px",
+                  width: "100%",
+                }}
+              >
+                <div style={{ color: "white", fontSize: "13px", fontWeight: "bold" }}>
+                  {artistName}
+                </div>
+                <div style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px", marginBottom: "8px" }}>
+                  {name}
+                </div>
 
                 <div>
                   <button
-                    style={{ backgroundColor: "green", color: "white", margin: "5px" }}
+                    style={{
+                      backgroundColor: "rgba(255,255,255,0.2)",
+                      color: "white",
+                      border: "1px solid rgba(255,255,255,0.5)",
+                      borderRadius: "6px",
+                      padding: "4px 12px",
+                      margin: "0 4px 0 0",
+                      cursor: "pointer",
+                      backdropFilter: "blur(4px)",
+                    }}
                     onClick={() => handlePlayClick(songId)}
                   >
-                    Play
+                    ▶ Play
                   </button>
 
                   <button
-                    style={{ backgroundColor: "red", color: "white", margin: "5px" }}
+                    style={{
+                      backgroundColor: "rgba(255,255,255,0.2)",
+                      color: "white",
+                      border: "1px solid rgba(255,255,255,0.5)",
+                      borderRadius: "6px",
+                      padding: "4px 12px",
+                      cursor: "pointer",
+                      backdropFilter: "blur(4px)",
+                    }}
                     onClick={() => handlePauseClick(songId)}
                   >
-                    Pause
+                    ⏸ Pause
                   </button>
                 </div>
               </div>
 
-              {/* 6. Each song gets its own audio element via ref callback */}
               <audio
                 ref={(el) => {
                   if (el) audioRefs.current[songId] = el;
@@ -219,5 +283,4 @@ function Recommendations({ genreName, Token, songName }) {
     </div>
   );
 }
-
 export default Recommendations;
