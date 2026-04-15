@@ -5,32 +5,30 @@
   "private": true,
   "description": "",
   "proxy": "http://localhost:3000",
-  "type": "module",
- 
   "engines": {
     "node": "22.11.0"
   },
   "browserslist": {
-  "production": [
-    "chrome >= 67",
-    "edge >= 79",
-    "firefox >= 68",
-    "opera >= 54",
-    "safari >= 14"
-  ],
-  "development": [
-    "last 1 chrome version",
-    "last 1 firefox version",
-    "last 1 safari version"
-  ]
-},
+    "production": [
+      "chrome >= 67",
+      "edge >= 79",
+      "firefox >= 68",
+      "opera >= 54",
+      "safari >= 14"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "npm install --prefix frontend && npm run build --prefix frontend",
-    "heroku-postbuild": "npm run build",
-    "frontend": "npm start",
-  "backend": "nodemon backend/index.js",
-  "dev": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\""
+    "start": "node backend/index.js",
+    "build": "react-scripts build",
+    "heroku-postbuild": "cd frontend && npm install && npm run build",
+    "frontend": "react-scripts start",
+    "backend": "nodemon backend/index.js",
+    "dev": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\""
   },
   "repository": {
     "type": "git",
