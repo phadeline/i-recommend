@@ -173,7 +173,7 @@ function Recommendations({ genreName, Token, songName }) {
             <div
               className="recommendedArtist"
               key={songId}
-              style={{ margin: "10px", display: "flex", alignItems: "center", gap: "10px" }}
+              style={{ margin: "10px", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}
             >
               {/* Artwork thumbnail */}
               {artwork?.url && (

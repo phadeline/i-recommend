@@ -39,15 +39,8 @@ h2{
 
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-image: none !important;
-  color: transparent;
-  position: absolute;
-  top:11%;
-
-  
-
+.carousel-control-prev, .carousel-control-next {
+    display: none;
 }
 .imageWrapper {
   position: relative; /* Set position relative for absolute positioning of arrows */
@@ -57,23 +50,19 @@ h2{
 }
 
 
-.carousel-control-prev-icon:after {
-  content: '<'; /* Use an actual icon or character */
-  font-size: 90px; /* Adjust size as needed */
-   color: rgb(0, 29, 252);
-  font-weight: bolder;
- 
+.carousel-indicators {
+  bottom: auto; /* Reset default bottom position */
+  top: 0;       /* Move to the top of the container */
+  margin-top: -30px; /* Optional: Move outside/above the carousel box */
+
+
 
 }
-
-
-
-.carousel-control-next-icon:after {
-  content: '>'; /* Use an actual icon or character */
- color: rgb(0, 29, 252);
-  font-size: 90px;
-  font-weight: bolder;
-
+.carousel-indicators [data-bs-target] {
+  background-color: #fa0000; /* Change indicator color to black */
+  height: 10px; /* Increase height for better visibility */
+  width: 10px;
+ 
 }
 
 @media screen and (max-width: 1400px) { 

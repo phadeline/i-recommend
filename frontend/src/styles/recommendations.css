@@ -8,6 +8,7 @@
     border-radius: 10px;
     text-align: center;
     box-shadow: 
+
     /* Bottom shadow for overall depth */
     0 4px 8px rgba(0, 0, 0, 0.7),
     /* Deeper, offset shadow for directionality */

@@ -54,8 +54,8 @@ function AllMusic() {
         <div className="Carousel">
           <Carousel
             interval={null}
-            indicators={false}
-           
+
+         
           >
             {OnePlaylistData ? (
               OnePlaylistData.data?.map((song) => (
@@ -73,8 +73,9 @@ function AllMusic() {
                     />
                   </div>
                 
-                  <div>
+                  <div style={{display:"flex", flexDirection:"column", alignItems:"center", gap:"10px"}}>
                     <Recommendations
+                    
                       genreName={song.attributes.genreNames}
                       Token = {sessionStorage.getItem("devtoken")}
                       artistName = {song.attributes.artistName}
