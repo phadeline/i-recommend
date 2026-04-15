@@ -1,126 +1,108 @@
 import React, { useEffect, useState, useRef} from "react";
-import {
-  useSearchParams,
-  useNavigate,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 
-
 /* global MusicKit */
 function App() {
-  const musicPlaylists = "https://api.music.apple.com/v1/me/library/playlists"; // Example MusicKit API endpoint
+  const musicPlaylists = "https://api.music.apple.com/v1/me/library/playlists";
   const rangeSliderRef = useRef();
-
   const newButtonRef = useRef();
   var count = 0;
   const [sliderValue, setSliderValue] = useState(15);
-  const [activates, setActivates] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const navigate = useNavigate();
-const hasFetched = useRef(false);
-//http://localhost:9000
-  useEffect(() => {
-   
-  async function getToken() {
-    try {
-      const response = await axios.get("http://localhost:9000/token", {
-      headers: {
-        "Content-Type": "application/json",
-      }});
-      const token = response.data;
-      sessionStorage.setItem("devtoken", token);
-      //console.log("devtoken: " + token);
-      
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  const hasFetched = useRef(false);
 
-  getToken();
-}, []);
+  useEffect(() => {
+    async function getToken() {
+      try {
+        const response = await axios.get("http://localhost:9000/token", {
+          headers: { "Content-Type": "application/json" },
+        });
+        sessionStorage.setItem("devtoken", response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getToken();
+  }, []);
+
   if (hasFetched.current) return;
+
   useEffect(() => {
     async function handleMouseMove(event) {
       event.preventDefault();
- 
-      if (!sessionStorage.getItem("devtoken")) {
-        console.log("devtoken not found");
-        return;
-      }else{
-      console.log("musickitloaded event fired");
+      if (!sessionStorage.getItem("devtoken")) return;
+
       try {
-        // Call configure() to configure an instance of MusicKit on the Web.
         await MusicKit.configure({
           developerToken: sessionStorage.getItem("devtoken"),
-          app: {
-            name: "irecommend",
-          },
+          app: { name: "irecommend" },
         });
-        //console.log(`success ${sessionStorage.getItem("devtoken")}`);
       } catch (err) {
         console.log("not a success: " + err);
-        // Handle configuration error
       }
       count++;
-      console.log("in handlesmousemove: " + count);
       document.removeEventListener("mousemove", handleMouseMove);
     }
-
-  }
     document.addEventListener("mousemove", handleMouseMove);
   }, [sessionStorage.getItem("devtoken")]);
 
   const Click = async () => {
     sessionStorage.removeItem("music-user-token");
+    setIsAuthorized(false);
+
     if (
       sessionStorage.getItem("devtoken") &&
       !sessionStorage.getItem("music-user-token")
     ) {
       const instance = await MusicKit.getInstance();
 
-      console.log("click");
-
       if (rangeSliderRef.current.value === rangeSliderRef.current.max) {
         instance.unauthorize();
 
         try {
           const response = await instance.authorize();
-
           rangeSliderRef.current.style.opacity = 0.2;
           sessionStorage.setItem("music-user-token", response);
-          console.log("Authorized, music user token: " + response);
-          console.log(activates);
-          if (sessionStorage.getItem("music-user-token")) {
-            setActivates(true);
+
+          // Only enable the button if we actually got a valid token back
+          if (response && sessionStorage.getItem("music-user-token")) {
+            setIsAuthorized(true);
             setSliderValue(200);
           }
         } catch (err) {
           console.log("Authorization error:", err);
+          setIsAuthorized(false);
         }
       }
     }
   };
 
   const getPlaylists = async () => {
-  
-
     const decodedToken = sessionStorage.getItem("music-user-token");
     const getToken = sessionStorage.getItem("devtoken");
 
-    const response = await axios.get(musicPlaylists, {
-      headers: {
-        Authorization: `Bearer ${getToken}`,
-        "Music-User-Token": `${decodedToken}`,
-        "Content-Type": "application/json",
-      },
-    });
-    try {
-      const MyPlays = await response.data;
-      //   console.log(await response.data);
+    // Double-check tokens are present before making the call
+    if (!decodedToken || !getToken) {
+      console.error("Missing tokens — cannot fetch playlists.");
+      setIsAuthorized(false);
+      return;
+    }
 
-      navigate("playlists", { state: { MyPlays: MyPlays } });
+    try {
+      const response = await axios.get(musicPlaylists, {
+        headers: {
+          Authorization: `Bearer ${getToken}`,
+          "Music-User-Token": decodedToken,
+          "Content-Type": "application/json",
+        },
+      });
+      navigate("playlists", { state: { MyPlays: response.data } });
     } catch (error) {
       console.error("Error fetching playlists:", error);
+      setIsAuthorized(false);
     }
   };
 
@@ -149,20 +131,16 @@ const hasFetched = useRef(false);
           </div>
           <div className="textdiv">
             <button
-              disabled={activates ? false : true}
+              disabled={!isAuthorized}
               type="button"
               ref={newButtonRef}
-              onClick={() => {
-                getPlaylists();
-              }}
+              onClick={getPlaylists}
               id="image"
-            ></button>
+            />
           </div>
         </div>
         <div>
-          <p>
-            Drag to the end of the slider to connect your Apple Music account.
-          </p>
+          <p>Drag to the end of the slider to connect your Apple Music account.</p>
           <p>Then press Connect.</p>
         </div>
       </div>

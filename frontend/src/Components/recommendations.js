@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/recommendations.css";
 import axios from "axios";
+import AddToPlaylist from "./AddToPlaylist";
+
 
 function Recommendations({ genreName, Token, songName }) {
   const audioRefs = useRef({});
@@ -267,6 +269,11 @@ sessionStorage.removeItem("displayedSongTitles");
                   >
                     ⏸ Pause
                   </button>
+                  <AddToPlaylist
+  songId={songId}
+  songName={name}
+  Token={Token}
+/>
                 </div>
               </div>
 

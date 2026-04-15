@@ -1,7 +1,6 @@
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import "../styles/playlistpage.css";
-import React, { use, useState } from "react";
-import axios from "axios";
+
 
 const PlaylistsLists = () => {
   const location = useLocation();
@@ -11,7 +10,7 @@ const PlaylistsLists = () => {
 
 
   
-  //console.log(`Hello ${myPlaylists.data[0].attributes.name}`);
+
 
   return (
     <div className="playlistbackground">
@@ -20,7 +19,7 @@ const PlaylistsLists = () => {
         {MyPlays.meta.total ? (
         
         MyPlays.data?.map((playlist) => (
-          
+          <div >
             <Link
             
               style={{ textDecoration: "none", color: "white" }}
@@ -33,7 +32,7 @@ const PlaylistsLists = () => {
                 {playlist.attributes.name}
               </li>
             </Link>
-            
+            </div>
          
         ))
 

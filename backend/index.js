@@ -131,7 +131,7 @@ app.get("/api/getAllTracks/:finalglobalID", async (req, res) => {
     );
 
 const text = await response.text();
-console.log("Raw response:", text);
+//console.log("Raw response:", text);
 
 const data = JSON.parse(text);
 
