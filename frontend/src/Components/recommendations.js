@@ -130,7 +130,7 @@ sessionStorage.removeItem("displayedSongTitles");
 
       if (!previewUrl) {
         const response = await axios.get(
-          `http://localhost:9000/api/${songId}`,
+          `/api/${songId}`,
           {
             headers: {
               "Content-Type": "application/json",

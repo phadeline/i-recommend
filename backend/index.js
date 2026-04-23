@@ -14,7 +14,7 @@ const port =  process.env.PORT;
 import jwt from "jsonwebtoken";
 
 
-const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_URL : 'http://localhost:3000';
+const API_URL = process.env.REACT_URL;
 
 
 const frontendBuildPath = process.env.NODE_ENV === 'production' ? path.join(__dirname, "../frontend/build") : path.join(__dirname, "../frontend/public"); 
