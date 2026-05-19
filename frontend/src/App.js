@@ -40,6 +40,13 @@ function App() {
           developerToken: sessionStorage.getItem("devtoken"),
           app: { name: "irecommend" },
         });
+        // Clear any MusicKit-cached authorization from a previous browser session
+        if (!sessionStorage.getItem("music-user-token")) {
+          const instance = MusicKit.getInstance();
+          if (instance.isAuthorized) {
+            await instance.unauthorize();
+          }
+        }
       } catch (err) {
         console.log("not a success: " + err);
       }
