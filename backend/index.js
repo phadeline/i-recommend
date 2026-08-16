@@ -143,6 +143,54 @@ app.get("/api/getAllTracks/:finalglobalID", async (req, res) => {
 
 //"http://localhost:9000/token", "http://localhost:3000"
 
+app.get("/privacy", (req, res) => {
+  res.send(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – iRecomend</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 720px; margin: 60px auto; padding: 0 24px; color: #1a1a1a; line-height: 1.7; }
+    h1 { font-size: 2rem; margin-bottom: 4px; }
+    .date { color: #666; font-size: 0.9rem; margin-bottom: 40px; }
+    h2 { font-size: 1.1rem; margin-top: 36px; }
+    a { color: #0071e3; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p class="date">Last updated: August 15, 2026</p>
+
+  <h2>Overview</h2>
+  <p>iRecomend is a music recommendation app that connects to your Apple Music library to suggest new tracks based on your playlists. Your privacy is important to us. This policy explains what data the app accesses and how it is used.</p>
+
+  <h2>Data We Access</h2>
+  <p>iRecomend requests access to your Apple Music library solely to read your playlists and the tracks within them. This information is used on-device to generate music recommendations. It is never sent to our servers or any third party.</p>
+
+  <h2>Data We Do Not Collect</h2>
+  <p>We do not collect, store, or transmit any personal information. We do not use analytics, advertising SDKs, or tracking tools of any kind.</p>
+
+  <h2>Third-Party Services</h2>
+  <p>iRecomend communicates exclusively with Apple's MusicKit and Apple Music APIs to fetch music catalog data and play audio previews. This communication is governed by <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</p>
+
+  <h2>Audio Previews</h2>
+  <p>Track previews are streamed directly from Apple's servers. No audio data is recorded or stored by the app.</p>
+
+  <h2>Children's Privacy</h2>
+  <p>iRecomend does not knowingly collect information from children under 13.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>We may update this policy from time to time. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+
+  <h2>Contact</h2>
+  <p>If you have questions about this privacy policy, please visit our support page at <a href="https://i-recommend-289e22b5c5f5.herokuapp.com/">i-recommend-289e22b5c5f5.herokuapp.com</a>.</p>
+
+  <p style="margin-top:60px; color:#999; font-size:0.85rem;">© 2026 Phadeline Evra. All rights reserved.</p>
+</body>
+</html>`);
+});
+
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);
 });

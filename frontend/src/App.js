@@ -40,15 +40,18 @@ function App() {
           developerToken: sessionStorage.getItem("devtoken"),
           app: { name: "irecommend" },
         });
-        // Clear any MusicKit-cached authorization from a previous browser session
-        if (!sessionStorage.getItem("music-user-token")) {
+      } catch (err) {
+        console.log("not a success: " + err);
+      }
+      // Clear any MusicKit-cached authorization from a previous browser session
+      // Wrapped separately so a non-fatal extension error doesn't block configure
+      if (!sessionStorage.getItem("music-user-token")) {
+        try {
           const instance = MusicKit.getInstance();
           if (instance.isAuthorized) {
             await instance.unauthorize();
           }
-        }
-      } catch (err) {
-        console.log("not a success: " + err);
+        } catch (_) {}
       }
       count++;
       document.removeEventListener("mousemove", handleMouseMove);
@@ -67,7 +70,7 @@ function App() {
       const instance = await MusicKit.getInstance();
 
       if (rangeSliderRef.current.value === rangeSliderRef.current.max) {
-        instance.unauthorize();
+        try { await instance.unauthorize(); } catch (_) {}
 
         try {
           const response = await instance.authorize();
@@ -80,8 +83,17 @@ function App() {
             setSliderValue(200);
           }
         } catch (err) {
-          console.log("Authorization error:", err);
-          setIsAuthorized(false);
+          // MusicKit may throw a non-fatal browser extension error even when auth succeeds
+          const token = instance.musicUserToken;
+          if (token) {
+            rangeSliderRef.current.style.opacity = 0.2;
+            sessionStorage.setItem("music-user-token", token);
+            setIsAuthorized(true);
+            setSliderValue(200);
+          } else {
+            console.log("Authorization error:", err);
+            setIsAuthorized(false);
+          }
         }
       }
     }
