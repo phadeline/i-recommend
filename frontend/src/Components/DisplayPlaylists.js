@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 const ConnectToPlaylists = () => {
-  const musicPlaylists = `https://api.music.apple.com/v1/me/library/playlists`; // Example MusicKit API endpoint
+  const musicPlaylists = `/api/library/playlists`;
 const [myPlaylists, setMyPlaylists] = useState([]);
    const documentRef = useRef(document);
     const button = documentRef.current.getElementById("image");

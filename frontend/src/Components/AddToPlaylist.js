@@ -16,7 +16,7 @@ function AddToPlaylist({ songId, songName, Token }) {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://api.music.apple.com/v1/me/library/playlists",
+        "/api/library/playlists",
         {
           headers: {
             Authorization: `Bearer ${Token}`,
@@ -43,7 +43,7 @@ function AddToPlaylist({ songId, songName, Token }) {
 
     try {
       await axios.post(
-        `https://api.music.apple.com/v1/me/library/playlists/${playlistId}/tracks`,
+        `/api/library/playlists/${playlistId}/tracks`,
         {
           data: [
             {

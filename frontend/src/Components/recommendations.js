@@ -23,7 +23,7 @@ useEffect(() => {
       .map((genre) => genre.replace("R&B/Soul", "Soul"))[0];
 
     try {
-      const url = `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${encodeURIComponent(primaryGenre)}`;
+      const url = `/api/search/songs?term=${encodeURIComponent(primaryGenre)}`;
       const response = await axios.get(url, {
         headers: {
           "Content-Type": "application/json",

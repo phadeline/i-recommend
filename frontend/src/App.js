@@ -5,7 +5,7 @@ import axios from "axios";
 
 /* global MusicKit */
 function App() {
-  const musicPlaylists = "https://api.music.apple.com/v1/me/library/playlists";
+  const musicPlaylists = "/api/library/playlists";
   const rangeSliderRef = useRef();
   const newButtonRef = useRef();
   var count = 0;

@@ -20,6 +20,7 @@ const frontendBuildPath =
     : path.join(__dirname, "../frontend/public");
 
 app.use(express.static(frontendBuildPath));
+app.use(express.json());
 
 const secretOrPrivateKey =
   process.env.NODE_ENV === "production"
@@ -134,6 +135,81 @@ app.get("/api/getAllTracks/:finalglobalID", async (req, res) => {
     }
 
     res.json(data);
+  } catch (error) {
+    console.error("Server Crash:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/library/playlists", async (req, res) => {
+  try {
+    const response = await fetch(
+      "https://api.music.apple.com/v1/me/library/playlists",
+      {
+        headers: {
+          Authorization: req.headers.authorization,
+          "Music-User-Token": req.headers["music-user-token"],
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    const text = await response.text();
+    const data = JSON.parse(text);
+    res.status(response.status).json(data);
+  } catch (error) {
+    console.error("Server Crash:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post("/api/library/playlists/:playlistId/tracks", async (req, res) => {
+  try {
+    const { playlistId } = req.params;
+
+    const response = await fetch(
+      `https://api.music.apple.com/v1/me/library/playlists/${playlistId}/tracks`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: req.headers.authorization,
+          "Music-User-Token": req.headers["music-user-token"],
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(req.body),
+      },
+    );
+
+    if (response.status === 204) {
+      return res.status(204).end();
+    }
+
+    const text = await response.text();
+    const data = text ? JSON.parse(text) : {};
+    res.status(response.status).json(data);
+  } catch (error) {
+    console.error("Server Crash:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/search/songs", async (req, res) => {
+  try {
+    const term = req.query.term;
+
+    const response = await fetch(
+      `https://api.music.apple.com/v1/catalog/us/search?types=songs&limit=25&term=${encodeURIComponent(term)}`,
+      {
+        headers: {
+          Authorization: req.headers.authorization,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    const text = await response.text();
+    const data = JSON.parse(text);
+    res.status(response.status).json(data);
   } catch (error) {
     console.error("Server Crash:", error);
     res.status(500).json({ error: error.message });
