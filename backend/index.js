@@ -21,19 +21,10 @@ const frontendBuildPath =
 
 app.use(express.static(frontendBuildPath));
 
-const utcNowMilliseconds = Date.now(); // Get current UTC time in milliseconds
-const utcNowSeconds = Math.floor(utcNowMilliseconds / 1000); // UTC time in seconds
-
 const secretOrPrivateKey =
   process.env.NODE_ENV === "production"
     ? process.env.MY_NEW_KEY
     : fs.readFileSync("../.env.keys", "utf8");
-
-const payload = {
-  iss: "P97D3C79H5",
-  iat: utcNowSeconds,
-  exp: utcNowSeconds + 60 * 60 * 24, // Token valid for 24 hours
-};
 
 const myheader = {
   alg: "ES256",
@@ -42,6 +33,14 @@ const myheader = {
 };
 
 function myFunction() {
+  const utcNowSeconds = Math.floor(Date.now() / 1000); // UTC time in seconds
+
+  const payload = {
+    iss: "P97D3C79H5",
+    iat: utcNowSeconds,
+    exp: utcNowSeconds + 60 * 60 * 24, // Token valid for 24 hours
+  };
+
   const token = jwt.sign(
     JSON.stringify(payload),
     secretOrPrivateKey,
